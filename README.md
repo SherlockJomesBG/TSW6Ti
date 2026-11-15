@@ -2,6 +2,7 @@
 
 > A sleek, real-time telemetry dashboard and driver companion for Train Sim World 6. Because driving a 4,000-tonne freight train or flying down the mainline at 125 mph is much cooler when you have shiny live dials on your second screen.
 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FSherlockJomesBG%2FTSW6Ti)](https://hits.seeyoufarm.com)
 ---
 
 ## About this project
@@ -98,6 +99,3 @@ We're just pulling out of the station! Here is what's on the roadmap:
 
 ### License
 This project is open-source and released under the **MIT License**. You are free to inspect, modify, and build upon this code for personal and non-commercial simulation use.
-
-
-![Visitor Count](https://komarev.com/ghpvc/?username=YOUR_GITHUB_USERNAME)

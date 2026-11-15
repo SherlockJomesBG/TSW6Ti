@@ -98,3 +98,6 @@ We're just pulling out of the station! Here is what's on the roadmap:
 
 ### License
 This project is open-source and released under the **MIT License**. You are free to inspect, modify, and build upon this code for personal and non-commercial simulation use.
+
+
+![Visitor Count](https://komarev.com/ghpvc/?username=YOUR_GITHUB_USERNAME)

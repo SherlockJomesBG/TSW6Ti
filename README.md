@@ -1,6 +1,7 @@
 # Train Sim World 6 Telemetry Interface
 
 > A sleek, real-time telemetry dashboard and driver companion for Train Sim World 6. Because driving a 4,000-tonne freight train or flying down the mainline at 125 mph is much cooler when you have shiny live dials on your second screen.
+
 ![Visitor Count](https://komarev.com/ghpvc/?username=SherlockJomesBG-TSW6Ti&label=Project+Views)
 ---
 

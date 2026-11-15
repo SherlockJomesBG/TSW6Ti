@@ -1,0 +1,524 @@
+/* Here lies the CSS concerned with layout-public layouts */
+/* This will add to the CSS already laid out by the base stylesheet. Additionally, all other public pages should inherit styles from this for the sake of consistency and hierarchy */
+/* Remember consistency is key */
+
+/* This makes the main layout stretch to full viewport height, flex column, sets dark background with purple radial and linear gradients */
+.public-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: var(--bg-primary);
+    background-image:
+        radial-gradient(ellipse 55% 60% at 76% 42%, rgba(124, 42, 232, 0.22) 0%, rgba(74, 18, 150, 0.08) 45%, transparent 75%),
+        radial-gradient(circle at 18% 28%, rgba(98, 28, 196, 0.08) 0%, transparent 55%),
+        linear-gradient(180deg, #08020f 0%, #06020b 100%);
+    overflow: hidden;
+}
+
+/* This gives the header bar a fixed z-index, translucent dark glass background with backdrop blur, bottom border and subtle purple glow */
+.public-header {
+    width: 100%;
+    position: relative;
+    z-index: 20;
+    padding: 1.1rem 0;
+    background: rgba(7, 2, 13, 0.82);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border-purple);
+    box-shadow: 0 1px 16px rgba(124, 42, 232, 0.12);
+}
+
+/* This creates a flex row that aligns the brand logo and user account area to opposite ends */
+.public-header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+/* For the user account section this ensure a flex container holding username pill and logout button */
+.header-account {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-shrink: 0;
+    min-width: 0;
+}
+
+/* Completely hides account section when unauthenticated */
+.header-account[hidden] {
+    display: none;
+}
+
+/* This makes the account section clickable/hoverable with user icon and username */
+.header-account-user {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+    height: 36px;
+    padding: 0 0.8rem;
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1;
+    text-decoration: none !important;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+    min-width: 0;
+}
+
+/* Truncates username text with ellipsis if the username is too long */
+#header-username {
+    display: inline-block;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+/* When hovered, this gives the account section a subtle purple background highlight and border glow */
+.header-account-user:hover {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* The user icon is a styled circular user icon */
+.header-account-user i {
+    font-size: 1.15rem;
+    line-height: 1;
+    color: var(--accent-bright);
+}
+
+/* Logout button with icon and text, triggers session logout */
+.header-logout-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    height: 36px;
+    padding: 0 0.8rem;
+    font-size: 0.88rem;
+    font-weight: 500;
+    line-height: 1;
+    box-sizing: border-box;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-purple);
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+/* When hovering on the logout button this brightens text and highlights purple border */
+.header-logout-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-bright);
+}
+
+/* This hides elements based on authentication state flag */
+[data-auth][hidden] {
+    display: none !important;
+}
+
+/* This makes the logo area a clickable brand link aligning train emblem and project name */
+.logo-area {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    user-select: none;
+    text-decoration: none !important;
+}
+
+/* Brand logo image with drop shadow */
+.brand-logo {
+    height: 32px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(139, 61, 255, 0.45));
+}
+
+/* Hide CSS SVG emblem now that the real brand logo image is in the header */
+.logo-area::before {
+    display: none !important;
+}
+
+/* This makes the brand name bold with wide letter spacing */
+.brand-name {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+/* One of our style choices to highlight the '6' in bright purple */
+/* This is more to emphasise that this only works with the 6th edition of the game */
+.brand-name .brand-accent {
+    color: var(--accent-bright);
+    margin-left: 0.15rem;
+}
+
+/* Styles the 'Ti' suffix */
+.brand-name .brand-ti {
+    color: var(--text-primary);
+    margin-left: 0.04rem;
+    font-weight: 800;
+}
+
+/* This makes the public page content wrapper grow to fill available vertical space between header and footer */
+.public-content-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+    padding: 2.5rem 0 1.5rem;
+}
+
+/* This gives the backdrop a fixed-height backdrop image with dark gradient overlays and bottom fade mask */
+.public-content-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: auto;
+    height: 100vh;
+    max-height: 880px;
+    pointer-events: none;
+    z-index: 1;
+    background-image:
+        linear-gradient(90deg, #07020d 0%, rgba(7, 2, 13, 0.9) 32%, rgba(7, 2, 13, 0.25) 62%, rgba(7, 2, 13, 0.1) 100%),
+        linear-gradient(180deg, rgba(7, 2, 13, 0.3) 0%, rgba(7, 2, 13, 0.05) 55%, rgba(7, 2, 13, 0.88) 84%, #07020d 100%),
+        url("/Images/Landing%20Backdrop.png");
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* The content inner container positions foreground content above backdrop layer */
+.public-content-wrapper>.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 5;
+}
+
+/* This ensures the alerts are a fixed top-right overlay stack for alert messages */
+#alert-container {
+    position: fixed;
+    top: 86px;
+    right: 1.5rem;
+    z-index: 450;
+    width: min(380px, calc(100vw - 2rem));
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    pointer-events: none;
+}
+
+/* This hides the alert stack when there are no active alerts */
+#alert-container:empty {
+    display: none;
+}
+
+/* This is a glassmorphism card with a slide-in animation and a coloured left accent bar */
+#alert-container .alert {
+    pointer-events: auto;
+    margin: 0;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    background: rgba(16, 8, 28, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-purple-strong);
+    border-left: 3px solid var(--accent-bright);
+    color: var(--text-primary);
+    font-size: 0.86rem;
+    font-weight: 500;
+    line-height: 1.4;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    animation: publicAlertSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* This translates and fades alert toasts into view from the right */
+@keyframes publicAlertSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+}
+
+/* Styles the alerts for when they are successful with green border and left accent bar */
+#alert-container .alert-success {
+    border-color: rgba(34, 197, 94, 0.45);
+    border-left-color: #22c55e;
+}
+
+/* Styles the alerts for when they are danger/error with red/rose border and left accent bar */
+#alert-container .alert-danger {
+    border-color: rgba(244, 63, 94, 0.55);
+    border-left-color: #fb7185;
+}
+
+/* Styles the alerts for when they are warning with amber border and left accent bar */
+#alert-container .alert-warning {
+    border-color: rgba(245, 158, 11, 0.5);
+    border-left-color: #f59e0b;
+}
+
+/* Styles the alerts for when they are information with purple border and left accent bar */
+#alert-container .alert-info {
+    border-color: rgba(139, 61, 255, 0.5);
+    border-left-color: var(--accent-bright);
+}
+
+/* This defines the content of the alerts and aligns status icon next to notification message text */
+.alert-toast-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-width: 0;
+}
+
+/* This defines the colour of the success icon */
+.alert-success .alert-toast-content i {
+    color: #22c55e;
+}
+
+/* This defines the colour of the danger/error icon */
+.alert-danger .alert-toast-content i {
+    color: #fb7185;
+}
+
+/* This defines the colour of the warning icon */
+.alert-warning .alert-toast-content i {
+    color: #f59e0b;
+}
+
+/* This defines the colour of the information icon */
+.alert-info .alert-toast-content i {
+    color: var(--accent-bright);
+}
+
+/* Adds the close button to the right of the alert */
+.alert-toast-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.15rem 0.25rem;
+    font-size: 0.85rem;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: color 0.15s;
+}
+
+/* When hovering on alert close button it turns white */
+.alert-toast-close:hover {
+    color: var(--text-primary);
+}
+
+/* Reduced header spacing and icon-only logout button for mobile screens */
+/* You should be accessing this from a desktop device anyways */
+@media (max-width: 767.98px) {
+
+    /* Reduces vertical padding */
+    .public-header {
+        padding: 0.75rem 0;
+    }
+
+    /* Adjusted side padding and spacing */
+    .public-header .container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        width: 100%;
+    }
+
+    /* Adjusts the gap for the logo area */
+    .logo-area {
+        gap: 0.5rem;
+        flex-shrink: 0;
+    }
+
+    /* Scales the brand logo */
+    .brand-logo {
+        height: 28px;
+    }
+
+    /* Reduces the font size of the brand name */
+    .brand-name {
+        font-size: 1.25rem;
+    }
+
+    /* Aligns the user account section to the right */
+    .header-account {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    /* Tightens padding and caps width of the user account badge */
+    .header-account-user {
+        height: 36px;
+        padding: 0 0.65rem;
+        gap: 0.38rem;
+        font-size: 0.84rem;
+        max-width: 135px;
+    }
+
+    /* Slightly smaller icon size */
+    .header-account-user i {
+        font-size: 1.05rem;
+    }
+
+    /* Narrower truncation threshold for username text */
+    #header-username {
+        max-width: 85px;
+    }
+
+    /* Square icon-only button for logout */
+    .header-logout-btn {
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    /* Logout button text hidden on mobile */
+    .header-logout-btn span {
+        display: none;
+    }
+
+    /* Centered icon */
+    .header-logout-btn i {
+        font-size: 1rem;
+        margin: 0;
+    }
+}
+
+/* Further adjusts full-width alert notifications and tighter header elements */
+/* You should be accessing this from a desktop device anyways */
+@media (max-width: 576px) {
+
+    /* Toast container spans full screen width */
+    #alert-container {
+        top: 80px;
+        right: 1rem;
+        left: 1rem;
+        width: auto;
+    }
+
+    /* Tighter padding */
+    .public-header .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        gap: 0.5rem;
+    }
+
+    /* Reduces the font size of the brand name further */
+    .brand-name {
+        font-size: 1.18rem;
+    }
+
+    /* Reduces spacing */
+    .header-account {
+        gap: 0.45rem;
+    }
+
+    /* Compact padding and width */
+    .header-account-user {
+        padding: 0 0.55rem;
+        max-width: 120px;
+        font-size: 0.82rem;
+    }
+
+    /* Tighter max-width truncation for username text */
+    #header-username {
+        max-width: 70px;
+    }
+}
+
+/* Minimal header layout */
+/* You should be accessing this from a desktop device anyways */
+@media (max-width: 420px) {
+
+    /* Minimal side padding */
+    .public-header .container {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+        gap: 0.4rem;
+    }
+
+    /* Compact icon and text gap */
+    .logo-area {
+        gap: 0.35rem;
+    }
+
+    /* Scales brand logo down for mobile */
+    .brand-logo {
+        height: 24px;
+    }
+
+    /* Smallest title font size for brand name */
+    .brand-name {
+        font-size: 1.1rem;
+    }
+
+    /* Slim badge padding */
+    .header-account-user {
+        padding: 0 0.45rem;
+        max-width: 105px;
+    }
+
+    /* Strictest truncation threshold for username text */
+    #header-username {
+        max-width: 60px;
+    }
+}
+
+/* Ultra narrow mobile layout (<= 350px): hides username text completely */
+/* Username text: hidden, showing only the user icon */
+@media (max-width: 350px) {
+    #header-username {
+        display: none;
+    }
+
+    /* User account badge removes width cap */
+    .header-account-user {
+        padding: 0 0.5rem;
+        max-width: none;
+    }
+}

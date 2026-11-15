@@ -1,0 +1,725 @@
+/* Here lies the CSS concerned with the Recordings Page in the Telemetry Interface */
+/* This will add to the CSS already laid out by the telemetry interface stylesheet */
+/* Remember consistency is key */
+
+/* Container wrapping the recordings library, replay viewer and summary analytics */
+.recordings-container {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Completely hides recording screens when they aren't active */
+.recordings-container[hidden],
+.rec-view[hidden] {
+    display: none !important;
+}
+
+/* Centred view container for the recordings list and analytics */
+.rec-view {
+    flex: 1;
+    width: 100%;
+    max-width: 1320px;
+    margin: 0.75rem auto 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Full-screen view layout used when replaying a recorded journey */
+.rec-replay-view {
+    max-width: none;
+    margin: 0;
+    height: 100%;
+    min-height: 0;
+    gap: 0.65rem;
+    overflow: hidden;
+}
+
+/* Top header bar for the recordings library with title and actions */
+.rec-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--telem-divider);
+}
+
+/* Main title for the recordings section */
+.rec-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.2rem;
+    letter-spacing: -0.02em;
+}
+
+/* Muted subtitle describing your journey logs */
+.rec-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Groups search input and filter buttons in the top right */
+.rec-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* Wrapper for the search input positioning the magnifying glass icon */
+.rec-search-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Magnifying glass search icon */
+.rec-search-wrap i {
+    position: absolute;
+    left: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+/* Search input field for finding recordings by route, train or date */
+.rec-search-input {
+    height: 36px;
+    min-width: 240px;
+    padding: 0 0.85rem 0 2.2rem;
+    background: var(--telem-input-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+/* Highlights the search input border with purple on focus */
+.rec-search-input:focus {
+    border-color: var(--accent-bright);
+}
+
+/* Base styling for buttons across the recordings interface */
+.rec-back-btn,
+.rec-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    height: 36px;
+    padding: 0 0.95rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+/* Ghost button style with a subtle dark background */
+.rec-back-btn,
+.rec-btn-ghost {
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    color: var(--text-secondary) !important;
+}
+
+/* Highlights ghost buttons on hover */
+.rec-back-btn:hover,
+.rec-btn-ghost:hover {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary) !important;
+}
+
+/* Secondary button with subtle purple tint */
+.rec-btn-secondary {
+    background: var(--accent-subtle);
+    border: 1px solid var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* Highlights secondary buttons with bright purple on hover */
+.rec-btn-secondary:hover {
+    background: var(--accent-bright);
+    border-color: var(--accent-bright);
+    color: var(--accent-contrast);
+}
+
+/* Primary gradient button used for main actions like starting a replay */
+.rec-btn-primary {
+    background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent-deep) 100%);
+    border: 1px solid var(--border-purple-strong);
+    color: var(--accent-contrast);
+    box-shadow: 0 3px 14px var(--accent-glow);
+}
+
+/* Brightens the primary button on hover */
+.rec-btn-primary:hover {
+    filter: brightness(1.08);
+}
+
+/* Red warning button used for deleting recordings */
+.rec-btn-danger {
+    background: rgba(244, 63, 94, 0.1);
+    border: 1px solid rgba(244, 63, 94, 0.35);
+    color: #fb7185;
+}
+
+/* Highlights the delete button when hovered */
+.rec-btn-danger:hover {
+    background: rgba(244, 63, 94, 0.25);
+    color: #ffffff;
+}
+
+/* Dashed placeholder box shown when you don't have any recordings yet */
+.rec-empty-state {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    background: var(--telem-card-bg);
+    border: 1px dashed var(--border-purple);
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+/* Hides the empty state box when recordings exist */
+.rec-empty-state[hidden] {
+    display: none !important;
+}
+
+/* Responsive card grid displaying saved train recordings */
+.rec-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1rem;
+}
+
+/* Individual recording card showing route, stats, date and action buttons */
+.rec-card {
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    border-radius: 8px;
+    padding: 1.15rem 1.25rem;
+    box-shadow: var(--telem-card-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Lifts the recording card slightly on hover */
+.rec-card:hover {
+    border-color: var(--telem-card-hover-border);
+    transform: translateY(-2px);
+}
+
+/* Card header row aligning route badge, trip title, and file size */
+.rec-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+/* Uppercase purple badge displaying the route name */
+.rec-card-route {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+}
+
+/* Bold trip title text */
+.rec-card-trip {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0.18rem 0 0.15rem;
+}
+
+/* Train model or engine name */
+.rec-card-train {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Monospace badge displaying recording file size */
+.rec-card-size {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.18rem 0.48rem;
+    border-radius: 4px;
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    color: var(--text-muted);
+    flex-shrink: 0;
+}
+
+/* 4-column mini stats grid inside the recording card */
+.rec-card-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.5rem;
+}
+
+/* Small box holding a single stat metric like duration or top speed */
+.rec-card-stat {
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+    padding: 0.45rem 0.55rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+/* Uppercase muted label inside the stat box */
+.rec-card-stat-k {
+    font-size: 0.56rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* Monospace stat value */
+.rec-card-stat-v {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Highlights warnings like overspeeding in red */
+.rec-card-stat-v.is-warn {
+    color: #fb7185;
+}
+
+/* Card footer displaying recording date and action buttons */
+.rec-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--telem-divider);
+    flex-wrap: wrap;
+}
+
+/* Formatted date and time when the drive took place */
+.rec-card-date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Groups replay, export and delete buttons together */
+.rec-card-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+/* Compact button sizing for card action buttons */
+.rec-card-actions .rec-btn {
+    height: 30px;
+    padding: 0 0.65rem;
+    font-size: 0.75rem;
+}
+
+/* Secondary top bar above the replay screen with recording title and navigation */
+.rec-subbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* Left and right groups in the replay subbar */
+.rec-subbar-left,
+.rec-subbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* Stacks recording title and route info */
+.rec-subbar-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.08rem;
+}
+
+/* Title of the recording currently being replayed */
+.rec-subbar-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Subtitle showing train and service details */
+.rec-subbar-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* Floating control bar at the top or bottom for controlling journey replay */
+.rec-player-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.6rem 1rem;
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    border-radius: 8px;
+    box-shadow: var(--telem-card-shadow);
+    flex-shrink: 0;
+}
+
+/* Groups playback buttons like step, skip and play */
+.rec-player-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+/* Compact monospace buttons for stepping through frames */
+.rec-ctrl-btn {
+    height: 32px;
+    padding: 0 0.55rem;
+    border-radius: 5px;
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    color: var(--text-secondary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+/* Highlights frame control buttons on hover */
+.rec-ctrl-btn:hover {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* Round purple gradient button to play or pause the recording replay */
+.rec-play-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent-deep) 100%);
+    border: 1px solid var(--border-purple-strong);
+    color: var(--accent-contrast);
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 12px var(--accent-glow);
+}
+
+/* Timeline scrubber container with timestamps and range slider */
+.rec-scrubber-wrap {
+    flex: 1;
+    min-width: 220px;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+/* Monospace time counter showing current position and total duration */
+.rec-time-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    min-width: 44px;
+    text-align: center;
+}
+
+/* Purple range slider for seeking across the recording timeline */
+.rec-scrubber {
+    flex: 1;
+    accent-color: var(--accent-bright);
+    cursor: pointer;
+}
+
+/* Right-side controls in the player bar for playback speed */
+.rec-player-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+/* Badge displaying the simulation clock time at the current frame */
+.rec-sim-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 5px;
+    background: var(--telem-input-bg);
+    border: 1px solid var(--telem-subcard-border);
+    color: var(--accent-soft);
+}
+
+/* Button group for selecting playback speed multipliers */
+.rec-speed-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    background: var(--telem-input-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+    padding: 2px;
+}
+
+/* Individual speed multiplier button (e.g. 1x, 2x, 4x) */
+.rec-speed-btn {
+    height: 26px;
+    padding: 0 0.5rem;
+    border-radius: 4px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Highlights the currently selected playback speed */
+.rec-speed-btn.is-active {
+    background: var(--accent-primary);
+    color: var(--accent-contrast);
+}
+
+/* Grid container holding the dashboard gauges during replay */
+.rec-replay-grid {
+    flex: 1;
+    min-height: 0;
+}
+
+/* Disables clicking inside gauge modules during replay so they act as pure visual displays */
+.rec-replay-grid .module-body {
+    pointer-events: none;
+}
+
+/* Main container for the recording post-run overview and analytics */
+.rec-overview-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-bottom: 2rem;
+}
+
+/* Top summary banner card showing route, service name and driving metadata */
+.rec-ov-hero {
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    border-radius: 8px;
+    padding: 1.35rem 1.5rem;
+    box-shadow: var(--telem-card-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Row displaying route badge and service details */
+.rec-ov-route-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* Route name badge tag */
+.rec-ov-badge {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.6rem;
+    border-radius: 4px;
+    background: var(--accent-subtle);
+    border: 1px solid var(--border-purple);
+    color: var(--accent-soft);
+}
+
+/* Large bold trip title in the overview banner */
+.rec-ov-trip {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Metadata row showing driver details, weather and train model */
+.rec-ov-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-size: 0.84rem;
+    color: var(--text-muted);
+}
+
+/* Brightens strong text in the metadata line */
+.rec-ov-meta-row strong {
+    color: var(--text-secondary);
+}
+
+/* Grid displaying key performance indicators (KPIs) like max speed and punctuality */
+.rec-ov-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+}
+
+/* Individual KPI card box */
+.rec-ov-kpi {
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+/* Uppercase label inside KPI boxes */
+.rec-ov-kpi-label {
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+/* Large monospace value inside KPI boxes */
+.rec-ov-kpi-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+/* Highlights poor performance or violations in red */
+.rec-ov-kpi-val.is-warn {
+    color: #fb7185;
+}
+
+/* Card container for charts and station call tables */
+.rec-ov-panel {
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    border-radius: 8px;
+    padding: 1.2rem 1.35rem;
+    box-shadow: var(--telem-card-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+/* Uppercase section title inside overview panels */
+.rec-ov-panel-title {
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin: 0;
+}
+
+/* Fixed-height wrapper for the speed and power chart */
+.rec-ov-chart-wrap {
+    position: relative;
+    width: 100%;
+    height: 260px;
+}
+
+/* Horizontally scrolling wrapper for the station timetable */
+.rec-ov-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Station timetable data table */
+.rec-ov-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.84rem;
+}
+
+/* Table header row styling */
+.rec-ov-table th {
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--telem-divider);
+}
+
+/* Timetable data cell styling */
+.rec-ov-table td {
+    padding: 0.65rem 0.75rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--telem-divider);
+}
+
+/* Removes border from the last row in the timetable */
+.rec-ov-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status badge tag showing stop, pass or late arrival */
+.rec-status-pill {
+    display: inline-block;
+    padding: 0.16rem 0.5rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* Green badge for scheduled station stops */
+.rec-status-pill.is-stop {
+    background: rgba(52, 211, 153, 0.15);
+    color: #34d399;
+}
+
+/* Purple badge for non-stopping waypoints */
+.rec-status-pill.is-pass {
+    background: var(--accent-subtle);
+    color: var(--accent-soft);
+}
+
+/* Red badge for delayed or overspeed stops */
+.rec-status-pill.is-over {
+    background: rgba(244, 63, 94, 0.16);
+    color: #fb7185;
+}

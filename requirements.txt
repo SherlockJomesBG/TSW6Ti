@@ -1,0 +1,9 @@
+# Direct runtime dependencies (tested in .benArch)
+Flask==3.1.3
+Werkzeug==3.1.9
+MarkupSafe==3.0.4
+fpdf2==2.9.0
+
+# Optional production WSGI server (recommended behind Cloudflare Tunnel):
+# waitress>=3.0.0
+

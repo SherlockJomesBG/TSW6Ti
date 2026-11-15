@@ -1,0 +1,544 @@
+/* Here lies the CSS concerned with the Telemetry Dashboard & 5x3 Modular Grid */
+/* This will add to the CSS already laid out by the telemInter stylesheet */
+/* Remember consistency is key */
+
+/* Locks the telemetry layout to the full height of the browser window without outer scrollbars */
+.telem-layout {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+}
+
+/* The main workspace container that fills the screen and scrolls internally if needed */
+.telem-workspace {
+    flex: 1;
+    min-height: 0;
+    padding: 0.75rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Wrapper container holding the dashboard grid and edit toolbar */
+.dashboard-wrapper {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    min-height: 0;
+    overflow: hidden;
+}
+
+/* Completely hides the dashboard or settings containers when inactive */
+.dashboard-wrapper[hidden],
+.settings-container[hidden] {
+    display: none !important;
+}
+
+/* The floating toolbar that appears at the top when editing your dashboard layout */
+.dash-edit-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    padding: 0.55rem 1rem;
+    background: var(--telem-card-bg);
+    border: 1px solid var(--border-purple-strong);
+    border-radius: 8px;
+    box-shadow: var(--telem-card-shadow);
+    flex-shrink: 0;
+}
+
+/* Hides the edit toolbar when you're not in edit mode */
+.dash-edit-bar[hidden] {
+    display: none !important;
+}
+
+/* Groups the edit mode badge and help text on the left */
+.dash-edit-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+}
+
+/* Small purple badge tag indicating you're in edit mode */
+.dash-edit-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.25rem 0.65rem;
+    background: var(--accent-subtle);
+    border: 1px solid var(--border-purple-strong);
+    border-radius: 5px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--accent-soft);
+}
+
+/* Helpful text explaining how to drag, resize or add modules */
+.dash-edit-hint {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Turns the edit hint text red when an action is invalid or blocked */
+.dash-edit-hint.is-error {
+    color: #fda4af;
+    font-weight: 600;
+}
+
+/* Groups the action buttons on the right side of the edit bar */
+.dash-edit-bar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Base styling for buttons inside the edit toolbar */
+.dash-bar-btn {
+    height: 32px;
+    padding: 0 0.85rem;
+    border-radius: 5px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+/* Primary gradient button used for saving layout changes */
+.dash-bar-btn-primary {
+    background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent-deep) 100%);
+    border: 1px solid var(--border-purple-strong);
+    color: var(--accent-contrast);
+    box-shadow: 0 2px 14px var(--accent-glow);
+}
+
+/* Brightens the save button on hover */
+.dash-bar-btn-primary:hover {
+    filter: brightness(1.08);
+}
+
+/* Secondary button used for adding new telemetry widgets to the grid */
+.dash-bar-btn-secondary {
+    background: var(--accent-subtle);
+    border: 1px solid var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* Highlights the add widget button with bright purple on hover */
+.dash-bar-btn-secondary:hover {
+    background: var(--accent-bright);
+    color: var(--accent-contrast);
+}
+
+/* Ghost button used to cancel edits or reset the dashboard */
+.dash-bar-btn-ghost {
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    color: var(--text-secondary);
+}
+
+/* Highlights the ghost button on hover */
+.dash-bar-btn-ghost:hover {
+    background: var(--accent-subtle);
+    color: var(--text-primary);
+}
+
+/* The 5-column by 3-row grid where telemetry modules are placed */
+.dashboard-grid {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    max-height: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    overflow: hidden;
+}
+
+/* Overlay showing empty grid cell slots when editing the layout */
+.dashboard-grid-cells {
+    position: absolute;
+    inset: 0;
+    display: none;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Displays the empty grid slots when in edit mode */
+.dashboard-wrapper.is-editing .dashboard-grid-cells {
+    display: grid;
+}
+
+/* A dashed placeholder cell indicating a drop target on the grid */
+.dash-grid-cell {
+    border: 1px dashed var(--border-purple);
+    border-radius: 8px;
+    background: var(--accent-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    pointer-events: auto;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+/* Turns the cell green or highlighted purple when a module can be dropped there */
+.dash-grid-cell.is-drop-valid {
+    background: var(--accent-glow);
+    border-color: var(--accent-bright);
+    border-style: solid;
+}
+
+/* Turns the cell red when a module cannot fit in that space */
+.dash-grid-cell.is-drop-invalid {
+    background: rgba(244, 63, 94, 0.18);
+    border-color: #fb7185;
+    border-style: solid;
+}
+
+/* Container card holding an individual telemetry module widget */
+.module-slot {
+    position: relative;
+    z-index: 5;
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    border-radius: 8px;
+    padding: 0.65rem 0.85rem;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    box-shadow: var(--telem-card-shadow);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Highlights the module card border when hovered */
+.module-slot:hover {
+    border-color: var(--telem-card-hover-border);
+}
+
+/* Content area inside a module that stretches to fill its slot */
+.module-body {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Small uppercase label shown at the top of a module */
+.mod-eyebrow {
+    font-size: 0.64rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    line-height: 1.1;
+    user-select: none;
+}
+
+/* Theme background and border overrides for module sub-elements */
+.telem-layout .mod-stats-cell,
+.telem-layout .mod-route-item,
+.telem-layout .mod-weather-item,
+.telem-layout .mod-cruise-meter,
+.telem-layout .mod-cruise-ctrl-card,
+.telem-layout .mod-velocity-stat-card,
+.telem-layout .mod-dynamics-readout,
+.telem-layout .mod-dynamics-meter-block {
+    background: var(--telem-subcard-bg);
+    border-color: var(--telem-subcard-border);
+}
+
+/* Highlights weather condition items when hovered */
+.telem-layout .mod-weather-item:hover {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple-strong);
+}
+
+/* Highlights the station name in soft purple */
+.telem-layout .mod-route-val.is-station {
+    color: var(--accent-soft);
+}
+
+/* Styles the segmented cruise control display */
+.telem-layout .mod-cruise-seg {
+    background: var(--telem-input-bg);
+    border-color: var(--telem-subcard-border);
+}
+
+/* Bright purple gradient for active cruise control toggle buttons */
+.telem-layout .mod-cruise-btn.is-on.is-active {
+    background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent-deep) 100%);
+    border-color: var(--border-purple-strong);
+    color: var(--accent-contrast);
+    box-shadow: 0 2px 10px var(--accent-glow);
+}
+
+/* Dark track background for progress and dynamics meters */
+.telem-layout .mod-cruise-bar-track,
+.telem-layout .mod-dynamics-bar-wrap {
+    background: var(--telem-track-bg);
+    border-color: var(--telem-subcard-border);
+}
+
+/* Subtle divider line above the speed limit footer */
+.telem-layout .mod-speed-limit-footer {
+    border-top-color: var(--telem-divider);
+}
+
+/* Minor tick marks on the velocity gauge */
+.telem-layout .mod-velocity-ticks line {
+    stroke: var(--telem-subcard-border);
+}
+
+/* Major tick marks on the velocity gauge highlighted purple */
+.telem-layout .mod-velocity-ticks line.major {
+    stroke: var(--border-purple-strong);
+}
+
+/* The toolbar attached to each module when editing layout position and size */
+.module-edit-toolbar {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding-bottom: 0.45rem;
+    margin-bottom: 0.45rem;
+    border-bottom: 1px solid var(--border-purple);
+    cursor: grab;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+/* Shows the module edit toolbar when edit mode is active */
+.dashboard-wrapper.is-editing .module-edit-toolbar {
+    display: flex;
+}
+
+/* Adds a purple glow around all module cards while in edit mode */
+.dashboard-wrapper.is-editing .module-slot {
+    border-color: var(--border-purple-strong);
+    box-shadow: var(--telem-card-shadow), 0 0 14px var(--accent-subtle);
+}
+
+/* Dims and shrinks a module card while it is being dragged */
+.module-slot.is-dragging {
+    opacity: 0.45;
+    transform: scale(0.98);
+}
+
+/* The drag handle bar used to grab and move modules around the grid */
+.module-drag-handle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--accent-soft);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Groups the size buttons and remove button on the module header */
+.module-edit-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.22rem;
+    flex-shrink: 0;
+}
+
+/* Small buttons used to toggle module grid dimensions (like 1x1, 2x1, 2x2) */
+.module-size-btn {
+    height: 20px;
+    padding: 0 0.35rem;
+    border-radius: 3px;
+    border: 1px solid var(--telem-subcard-border);
+    background: var(--telem-subcard-bg);
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+/* Highlights size buttons on hover */
+.module-size-btn:hover {
+    border-color: var(--border-purple-strong);
+    color: var(--text-primary);
+}
+
+/* Highlights the currently selected module size */
+.module-size-btn.is-active {
+    background: var(--accent-primary);
+    border-color: var(--border-purple-strong);
+    color: var(--accent-contrast);
+}
+
+/* Red icon button used to delete a module from the dashboard */
+.module-remove-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid rgba(244, 63, 94, 0.35);
+    background: rgba(244, 63, 94, 0.12);
+    color: #fda4af;
+    font-size: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 0.15rem;
+    transition: all 0.15s ease;
+}
+
+/* Brightens the remove button when hovered */
+.module-remove-btn:hover {
+    background: rgba(244, 63, 94, 0.35);
+    color: #ffffff;
+}
+
+/* Dark backdrop overlay behind the 'Add Widget' modal dialog */
+.dash-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(4, 1, 9, 0.72);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+/* Hides the modal backdrop by default */
+.dash-modal-backdrop[hidden] {
+    display: none !important;
+}
+
+/* The popup modal card containing the list of available telemetry widgets */
+.dash-modal-card {
+    width: 100%;
+    max-width: 540px;
+    background: var(--telem-menu-bg);
+    border: 1px solid var(--border-purple);
+    border-radius: 8px;
+    box-shadow: var(--telem-card-shadow);
+    overflow: hidden;
+}
+
+/* Modal header with title and close button */
+.dash-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--telem-divider);
+}
+
+/* Modal title styling with leading icon */
+.dash-modal-title {
+    margin: 0;
+    font-size: 0.98rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    color: var(--text-primary);
+}
+
+/* Colours the icon inside the modal header purple */
+.dash-modal-title i {
+    color: var(--accent-bright);
+}
+
+/* Transparent button to close the modal */
+.dash-modal-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* Brightens the close button on hover */
+.dash-modal-close:hover {
+    color: var(--text-primary);
+}
+
+/* Scrollable list of available modules inside the modal */
+.dash-modal-list {
+    padding: 1rem 1.25rem;
+    max-height: 420px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+/* An individual widget row inside the selection modal */
+.dash-modal-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.75rem 0.9rem;
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+}
+
+/* Title and description container for the widget item */
+.dash-modal-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+/* Name of the telemetry widget */
+.dash-modal-item-name {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Brief description explaining what the widget displays */
+.dash-modal-item-desc {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Message shown when all available widgets have already been added */
+.dash-modal-empty {
+    text-align: center;
+    padding: 1.5rem 0;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+}

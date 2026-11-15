@@ -1,0 +1,304 @@
+<style>
+    .mod-weather {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        min-height: 0;
+    }
+
+    .mod-weather-grid {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 0.4rem;
+        min-height: 0;
+    }
+
+    .mod-weather-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.14rem;
+        padding: 0.2rem;
+        background: rgba(255, 255, 255, 0.028);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+        min-height: 0;
+        overflow: hidden;
+        transition: all var(--transition-fast);
+    }
+
+    .mod-weather-item:hover {
+        background: rgba(139, 61, 255, 0.16);
+        border-color: rgba(139, 61, 255, 0.52);
+        transform: translateY(-1px);
+    }
+
+    .mod-weather-icon {
+        font-size: 1.05rem;
+        line-height: 1;
+    }
+
+    .mod-weather-label {
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        color: var(--text-muted);
+    }
+
+    .mod-weather-val {
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: var(--text-primary);
+    }
+
+    .module-slot[data-size="1x1"] .mod-weather-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 0.3rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-weather-item:first-child {
+        grid-column: span 2;
+    }
+
+    .module-slot[data-size="1x1"] .mod-weather-icon {
+        font-size: 0.88rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-weather-label {
+        font-size: 0.48rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-weather-val {
+        font-size: 0.62rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-weather-grid {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        grid-template-rows: 1fr;
+        gap: 0.45rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-weather-item {
+        gap: 0.35rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-weather-icon {
+        font-size: 1.45rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-weather-label {
+        font-size: 0.6rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-weather-val {
+        font-size: 0.88rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-weather-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(4, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-weather-item:first-child {
+        grid-column: span 2;
+    }
+
+    .module-slot[data-size="1x2"] .mod-weather-item {
+        gap: 0.3rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-weather-icon {
+        font-size: 1.4rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-weather-label {
+        font-size: 0.62rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-weather-val {
+        font-size: 0.92rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-weather-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 0.65rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-weather-item:first-child {
+        grid-column: span 2;
+    }
+
+    .module-slot[data-size="2x2"] .mod-weather-item {
+        gap: 0.45rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-weather-icon {
+        font-size: 2rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-weather-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+    }
+
+    .module-slot[data-size="2x2"] .mod-weather-val {
+        font-size: 1.2rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-weather-grid {
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        grid-template-rows: 1fr;
+        gap: 0.75rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-weather-item {
+        gap: 0.4rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-weather-icon {
+        font-size: 1.85rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-weather-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+    }
+
+    .module-slot[data-size="5x1"] .mod-weather-val {
+        font-size: 1.15rem;
+    }
+</style>
+
+<div class="mod-weather">
+    <div class="mod-eyebrow">ENVIRONMENT (CLICK TO CYCLE)</div>
+    <div class="mod-weather-grid">
+        <div class="mod-weather-item" data-param="Temperature" title="Click to cycle Temperature">
+            <span class="mod-weather-icon" data-icon="Temperature">🌡️</span>
+            <span class="mod-weather-label">TEMP</span>
+            <span class="mod-weather-val" data-val="Temperature">--</span>
+        </div>
+        <div class="mod-weather-item" data-param="Cloudiness" title="Click to cycle Cloudiness">
+            <span class="mod-weather-icon" data-icon="Cloudiness">☁️</span>
+            <span class="mod-weather-label">CLOUD</span>
+            <span class="mod-weather-val" data-val="Cloudiness">--</span>
+        </div>
+        <div class="mod-weather-item" data-param="Precipitation" title="Click to cycle Precipitation">
+            <span class="mod-weather-icon" data-icon="Precipitation">🌧️</span>
+            <span class="mod-weather-label">PRECIP</span>
+            <span class="mod-weather-val" data-val="Precipitation">--</span>
+        </div>
+        <div class="mod-weather-item" data-param="Wetness" title="Click to cycle Wetness">
+            <span class="mod-weather-icon" data-icon="Wetness">💧</span>
+            <span class="mod-weather-label">WET</span>
+            <span class="mod-weather-val" data-val="Wetness">--</span>
+        </div>
+        <div class="mod-weather-item" data-param="GroundSnow" title="Click to cycle Ground Snow">
+            <span class="mod-weather-icon" data-icon="GroundSnow">❄️</span>
+            <span class="mod-weather-label">G.SNOW</span>
+            <span class="mod-weather-val" data-val="GroundSnow">--</span>
+        </div>
+        <div class="mod-weather-item" data-param="PiledSnow" title="Click to cycle Piled Snow">
+            <span class="mod-weather-icon" data-icon="PiledSnow">⛄</span>
+            <span class="mod-weather-label">P.SNOW</span>
+            <span class="mod-weather-val" data-val="PiledSnow">--</span>
+        </div>
+        <div class="mod-weather-item" data-param="FogDensity" title="Click to cycle Fog Density">
+            <span class="mod-weather-icon" data-icon="FogDensity">🌫️</span>
+            <span class="mod-weather-label">FOG</span>
+            <span class="mod-weather-val" data-val="FogDensity">--</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.TSWDashboard && window.TSWDashboard.registerModule("weather", {
+        init: function (el) {
+            const cycles = {
+                Temperature: [-10, -5, 0, 5, 10, 15, 20],
+                Cloudiness: [0, 0.25, 0.5, 0.75, 1.0],
+                Precipitation: [0, 0.25, 0.5, 0.75, 1.0],
+                Wetness: [0, 0.25, 0.5, 0.75, 1.0],
+                GroundSnow: [0, 0.25, 0.5, 0.75, 1.0],
+                PiledSnow: [0, 0.25, 0.5, 0.75, 1.0],
+                FogDensity: [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.1]
+            };
+            el._rawWeather = {
+                Temperature: 0, Cloudiness: 0, Precipitation: 0,
+                Wetness: 0, GroundSnow: 0, PiledSnow: 0, FogDensity: 0
+            };
+
+            el.addEventListener("click", async function (event) {
+                const tile = event.target.closest(".mod-weather-item");
+                if (!tile || !window.TSW6 || el._updating) return;
+                const param = tile.getAttribute("data-param");
+                const steps = cycles[param];
+                if (!steps) return;
+
+                el._updating = true;
+                const current = el._rawWeather[param] || 0;
+                let bestIdx = 0;
+                let minDiff = Infinity;
+                for (let i = 0; i < steps.length; i++) {
+                    const diff = Math.abs(steps[i] - current);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        bestIdx = i;
+                    }
+                }
+                const nextVal = steps[(bestIdx + 1) % steps.length];
+                const valEl = el.querySelector('[data-val="' + param + '"]');
+                if (valEl) valEl.textContent = "...";
+
+                await window.TSW6.setEnvironmentParam(param, nextVal);
+                el._rawWeather[param] = nextVal;
+                el._updating = false;
+            });
+        },
+        update: function (el, state) {
+            if (!state.weather || el._updating) return;
+            const w = state.weather;
+            const map = {
+                Temperature: w.temperature,
+                Cloudiness: w.cloudiness,
+                Precipitation: w.precipitation,
+                Wetness: w.wetness,
+                GroundSnow: w.groundSnow,
+                PiledSnow: w.piledSnow,
+                FogDensity: w.fogDensity
+            };
+
+            function friendly(param, val) {
+                if (param === "Temperature") return Math.round(val) + "°C";
+                if (param === "FogDensity") {
+                    if (val <= 0) return "NONE";
+                    if (val <= 0.01) return "MIST";
+                    if (val <= 0.03) return "MOD";
+                    return "DENSE";
+                }
+                if (val <= 0) return "0%";
+                return Math.round(val * 100) + "%";
+            }
+
+            Object.keys(map).forEach(function (param) {
+                const val = map[param];
+                if (typeof val !== "number") return;
+                if (el._rawWeather) el._rawWeather[param] = val;
+                const valEl = el.querySelector('[data-val="' + param + '"]');
+                if (valEl) valEl.textContent = friendly(param, val);
+            });
+        }
+    });
+</script>

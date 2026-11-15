@@ -1,0 +1,495 @@
+/* Here lies the CSS concerned with the Public Legal Document Page */
+/* This will add to the CSS already laid out by the layout-public stylesheet */
+/* Remember consistency is key */
+
+/* Centres the legal document viewer page, sets its max width and spaces out the content */
+.legal-page {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* The top bar containing the document title, policy badges, switchers and download button */
+.legal-topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid rgba(139, 61, 255, 0.28);
+}
+
+/* Limits the width of the title and subtitle block */
+.legal-title-block {
+    max-width: 680px;
+}
+
+/* Aligns category tags and status pills above the document title */
+.legal-badge-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-bottom: 0.7rem;
+}
+
+/* Small purple badge tag indicating document purpose */
+.legal-badge-tag,
+.legal-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.26rem 0.68rem;
+    border-radius: 999px;
+    background: rgba(139, 61, 255, 0.16);
+    border: 1px solid rgba(139, 61, 255, 0.36);
+    color: #d8b4fe;
+}
+
+/* Muted pill badge showing document version and date information */
+.legal-meta-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--text-secondary);
+}
+
+/* Large bold heading for the document title */
+.legal-page-title {
+    margin: 0 0 0.35rem;
+    font-size: 1.95rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+}
+
+/* Muted explanatory text underneath the document title */
+.legal-page-subtitle {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Groups document switch buttons and download buttons in the top right */
+.legal-topbar-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+/* Groups the document toggle buttons */
+.legal-doc-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+}
+
+/* Button used to switch between Terms of Service and Privacy Policy */
+.legal-switch-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.56rem 0.95rem;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-purple);
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+/* Highlights document switch buttons on hover */
+.legal-switch-btn:hover {
+    background: rgba(139, 61, 255, 0.18);
+    border-color: var(--accent-bright);
+    color: var(--text-primary);
+}
+
+/* Highlights the button of the document you're currently viewing */
+.legal-switch-btn.is-active {
+    background: rgba(139, 61, 255, 0.24);
+    border-color: var(--accent-bright);
+    color: var(--text-primary);
+}
+
+/* Bright purple gradient button used to download the legal document */
+.legal-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.58rem 1.15rem;
+    border-radius: 7px;
+    border: 1px solid rgba(168, 85, 247, 0.75);
+    background: linear-gradient(135deg, #7c3aed, #9333ea);
+    color: #ffffff !important;
+    font-size: 0.86rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    box-shadow: 0 4px 16px rgba(124, 58, 237, 0.28);
+    transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+}
+
+/* Lifts and brightens the download button on hover */
+.legal-download-btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+
+/* Two-column layout with a table of contents sidebar on the left and document on the right */
+.legal-layout {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Single column fallback layout when no table of contents is present */
+.legal-layout-single {
+    grid-template-columns: minmax(0, 1fr);
+}
+
+/* Sticky sidebar card displaying the table of contents */
+.legal-toc-card {
+    position: sticky;
+    top: 5.5rem;
+    background: rgba(18, 15, 29, 0.82);
+    border: 1px solid rgba(139, 61, 255, 0.26);
+    border-radius: 12px;
+    padding: 1.1rem 1rem;
+    backdrop-filter: blur(12px);
+}
+
+/* Header for the table of contents sidebar */
+.legal-toc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #d8b4fe;
+    padding: 0 0.45rem 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 0.65rem;
+}
+
+/* Scrollable list of section jump links inside the table of contents */
+.legal-toc-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    max-height: calc(100vh - 12rem);
+    overflow-y: auto;
+}
+
+/* Clickable link pointing to a section within the document */
+.legal-toc-link {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    padding: 0.42rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.83rem;
+    line-height: 1.35;
+    color: var(--text-secondary);
+    text-decoration: none !important;
+    transition: background-color 0.15s, color 0.15s;
+}
+
+/* Highlights the table of contents link when hovered */
+.legal-toc-link:hover {
+    background: rgba(139, 61, 255, 0.16);
+    color: var(--text-primary);
+}
+
+/* Section number index styling next to TOC links */
+.legal-toc-index {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #9d5cff;
+    flex-shrink: 0;
+}
+
+/* Main card container holding the legal document text */
+.legal-document-card {
+    background: rgba(18, 15, 29, 0.86);
+    border: 1px solid rgba(139, 61, 255, 0.28);
+    border-radius: 14px;
+    padding: 2rem 2.25rem;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.35);
+}
+
+/* Body text wrapper with comfortable line length and line height */
+.legal-document-body {
+    max-width: 78ch;
+    color: var(--text-secondary);
+    font-size: 0.96rem;
+    line-height: 1.7;
+}
+
+/* Removes top margin from the very first element in the document */
+.legal-document-body> :first-child {
+    margin-top: 0;
+}
+
+/* Removes bottom margin from the last element in the document */
+.legal-document-body> :last-child {
+    margin-bottom: 0;
+}
+
+/* Subtitle styling under main document headings */
+.legal-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin: 0 0 1.25rem;
+}
+
+/* Base heading styling with an offset to account for the sticky header when jumping */
+.legal-heading {
+    color: var(--text-primary);
+    font-weight: 700;
+    scroll-margin-top: 5.5rem;
+}
+
+/* Section heading with a purple underline accent */
+.legal-h2 {
+    margin: 2rem 0 0.8rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid rgba(139, 61, 255, 0.22);
+    font-size: 1.3rem;
+}
+
+/* Subsection heading styling */
+.legal-h3 {
+    margin: 1.4rem 0 0.6rem;
+    font-size: 1.08rem;
+    color: #e9d5ff;
+}
+
+/* Minor heading styling */
+.legal-h4 {
+    margin: 1.15rem 0 0.45rem;
+    font-size: 0.98rem;
+    color: var(--text-primary);
+}
+
+/* Paragraph spacing inside the legal document */
+.legal-paragraph {
+    margin: 0 0 0.9rem;
+}
+
+/* Makes bold text pure white */
+.legal-document-body strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Underlines and colours hyperlinks inside the document text */
+.legal-document-body a {
+    color: #c084fc;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Brightens links on hover */
+.legal-document-body a:hover {
+    color: #e9d5ff;
+}
+
+/* Formats ordered and unordered legal clause lists */
+.legal-list {
+    margin: 0.35rem 0 1.1rem;
+    padding-left: 1.45rem;
+}
+
+/* Spacing between list items */
+.legal-list li {
+    margin-bottom: 0.48rem;
+}
+
+/* Removes margin from the final list item */
+.legal-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Indentation for level 1 nested list items */
+.legal-li-nested-1 {
+    margin-left: 1.25rem;
+}
+
+/* Indentation for level 2 nested list items */
+.legal-li-nested-2 {
+    margin-left: 2.5rem;
+}
+
+/* Indentation for level 3 nested list items */
+.legal-li-nested-3 {
+    margin-left: 3.75rem;
+}
+
+/* Highlighted blockquote for key legal disclaimers and notices */
+.legal-quote {
+    margin: 1rem 0;
+    padding: 0.85rem 1.15rem;
+    border-left: 3px solid #9333ea;
+    background: rgba(139, 61, 255, 0.08);
+    border-radius: 0 8px 8px 0;
+    color: var(--text-primary);
+}
+
+/* Horizontal scrolling container for wide legal data tables */
+.legal-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.1rem 0 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+}
+
+/* Clean border-collapse styling for data tables */
+.legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+/* Padding and subtle row borders for table header and body cells */
+.legal-table th,
+.legal-table td {
+    padding: 0.68rem 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    text-align: left;
+    vertical-align: top;
+}
+
+/* Purple highlighted header cells */
+.legal-table th {
+    background: rgba(139, 61, 255, 0.14);
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* Card shown if a legal document cannot be loaded or is empty */
+.legal-empty-card {
+    text-align: center;
+    padding: 3rem 1.5rem;
+}
+
+/* Icon on the empty state card */
+.legal-empty-icon {
+    font-size: 2.5rem;
+    color: #9d5cff;
+    margin-bottom: 0.85rem;
+}
+
+/* Title on the empty state card */
+.legal-empty-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Muted message on the empty state card */
+.legal-empty-text {
+    max-width: 540px;
+    margin: 0 auto 1.35rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+}
+
+/* Centred button actions on the empty card */
+.legal-empty-actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+/* Stacks the table of contents and document into a single column on tablets and mobile */
+@media (max-width: 900px) {
+
+    /* Makes all columns span full width */
+    .legal-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* Unpins the table of contents from sticky positioning */
+    .legal-toc-card {
+        position: static;
+    }
+
+    /* Removes the height cap on TOC links */
+    .legal-toc-nav {
+        max-height: none;
+    }
+}
+
+/* Layout adjustments for smaller mobile screens */
+@media (max-width: 600px) {
+
+    /* Tightens inner padding of the document card */
+    .legal-document-card {
+        padding: 1.35rem 1.15rem;
+    }
+
+    /* Slightly reduces document title font size */
+    .legal-page-title {
+        font-size: 1.55rem;
+    }
+}
+
+/* Clean, ink-friendly styling when printing legal documents */
+@media print {
+
+    /* Hides web-only navigation bars, footer and table of contents */
+    .public-header,
+    .app-footer,
+    .legal-toc-card,
+    .legal-topbar-actions {
+        display: none !important;
+    }
+
+    /* Ensures single column layout for printing */
+
+    .legal-layout {
+        grid-template-columns: 1fr;
+    }
+
+    /* White background with black text for clean printing */
+
+    .legal-document-card {
+        background: #ffffff;
+        color: #111827;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    /* Forces all text to dark ink colour */
+
+    .legal-document-body,
+    .legal-heading,
+    .legal-document-body strong,
+    .legal-page-title {
+        color: #111827 !important;
+    }
+}

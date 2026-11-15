@@ -1,0 +1,44 @@
+{% extends "Layouts/base.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="/Client/CSS/Layouts/layout-public.css">
+<link rel="stylesheet" href="/Client/CSS/Components/footer.css">
+{% block public_styles %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="public-layout">
+    <header class="public-header">
+        <div class="container">
+            <a href="/" class="logo-area" title="TSW6Ti Home">
+                <img src="/Images/tsw6tiLogo.png" alt="TSW6Ti Logo" class="brand-logo">
+                <span class="brand-name">TSW<span class="brand-accent">6</span><span class="brand-ti">Ti</span></span>
+            </a>
+            <div id="header-account" class="header-account" hidden>
+                <a href="/account" class="header-account-user" title="Account & Privacy Settings">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <span id="header-username"></span>
+                </a>
+                <button type="button" id="logout-btn" class="header-logout-btn" title="Log out" aria-label="Log out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="public-content-wrapper">
+        <div class="container">
+            <div id="alert-container"></div>
+            {% block public_content %}{% endblock %}
+        </div>
+    </main>
+
+    {% include "Components/footer.html" %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/Client/JS/Public/session.js"></script>
+{% block public_scripts %}{% endblock %}
+{% endblock %}

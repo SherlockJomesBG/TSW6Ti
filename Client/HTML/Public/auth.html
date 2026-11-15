@@ -1,0 +1,134 @@
+{% extends "Layouts/layout-public.html" %}
+
+{% block title %}Authentication - TSW6Ti{% endblock %}
+
+{% block public_styles %}
+<link rel="stylesheet" href="/Client/CSS/Public/auth.css">
+{% endblock %}
+
+{% block public_content %}
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <input type="radio" name="auth-tab" id="tab-login" class="auth-tab-radio" {% if request.args.get('tab')
+            !='register' %}checked{% endif %}>
+        <input type="radio" name="auth-tab" id="tab-register" class="auth-tab-radio" {% if
+            request.args.get('tab')=='register' %}checked{% endif %}>
+
+        <div class="auth-brand">
+            <div class="auth-logo-title">
+                <span class="tsw-text">TSW</span><span class="six-text">6</span><span class="ti-text">Ti</span>
+            </div>
+            <div class="auth-logo-subtitle">
+                <span>TELEMETRY</span>
+            </div>
+        </div>
+
+        <div class="auth-tabs" role="tablist">
+            <label for="tab-login" class="auth-tab-label tab-login-label" role="tab">Login</label>
+            <label for="tab-register" class="auth-tab-label tab-register-label" role="tab">Register</label>
+        </div>
+        <form class="auth-form auth-form-login" action="/login" method="POST" novalidate>
+            <div class="auth-input-group">
+                <span class="auth-input-icon">
+                    <i class="fa-regular fa-user"></i>
+                </span>
+                <input type="text" name="username" class="auth-input" placeholder="Username" autocomplete="username"
+                    required>
+            </div>
+
+            <div class="auth-input-group">
+                <span class="auth-input-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </span>
+                <input type="password" name="password" class="auth-input" placeholder="Password"
+                    autocomplete="current-password" required>
+                <span class="auth-input-toggle" title="Toggle password visibility">
+                    <i class="fa-regular fa-eye-slash"></i>
+                </span>
+            </div>
+
+            <div class="auth-inline-error" role="alert" hidden></div>
+
+            <button type="submit" class="btn auth-submit-btn">
+                <span>Login</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="auth-divider">
+                <span>OR</span>
+            </div>
+
+            <div class="auth-switch">
+                <label for="tab-register" class="auth-switch-link">
+                    <span>Create an account</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </label>
+            </div>
+        </form>
+
+        <form class="auth-form auth-form-register" action="/register" method="POST" novalidate>
+            <div class="auth-input-group">
+                <span class="auth-input-icon">
+                    <i class="fa-regular fa-user"></i>
+                </span>
+                <input type="text" name="username" class="auth-input" placeholder="Username (2–64 chars)" minlength="2"
+                    maxlength="64" autocomplete="username" required>
+            </div>
+
+            <div class="auth-input-group">
+                <span class="auth-input-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </span>
+                <input type="password" name="password" class="auth-input" placeholder="Password (min 8 chars)"
+                    minlength="8" maxlength="256" autocomplete="new-password" required>
+                <span class="auth-input-toggle" title="Toggle password visibility">
+                    <i class="fa-regular fa-eye-slash"></i>
+                </span>
+            </div>
+
+            <div class="auth-input-group">
+                <span class="auth-input-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </span>
+                <input type="password" name="confirm_password" class="auth-input" placeholder="Confirm Password"
+                    minlength="8" maxlength="256" autocomplete="new-password" required>
+                <span class="auth-input-toggle" title="Toggle password visibility">
+                    <i class="fa-regular fa-eye-slash"></i>
+                </span>
+            </div>
+
+            <label class="auth-legal-check">
+                <input type="checkbox" name="accept_legal" required>
+                <span>
+                    I meet the minimum age requirement, agree to the
+                    <a href="/terms-and-conditions" class="auth-legal-link" target="_blank">Terms of Service</a>,
+                    and acknowledge the
+                    <a href="/privacy-policy" class="auth-legal-link" target="_blank">Privacy Policy</a>.
+                </span>
+            </label>
+
+            <div class="auth-inline-error" role="alert" hidden></div>
+
+            <button type="submit" class="btn auth-submit-btn">
+                <span>Register</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <div class="auth-divider">
+                <span>OR</span>
+            </div>
+
+            <div class="auth-switch">
+                <label for="tab-login" class="auth-switch-link">
+                    <span>Already have an account</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block public_scripts %}
+<script src="/Client/JS/Public/auth.js"></script>
+{% endblock %}

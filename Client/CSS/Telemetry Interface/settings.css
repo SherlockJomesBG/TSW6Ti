@@ -1,0 +1,449 @@
+/* Here lies the CSS concerned with the Settings Page in the Telemetry Interface */
+/* This will add to the CSS already laid out by the telemetry interface stylesheet */
+/* Remember consistency is key */
+
+/* Centres the settings panel and caps its width for comfortable reading */
+.settings-container {
+    width: 100%;
+    max-width: 820px;
+    margin: 1.5rem auto 3rem;
+}
+
+/* Header bar displaying the settings title and back button */
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1.15rem;
+    border-bottom: 1px solid var(--telem-divider);
+}
+
+/* Main title for the telemetry settings screen */
+.settings-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.02em;
+}
+
+/* Subtitle explaining what settings can be configured */
+.settings-subtitle {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Back button returning to the main dashboard */
+.settings-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 36px;
+    padding: 0 0.95rem;
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+    color: var(--text-secondary) !important;
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+/* Highlights the back button on hover */
+.settings-back-btn:hover {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary) !important;
+}
+
+/* Stacks the different settings category sections vertically */
+.settings-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Container for an individual category section like Display or Sound */
+.settings-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Header row pairing category icon and section title */
+.settings-section-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 0.15rem;
+}
+
+/* Square icon container with purple accent */
+.settings-section-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 7px;
+    background: var(--accent-subtle);
+    border: 1px solid var(--border-purple);
+    color: var(--accent-soft);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+/* Groups category title and brief description */
+.settings-section-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 0;
+}
+
+/* Section heading title */
+.settings-section-title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+/* Muted description explaining what this category controls */
+.settings-section-desc {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Dark card container enclosing setting rows */
+.settings-card {
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    border-radius: 8px;
+    box-shadow: var(--telem-card-shadow);
+    overflow: hidden;
+}
+
+/* Individual setting row pairing label and description with control */
+.settings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1.35rem 1.5rem;
+    border-bottom: 1px solid var(--telem-divider);
+}
+
+/* Removes the divider line from the last row in a card */
+.settings-row:last-child,
+.settings-row:has(+ .settings-row[hidden]:last-child) {
+    border-bottom: none;
+}
+
+/* Hides setting rows marked as hidden */
+.settings-row[hidden] {
+    display: none !important;
+}
+
+/* Theme setting row variant stacking preview banner and controls */
+.settings-row-theme {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+/* Inner row aligning setting text and control */
+.settings-row-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+}
+
+/* Text area holding label and description */
+.settings-row-info {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Clickable label for the setting */
+.settings-row-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem;
+    cursor: pointer;
+}
+
+/* Muted explanation detailing the setting effect */
+.settings-row-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.45;
+}
+
+/* Control wrapper holding dropdowns, toggles or buttons */
+.settings-row-control {
+    flex-shrink: 0;
+}
+
+/* Notice banner warning that experimental themes are in beta */
+.settings-beta-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: rgba(244, 63, 94, 0.14);
+    border: 1px solid rgba(244, 63, 94, 0.48);
+    border-left: 4px solid #f43f5e;
+    border-radius: 6px;
+    color: #fda4af;
+    font-size: 0.82rem;
+    line-height: 1.45;
+}
+
+/* Red-tinted warning banner variant for light themes */
+.telem-layout[data-theme="light"] .settings-beta-banner,
+.telem-layout[data-theme="solarized-light"] .settings-beta-banner,
+.telem-layout[data-theme="catppuccin-latte"] .settings-beta-banner {
+    background: rgba(244, 63, 94, 0.1);
+    border-color: rgba(225, 29, 72, 0.45);
+    border-left-color: #e11d48;
+    color: #9f1239;
+}
+
+/* Hides the beta notice banner when not needed */
+.settings-beta-banner[hidden] {
+    display: none !important;
+}
+
+/* Warning icon inside the beta notice */
+.settings-beta-icon {
+    font-size: 1rem;
+    color: #fb7185;
+    margin-top: 0.12rem;
+    flex-shrink: 0;
+}
+
+/* Red warning icon for light themes */
+.telem-layout[data-theme="light"] .settings-beta-icon,
+.telem-layout[data-theme="solarized-light"] .settings-beta-icon,
+.telem-layout[data-theme="catppuccin-latte"] .settings-beta-icon {
+    color: #e11d48;
+}
+
+/* Bold emphasis text inside the notice banner */
+.settings-beta-text strong {
+    font-weight: 700;
+}
+
+/* Row of circular color swatch buttons for choosing theme accents */
+.settings-accent-swatches {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Circular color swatch button */
+.settings-accent-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background-color: var(--swatch-color);
+    border: 2px solid transparent;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+    cursor: pointer;
+    padding: 0;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* Slightly enlarges the swatch on hover */
+.settings-accent-swatch:hover {
+    transform: scale(1.1);
+}
+
+/* Highlights the currently selected accent color swatch */
+.settings-accent-swatch.is-active {
+    border-color: var(--text-primary);
+    box-shadow: 0 0 0 2px var(--telem-card-bg), 0 0 0 4px var(--swatch-color);
+    transform: scale(1.06);
+}
+
+/* Button opening the custom color picker wheel */
+.settings-accent-custom {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--telem-input-bg);
+    border: 1px dashed var(--border-purple-strong);
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    cursor: pointer;
+    margin: 0;
+    overflow: hidden;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+/* Enlarges the custom color button on hover */
+.settings-accent-custom:hover {
+    transform: scale(1.08);
+    border-color: var(--accent-bright);
+    color: var(--text-primary);
+}
+
+/* Highlights the custom color button when active */
+.settings-accent-custom.is-active {
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--text-primary);
+    box-shadow: 0 0 0 2px var(--telem-card-bg), 0 0 0 4px var(--accent-bright);
+    color: var(--accent-contrast);
+    background: var(--accent-bright);
+}
+
+/* Hidden native HTML color input triggered by the button */
+.settings-accent-custom input[type="color"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+}
+
+/* Wrapper for dropdown select boxes positioning the chevron */
+.settings-select-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Dropdown select box for themes, units, and intervals */
+.settings-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 38px;
+    min-width: 230px;
+    padding: 0 2.25rem 0 0.85rem;
+    background: var(--telem-input-bg);
+    border: 1px solid var(--border-purple);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+/* Highlights the dropdown border with purple on focus */
+.settings-select:hover,
+.settings-select:focus {
+    border-color: var(--accent-bright);
+    box-shadow: 0 0 12px var(--accent-subtle);
+}
+
+/* Dark background for dropdown options */
+.settings-select option {
+    background-color: var(--telem-menu-bg);
+    color: var(--text-primary);
+}
+
+/* Purple chevron arrow icon on the right side of dropdowns */
+.settings-select-chevron {
+    position: absolute;
+    right: 0.85rem;
+    pointer-events: none;
+    font-size: 0.72rem;
+    color: var(--accent-bright);
+}
+
+/* Primary gradient button used for triggers like calibrating or resetting */
+.settings-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    height: 38px;
+    padding: 0 1.15rem;
+    background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent-deep) 100%);
+    border: 1px solid var(--border-purple-strong);
+    border-radius: 6px;
+    color: var(--accent-contrast) !important;
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    box-shadow: 0 4px 16px var(--accent-glow);
+    transition: all var(--transition-fast);
+}
+
+/* Brightens the action button and lifts it slightly on hover */
+.settings-action-btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+/* Green badge confirmation shown after saving settings */
+.settings-toast {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+    padding: 0.45rem 0.85rem;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    border-radius: 6px;
+    color: #22c55e;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Hides the confirmation toast when inactive */
+.settings-toast[hidden] {
+    display: none !important;
+}
+
+/* Stacks setting rows and controls vertically on mobile screens */
+@media (max-width: 639.98px) {
+
+    /* Stacks header title and back button vertically */
+    .settings-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Stacks setting label and control into a single column */
+    .settings-row,
+    .settings-row-main {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.85rem;
+    }
+
+    /* Makes select inputs and action buttons full width on mobile */
+
+    .settings-select-wrapper,
+    .settings-select,
+    .settings-action-btn {
+        width: 100%;
+    }
+}

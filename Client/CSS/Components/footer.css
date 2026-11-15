@@ -1,0 +1,143 @@
+/* Here lies the CSS concerned with footer layouts */
+/* This will add to the CSS already laid out by the layout-public stylesheet */
+/* Remember consistency is key */
+
+/* This makes the footer a full-width bar pinned atthe bottom of the page with a purple top border and glow */
+.app-footer {
+    width: 100%;
+    position: relative;
+    z-index: 20;
+    margin-top: auto;
+    padding: 1.15rem 0;
+    background: rgba(6, 2, 12, 0.92);
+    border-top: 1px solid var(--border-purple);
+    box-shadow: 0 -1px 16px rgba(124, 42, 232, 0.08);
+}
+
+/* This ensure the footer content is centered and caps its width to match the page */
+.app-footer .container-fluid {
+    width: 100%;
+    max-width: var(--container-max-width);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* This makes the copyright and description text small and dimmed */
+.app-footer p {
+    font-size: 0.8rem;
+    color: var(--text-dim) !important;
+    letter-spacing: 0.01em;
+}
+
+/* This makes the list in the footer horizontal, aligned to the right and removes the bullets */
+.app-footer .list-inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* This makes the items in the list small and purple-tinted text */
+.app-footer .list-inline-item {
+    font-size: 0.8rem;
+    color: rgba(139, 61, 255, 0.45);
+    margin-right: 0 !important;
+}
+
+/* This is for the thin vertical lines between the link items in the footer */
+.app-footer .list-inline-item:not(:has(a)) {
+    font-size: 0;
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    background-color: rgba(139, 61, 255, 0.35);
+    margin: 0 1.1rem !important;
+    vertical-align: middle;
+}
+
+/* This makes the link muted grey and removes the underline underneath them */
+.app-footer .list-inline-item a {
+    color: var(--text-muted) !important;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+/* Changes the text colour to be brighter when you hover on a link */
+.app-footer .list-inline-item a:hover {
+    color: var(--text-primary) !important;
+}
+
+/* This changes the list items to be stacked when viewing on a mobile device */
+/* You should be accessing this from a desktop device anyways */
+@media (max-width: 767.98px) {
+
+    /* Makes the footer taller */
+    .app-footer {
+        padding: 1.25rem 0 1.5rem;
+    }
+
+    /* This reduces the amount of padding on the sides */
+    .app-footer .container-fluid {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+
+    /* Causes the stack on top of the copyright stuff */
+    .app-footer .row {
+        flex-direction: column-reverse;
+        gap: 0.85rem;
+        text-align: center;
+    }
+
+    .app-footer .col-md-6 {
+        width: 100%;
+        text-align: center !important;
+    }
+
+    /* Causes the list to be centered and wrap if needed */
+    .app-footer .list-inline {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.85rem;
+        margin: 0;
+    }
+
+    /* This gets rid of the margins used on desktop devices */
+    .app-footer .list-inline-item {
+        margin: 0 !important;
+    }
+
+    /* Hides the divider lines, they're not needed due to being stacked */
+    .app-footer .list-inline-item:not(:has(a)) {
+        display: none;
+    }
+
+    /* Makes the text larger so easier to tap */
+    .app-footer .list-inline-item a {
+        display: inline-block;
+        padding: 0.35rem 0.5rem;
+        font-size: 0.82rem;
+        line-height: 1.4;
+        border-radius: 6px;
+    }
+
+    /* This makes the links have a purple highlight when tapped */
+    .app-footer .list-inline-item a:active {
+        background: rgba(139, 61, 255, 0.15);
+    }
+
+    /* Makes the text smaller and centres it */
+    .app-footer p {
+        font-size: 0.78rem;
+        margin-top: 0.2rem;
+    }
+}

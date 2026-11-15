@@ -1,0 +1,158 @@
+{% extends "Layouts/layout-public.html" %}
+
+{% block title %}Welcome - TSW6Ti{% endblock %}
+
+{% block public_styles %}
+<link rel="stylesheet" href="/Client/CSS/Public/index.css">
+{% endblock %}
+
+{% block public_content %}
+<div class="landing-page-hero">
+    <h1 class="display-4 fw-bold mb-3">
+        The Ultimate Interface for
+        <span class="hero-highlight">Train Sim World 6</span>
+    </h1>
+    <p class="lead text-muted mb-4">
+        TSW6Ti is the all-in-one solution for modern train simulation enthusiasts.
+        Empower your community and get the best Train Sim World 6 experience.
+    </p>
+
+    <div class="hero-actions d-flex gap-3 mb-5" data-auth="guest" hidden>
+        <a href="/auth" class="btn btn-primary btn-lg">Login to TSW6Ti</a>
+        <a href="/auth?tab=register" class="btn btn-outline-primary btn-lg">Register for TSW6Ti</a>
+    </div>
+
+    <div class="hero-actions d-flex gap-3 mb-5" data-auth="user" data-connection="disconnected" hidden>
+        <a href="/connect" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-plug mr-2"></i>Connect to my Game
+        </a>
+    </div>
+
+    <div class="hero-actions d-flex gap-3 mb-5" data-auth="user" data-connection="connected" hidden>
+        <a href="/dashboard" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-gauge-high mr-2"></i>Return to Dashboard
+        </a>
+    </div>
+</div>
+
+<div class="features-grid mt-5">
+    <div class="row">
+        <div class="feature-card text-center p-4">
+            <div class="feature-icon mb-3">
+                <i class="fa-solid fa-gauge-high"></i>
+            </div>
+            <h3>Real-Time Telemetry</h3>
+            <p class="text-muted">
+                Watch speed, braking, power and more update live as you drive, straight from your running game.
+            </p>
+        </div>
+
+        <div class="feature-card text-center p-4">
+            <div class="feature-icon mb-3">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <h3>Record &amp; Review</h3>
+            <p class="text-muted">
+                Record your journeys and look back over them later to see how each drive unfolded.
+            </p>
+        </div>
+
+        <div class="feature-card text-center p-4">
+            <div class="feature-icon mb-3">
+                <i class="fa-solid fa-table-columns"></i>
+            </div>
+            <h3>Custom Dashboards</h3>
+            <p class="text-muted">
+                Build your own dashboard, choosing the gauges and charts you want and arranging them your way.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="community-showcase-section mt-5 mb-5">
+    <div class="community-showcase-card">
+        <div class="community-showcase-content">
+            <div class="community-showcase-text">
+                <div class="community-pill-tag mb-2">
+                    <span class="community-pill-dot"></span>
+                    <i class="fa-solid fa-people-group"></i>
+                    <span>Community &amp; Open Source</span>
+                </div>
+                <h3 class="community-showcase-title">Join Our Community &amp; Track Development</h3>
+                <p class="community-showcase-desc">
+                    Connect with fellow train drivers, get help with your telemetry setup, share route insights, or explore our code and contribute features on GitHub.
+                </p>
+            </div>
+            <div class="community-showcase-actions">
+                <a href="https://discord.gg/ceujPpfVS" target="_blank" rel="noopener noreferrer" class="community-action-btn community-btn-discord" title="Join TSW6Ti Discord Server">
+                    <div class="community-btn-icon-wrap">
+                        <i class="fa-brands fa-discord"></i>
+                    </div>
+                    <div class="community-btn-meta">
+                        <span class="community-btn-sub">Join Chat</span>
+                        <span class="community-btn-title">Discord Community</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right community-btn-arrow"></i>
+                </a>
+                <a href="https://github.com/SherlockJomesBG/TSW6Ti" target="_blank" rel="noopener noreferrer" class="community-action-btn community-btn-github" title="Star &amp; Fork TSW6Ti on GitHub">
+                    <div class="community-btn-icon-wrap">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+                    <div class="community-btn-meta">
+                        <span class="community-btn-sub">Source Code</span>
+                        <span class="community-btn-title">GitHub Repository</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right community-btn-arrow"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="scroll-prompt-container">
+    <a href="#readme-section" class="scroll-prompt-btn" id="scroll-prompt-btn"
+        aria-label="Scroll to project documentation">
+        <span class="scroll-mouse-icon" aria-hidden="true">
+            <span class="scroll-wheel"></span>
+        </span>
+        <span class="scroll-prompt-text">Explore Project Blueprint &amp; Architecture</span>
+        <i class="fa-solid fa-chevron-down scroll-arrow-icon" aria-hidden="true"></i>
+    </a>
+</div>
+
+<div class="section-divider-glow" aria-hidden="true"></div>
+
+<section class="readme-section" id="readme-section">
+    <div class="readme-header-group">
+        <div class="readme-header-main">
+            <div class="readme-badge">
+                <i class="fa-solid fa-code-branch"></i>
+                <span>Open Source Architecture</span>
+            </div>
+            <h2 class="readme-section-title">Behind The Controls</h2>
+            <p class="readme-section-subtitle">
+                Explore our engineering principles, security model, privacy commitments, and future plans.
+            </p>
+        </div>
+        <div class="readme-header-toolbar">
+            <button type="button" id="readme-toggle-all-btn" class="readme-ctrl-btn">
+                <i class="fa-solid fa-expand"></i>
+                <span>Expand All</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="readme-container" class="readme-container">
+        <div class="readme-loading text-center p-5">
+            <i class="fa-solid fa-circle-notch fa-spin fa-2x mb-3" style="color: #9d5cff;"></i>
+            <p class="text-muted small mb-0">Loading project documentation...</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block public_scripts %}
+<script src="/Client/Libraries/marked/marked.min.js"></script>
+<script src="/Client/Libraries/dompurify/purify.min.js"></script>
+<script src="/Client/JS/Public/index.js"></script>
+{% endblock %}

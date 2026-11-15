@@ -1,0 +1,271 @@
+<style>
+    .mod-stats {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        min-height: 0;
+    }
+
+    .mod-stats-grid {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 1fr;
+        gap: 0.45rem;
+        min-height: 0;
+        container-type: size;
+    }
+
+    .mod-stats-cell {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0.35rem 0.65rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.085);
+        border-radius: 6px;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .mod-stats-key {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .mod-stats-row {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.32rem;
+        margin-top: 0.18rem;
+    }
+
+    .mod-stats-val {
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        font-size: 1.35rem;
+        font-weight: 800;
+        line-height: 1.05;
+        color: var(--text-primary);
+    }
+
+    .mod-stats-val.is-warn {
+        color: #fb7185;
+    }
+
+    .mod-stats-unit {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--text-muted);
+    }
+
+    .module-slot[data-size="1x1"] .mod-stats-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        gap: 0.35rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-stats-cell:last-child {
+        grid-column: span 2;
+    }
+
+    .module-slot[data-size="1x1"] .mod-stats-cell {
+        padding: 0.25rem 0.45rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-stats-key {
+        font-size: clamp(0.58rem, 7.5cqh, 0.76rem);
+        letter-spacing: 0.06em;
+    }
+
+    .module-slot[data-size="1x1"] .mod-stats-val {
+        font-size: clamp(1.08rem, 18cqh, 1.55rem);
+    }
+
+    .module-slot[data-size="1x1"] .mod-stats-unit {
+        font-size: clamp(0.62rem, 8.5cqh, 0.82rem);
+    }
+
+    .module-slot[data-size="2x1"] .mod-stats-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-rows: 1fr;
+        gap: 0.5rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-stats-cell {
+        align-items: center;
+        text-align: center;
+        gap: 0.35rem;
+        padding: 0.45rem 0.4rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-stats-row {
+        margin-top: 0;
+        justify-content: center;
+    }
+
+    .module-slot[data-size="2x1"] .mod-stats-key {
+        font-size: clamp(0.68rem, 9.5cqh, 0.88rem);
+        letter-spacing: 0.08em;
+    }
+
+    .module-slot[data-size="2x1"] .mod-stats-val {
+        font-size: clamp(1.5rem, 26cqh, 2.35rem);
+    }
+
+    .module-slot[data-size="2x1"] .mod-stats-unit {
+        font-size: clamp(0.74rem, 10.5cqh, 0.96rem);
+    }
+
+    .module-slot[data-size="1x2"] .mod-stats-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-stats-cell {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.5rem 0.95rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-stats-row {
+        margin-top: 0;
+    }
+
+    .module-slot[data-size="1x2"] .mod-stats-key {
+        font-size: clamp(0.74rem, 4.2cqh, 0.98rem);
+    }
+
+    .module-slot[data-size="1x2"] .mod-stats-val {
+        font-size: clamp(1.5rem, 7.8cqh, 2.2rem);
+    }
+
+    .module-slot[data-size="1x2"] .mod-stats-unit {
+        font-size: clamp(0.76rem, 4.2cqh, 1rem);
+    }
+
+    .module-slot[data-size="2x2"] .mod-stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+        gap: 0.65rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-stats-cell:first-child {
+        grid-column: span 2;
+    }
+
+    .module-slot[data-size="2x2"] .mod-stats-cell {
+        padding: 0.7rem 1.15rem;
+        gap: 0.35rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-stats-key {
+        font-size: clamp(0.82rem, 4.8cqh, 1.1rem);
+        letter-spacing: 0.14em;
+    }
+
+    .module-slot[data-size="2x2"] .mod-stats-val {
+        font-size: clamp(1.9rem, 11.5cqh, 3rem);
+    }
+
+    .module-slot[data-size="2x2"] .mod-stats-unit {
+        font-size: clamp(0.88rem, 5.2cqh, 1.18rem);
+    }
+
+    .module-slot[data-size="5x1"] .mod-stats-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-rows: 1fr;
+        gap: 0.75rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-stats-cell {
+        padding: 0.65rem 1.2rem;
+        gap: 0.4rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-stats-key {
+        font-size: clamp(0.78rem, 11cqh, 1.02rem);
+        letter-spacing: 0.14em;
+    }
+
+    .module-slot[data-size="5x1"] .mod-stats-val {
+        font-size: clamp(1.8rem, 30cqh, 2.75rem);
+    }
+
+    .module-slot[data-size="5x1"] .mod-stats-unit {
+        font-size: clamp(0.85rem, 12cqh, 1.12rem);
+    }
+</style>
+
+<div class="mod-stats">
+    <div class="mod-eyebrow">SESSION STATISTICS</div>
+    <div class="mod-stats-grid">
+        <div class="mod-stats-cell">
+            <span class="mod-stats-key">TOP SPEED</span>
+            <div class="mod-stats-row">
+                <span class="mod-stats-val" data-ref="topSpeed">0</span>
+                <span class="mod-stats-unit" data-ref="unit1">mph</span>
+            </div>
+        </div>
+        <div class="mod-stats-cell">
+            <span class="mod-stats-key">AVG SPEED</span>
+            <div class="mod-stats-row">
+                <span class="mod-stats-val" data-ref="avgSpeed">0</span>
+                <span class="mod-stats-unit" data-ref="unit2">mph</span>
+            </div>
+        </div>
+        <div class="mod-stats-cell">
+            <span class="mod-stats-key">PEAK ACCEL</span>
+            <div class="mod-stats-row">
+                <span class="mod-stats-val" data-ref="peakAccel">0.00</span>
+                <span class="mod-stats-unit">m/s&sup2;</span>
+            </div>
+        </div>
+        <div class="mod-stats-cell">
+            <span class="mod-stats-key">PEAK BRAKE</span>
+            <div class="mod-stats-row">
+                <span class="mod-stats-val" data-ref="peakBrake">0.00</span>
+                <span class="mod-stats-unit">m/s&sup2;</span>
+            </div>
+        </div>
+        <div class="mod-stats-cell">
+            <span class="mod-stats-key">OVERSPEEDS</span>
+            <div class="mod-stats-row">
+                <span class="mod-stats-val is-warn" data-ref="overspeedCount">0</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.TSWDashboard && window.TSWDashboard.registerModule("stats", {
+        update: function (el, state) {
+            const topEl = el.querySelector('[data-ref="topSpeed"]');
+            const avgEl = el.querySelector('[data-ref="avgSpeed"]');
+            const accelEl = el.querySelector('[data-ref="peakAccel"]');
+            const brakeEl = el.querySelector('[data-ref="peakBrake"]');
+            const overEl = el.querySelector('[data-ref="overspeedCount"]');
+            const u1 = el.querySelector('[data-ref="unit1"]');
+            const u2 = el.querySelector('[data-ref="unit2"]');
+
+            if (u1) u1.textContent = state.unitLabel;
+            if (u2) u2.textContent = state.unitLabel;
+            if (topEl) topEl.textContent = String(Math.round(state.topSpeed || 0));
+            if (avgEl) avgEl.textContent = String(Math.round(state.avgSpeed || 0));
+            if (accelEl) accelEl.textContent = (state.peakAccel || 0).toFixed(2);
+            if (brakeEl) brakeEl.textContent = (state.peakBrake || 0).toFixed(2);
+            if (overEl) overEl.textContent = String(state.overspeedCount || 0);
+        }
+    });
+</script>

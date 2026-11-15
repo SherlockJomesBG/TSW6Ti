@@ -1,0 +1,252 @@
+{% extends "Layouts/layout-public.html" %}
+
+{% block title %}Credits &amp; Acknowledgements - TSW6Ti{% endblock %}
+
+{% block public_styles %}
+<link rel="stylesheet" href="/Client/CSS/Public/auth.css">
+<link rel="stylesheet" href="/Client/CSS/Public/credits.css">
+{% endblock %}
+
+{% block public_content %}
+<div class="credits-page">
+    <div class="credits-topbar">
+        <div>
+            <div class="credits-badge-row">
+                <span class="credits-badge-tag">
+                    <i class="fa-solid fa-heart" aria-hidden="true"></i>
+                    <span>Team &amp; Acknowledgements</span>
+                </span>
+                <span class="credits-meta-pill">Born at Hackabury 2026</span>
+                <span class="credits-meta-pill-accent">
+                    <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+                    <span>Dovetail Track Winner</span>
+                </span>
+            </div>
+            <h1 class="credits-page-title">Credits &amp; Hall of Fame</h1>
+            <p class="credits-page-subtitle">
+                Celebrating the creators, hackathon mentors, industry partners, and open-source foundations that power
+                the Train Sim World 6 Telemetry Interface.
+            </p>
+        </div>
+
+        <div class="credits-topbar-actions">
+            <a href="/contact" class="credits-nav-btn">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                <span>Get in Touch</span>
+            </a>
+            <a href="/" class="credits-nav-btn credits-nav-btn-primary">
+                <i class="fa-solid fa-house" aria-hidden="true"></i>
+                <span>Home</span>
+            </a>
+        </div>
+    </div>
+
+    <section class="credits-section">
+        <div class="credits-section-header">
+            <h2 class="credits-section-title">
+                <i class="fa-solid fa-users" aria-hidden="true"></i>
+                <span>Core Creators &amp; Developers</span>
+            </h2>
+            <p class="credits-section-desc">The human minds who planned, coded, and engineered TSW6Ti from the ground
+                up.</p>
+        </div>
+
+        <div class="credits-grid credits-grid-leads">
+            <article class="auth-card credits-person-card credits-person-lead">
+                <div class="credits-person-header">
+                    <div class="credits-avatar credits-avatar-bg">BG</div>
+                    <div class="credits-person-meta">
+                        <span class="credits-role-tag">Co-Creator &amp; Architect</span>
+                        <h3 class="credits-person-name">Benjamin Godfrey</h3>
+                        <p class="credits-person-handle">Co-Creator &middot; System Architect &amp; Lead Developer</p>
+                    </div>
+                </div>
+                <div class="credits-person-body">
+                    <p>
+                        Co-created, planned, and engineered TSW6Ti from its initial 24-hour hackathon prototype into a
+                        full-scale web platform. Designed and built the end-to-end architecture, backend REST APIs,
+                        WebSocket &amp; browser extension bridges, security core, and user dashboard telemetry modules.
+                    </p>
+                </div>
+                <div class="credits-person-tags">
+                    <span class="credits-skill-tag">Architecture</span>
+                    <span class="credits-skill-tag">Python &amp; Flask</span>
+                    <span class="credits-skill-tag">Vanilla JS</span>
+                    <span class="credits-skill-tag">WebExtensions</span>
+                    <span class="credits-skill-tag">Security &amp; GDPR</span>
+                </div>
+            </article>
+
+            <article class="auth-card credits-person-card credits-person-lead">
+                <div class="credits-person-header">
+                    <div class="credits-avatar credits-avatar-bc">BC</div>
+                    <div class="credits-person-meta">
+                        <span class="credits-role-tag credits-role-bc">Co-Creator &amp; Developer</span>
+                        <h3 class="credits-person-name">Bailey Crosby</h3>
+                        <p class="credits-person-handle">Co-Creator &middot; Software Engineer &amp; Core Developer</p>
+                    </div>
+                </div>
+                <div class="credits-person-body">
+                    <p>
+                        Co-created and engineered TSW6Ti alongside Benjamin through the Hackabury 2026 hackathon sprint
+                        and ongoing development. Spearheaded core telemetry feature development, testing, API
+                        integrations, and collaborative design of the user interface.
+                    </p>
+                </div>
+                <div class="credits-person-tags">
+                    <span class="credits-skill-tag">Co-Creation</span>
+                    <span class="credits-skill-tag">Full-Stack Dev</span>
+                    <span class="credits-skill-tag">Telemetry Pipelines</span>
+                    <span class="credits-skill-tag">Testing &amp; QA</span>
+                    <span class="credits-skill-tag">UI Integration</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="credits-section">
+        <div class="credits-section-header">
+            <h2 class="credits-section-title">
+                <i class="fa-solid fa-award" aria-hidden="true"></i>
+                <span>Hackathon &amp; Industry Partners</span>
+            </h2>
+            <p class="credits-section-desc">Organisations and mentors that inspired the project and sparked its
+                creation.</p>
+        </div>
+
+        <div class="credits-grid credits-grid-partners">
+            <article class="auth-card credits-partner-card credits-partner-dtg">
+                <div class="credits-partner-icon-wrapper">
+                    <div class="credits-partner-icon credits-icon-dtg">
+                        <i class="fa-solid fa-train" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <span class="credits-prize-badge">
+                            <i class="fa-solid fa-trophy" aria-hidden="true"></i>
+                            <span>Track Prize Sponsor</span>
+                        </span>
+                        <h3 class="credits-partner-name">Dovetail Games</h3>
+                        <p class="credits-partner-org">Creators of Train Sim World</p>
+                    </div>
+                </div>
+                <div class="credits-partner-body">
+                    <p>
+                        Special thanks to Dovetail Games for sponsoring Hackabury 2026, awarding TSW6Ti the official
+                        <strong>Dovetail Track Prize</strong>, and providing the Train Sim World 6 HTTP API interface
+                        that makes real-time community telemetry possible. Their post-hackathon feedback and suggestions
+                        on train physics and cruise control helped shape our roadmap.
+                    </p>
+                </div>
+                <div class="credits-partner-footer">
+                    <span class="credits-subtext">Train Sim World&reg; is a registered trademark of RailSimulator.com
+                        Limited.</span>
+                </div>
+            </article>
+
+            <article class="auth-card credits-partner-card credits-partner-hackabury">
+                <div class="credits-partner-icon-wrapper">
+                    <div class="credits-partner-icon credits-icon-hack">
+                        <i class="fa-solid fa-laptop-code" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <span class="credits-prize-badge credits-badge-uni">
+                            <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                            <span>Hackathon Host</span>
+                        </span>
+                        <h3 class="credits-partner-name">Hackabury Society</h3>
+                        <p class="credits-partner-org">Canterbury Christ Church University</p>
+                    </div>
+                </div>
+                <div class="credits-partner-body">
+                    <p>
+                        Huge gratitude to the Hackabury student society and faculty organisers at Canterbury Christ
+                        Church University (CCCU) for hosting <strong>Hackabury 2026</strong>. The vibrant environment,
+                        non-stop support, and endless caffeine fuelled the initial spark that brought this project to
+                        life.
+                    </p>
+                </div>
+                <div class="credits-partner-footer">
+                    <span class="credits-subtext">Proudly founded during Hackabury 2026.</span>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section class="credits-section">
+        <div class="credits-section-header">
+            <h2 class="credits-section-title">
+                <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                <span>Open-Source Technologies &amp; Foundations</span>
+            </h2>
+            <p class="credits-section-desc">The battle-tested open-source libraries that power our front and back ends.
+            </p>
+        </div>
+
+        <div class="credits-grid credits-grid-tech">
+            <div class="auth-card credits-tech-card">
+                <div class="credits-tech-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+                <h4 class="credits-tech-name">Chart.js</h4>
+                <p class="credits-tech-desc">Provides the high-performance HTML5 canvas rendering for real-time speed
+                    traces, acceleration graphs, and dynamic telemetry curves.</p>
+            </div>
+
+            <div class="auth-card credits-tech-card">
+                <div class="credits-tech-icon"><i class="fa-solid fa-grip" aria-hidden="true"></i></div>
+                <h4 class="credits-tech-name">SortableJS</h4>
+                <p class="credits-tech-desc">Powers the silky smooth drag-and-drop dashboard module customisation,
+                    allowing drivers to rearrange widgets to their exact preference.</p>
+            </div>
+
+            <div class="auth-card credits-tech-card">
+                <div class="credits-tech-icon"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
+                <h4 class="credits-tech-name">Flask &amp; Werkzeug</h4>
+                <p class="credits-tech-desc">The Python microframework backbone delivering strict parameterised SQLite
+                    queries, scrypt password hashing, and secure session management.</p>
+            </div>
+
+            <div class="auth-card credits-tech-card">
+                <div class="credits-tech-icon"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i></div>
+                <h4 class="credits-tech-name">fpdf2</h4>
+                <p class="credits-tech-desc">Generates automated PDF journey summary reports complete with route
+                    details, average speeds, overspeed events, and stats.</p>
+            </div>
+
+            <div class="auth-card credits-tech-card">
+                <div class="credits-tech-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+                <h4 class="credits-tech-name">DOMPurify &amp; Marked</h4>
+                <p class="credits-tech-desc">Enables safe, sanitised client-side Markdown rendering for in-app
+                    connection guides and live README project documentation.</p>
+            </div>
+
+            <div class="auth-card credits-tech-card">
+                <div class="credits-tech-icon"><i class="fa-solid fa-cloud" aria-hidden="true"></i></div>
+                <h4 class="credits-tech-name">Cloudflare</h4>
+                <p class="credits-tech-desc">Powers zero-port Cloudflare Tunnels, edge TLS termination, and WAF
+                    protection, keeping the public dashboard fast and protected.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="credits-section credits-section-community">
+        <article class="credits-community-card">
+            <div class="credits-community-icon">
+                <i class="fa-solid fa-train-subway" aria-hidden="true"></i>
+            </div>
+            <div class="credits-community-content">
+                <h3 class="credits-community-title">To the Train Sim World Community</h3>
+                <p class="credits-community-text">
+                    Thank you to the virtual railway enthusiasts, route drivers, beta testers, and community members who
+                    test this software, report edge cases, and share ideas for new telemetry modules. TSW6Ti is built
+                    for you.
+                </p>
+            </div>
+            <div class="credits-community-actions">
+                <a href="/contact" class="btn auth-submit-btn credits-action-btn">
+                    <span>Send Suggestions &amp; Feedback</span>
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+                </a>
+            </div>
+        </article>
+    </section>
+</div>
+{% endblock %}

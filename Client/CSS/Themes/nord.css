@@ -1,0 +1,37 @@
+.telem-layout {
+    --bg-primary: #2e3440;
+    --bg-secondary: #3b4252;
+    --telem-bg-color: #242933;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(136, 192, 208, 0.12) 0%, transparent 75%),
+        linear-gradient(180deg, #2e3440 0%, #242933 100%);
+    --telem-header-bg: rgba(46, 52, 64, 0.94);
+    --telem-header-border: rgba(136, 192, 208, 0.24);
+    --telem-card-bg: rgba(59, 66, 82, 0.9);
+    --telem-card-border: rgba(136, 192, 208, 0.22);
+    --telem-card-hover-border: rgba(136, 192, 208, 0.48);
+    --telem-card-shadow: 0 8px 24px rgba(0, 0, 0, 0.38);
+    --telem-subcard-bg: rgba(67, 76, 94, 0.65);
+    --telem-subcard-border: rgba(216, 222, 233, 0.12);
+    --telem-input-bg: #2e3440;
+    --telem-menu-bg: #2e3440;
+    --telem-divider: rgba(216, 222, 233, 0.12);
+    --telem-track-bg: rgba(216, 222, 233, 0.14);
+
+    --accent-primary: #5e81ac;
+    --accent-bright: #88c0d0;
+    --accent-deep: #4c6a92;
+    --accent-soft: #88c0d0;
+    --accent-contrast: #ffffff;
+    --accent-glow: rgba(136, 192, 208, 0.32);
+    --accent-subtle: rgba(136, 192, 208, 0.15);
+
+    --border-purple: rgba(136, 192, 208, 0.32);
+    --border-purple-strong: rgba(136, 192, 208, 0.62);
+    --border-divider: rgba(129, 161, 193, 0.25);
+
+    --text-primary: #eceff4;
+    --text-secondary: #e5e9f0;
+    --text-muted: #aeb7c6;
+    --text-dim: #7b88a1;
+}

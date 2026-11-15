@@ -1,0 +1,640 @@
+/* Here lies the CSS concerned with the Public Connect Page */
+/* This will add to the CSS already laid out by the layout-public stylesheet */
+/* Remember consistency is key */
+
+/* Creates the 3-column layout grid for the connections table, form, and setup guide */
+.connect-layout {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 450px minmax(0, 1fr);
+    gap: 1.75rem;
+    align-items: stretch;
+    position: relative;
+    z-index: 10;
+}
+
+/* Removes the max-width restriction on the auth cards so they fill the grid columns */
+.connect-layout .auth-card {
+    max-width: none;
+}
+
+/* Sizes and centres the main connection form card */
+.connect-form-card {
+    max-width: 450px;
+    min-height: 680px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Sets padding and height on the left and right panels so they match the central card */
+.connect-panel {
+    padding: 1.75rem 1.5rem;
+    min-height: 680px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styles the header titles for the side panels */
+.connect-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0 0 1.25rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Colours the icon next to side panel titles purple */
+.connect-panel-title i {
+    color: #9d5cff;
+}
+
+/* Allows the saved connections table to scroll vertically */
+.connect-table-wrapper {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/* Makes the connections table full width with clean collapsed borders */
+.connect-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+/* Styles the connections table headers with small uppercase text */
+.connect-table th {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8e87a0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Styles each data cell in the connections table */
+.connect-table td {
+    padding: 0.7rem 0.75rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Makes saved connection rows clickable with a smooth hover effect */
+.connect-table tbody tr[data-id] {
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+/* Highlights the row with a light purple background when hovered */
+.connect-table tbody tr[data-id]:hover {
+    background: rgba(139, 61, 255, 0.14);
+}
+
+/* Centres the placeholder text when there are no saved connections */
+.connect-table-empty td {
+    text-align: center;
+    color: #827b94;
+}
+
+/* The trash button used to delete a saved connection */
+.connect-delete-btn {
+    background: transparent;
+    border: none;
+    color: #827b94;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    transition: color var(--transition-fast);
+}
+
+/* Turns the delete icon red on hover */
+.connect-delete-btn:hover {
+    color: #ff6b81;
+}
+
+/* Sets font size and line height for the markdown guide content */
+.connect-guide-body {
+    flex: 1;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+/* Stacks the 3 panels vertically on smaller screens and mobile devices */
+@media (max-width: 1199.98px) {
+
+    /* Lowers the minimum height of the cards on mobile */
+    .connect-form-card,
+    .connect-panel {
+        min-height: 480px;
+    }
+
+    /* Changes the grid into a single centred column */
+    .connect-layout {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    /* Caps the width of stacked cards on mobile */
+    .connect-layout>* {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    /* Puts the connection form card first at the top */
+    .connect-form-card {
+        order: 1;
+    }
+
+    /* Places the saved connections list second */
+    .connect-connections {
+        order: 2;
+    }
+
+    /* Places the guide panel last */
+    .connect-guide {
+        order: 3;
+    }
+}
+
+/* Prevents the guide card from blowing out its container width */
+.connect-guide {
+    min-width: 0;
+}
+
+/* Adds a scrollbar to the guide text if it gets too long */
+.connect-guide-body {
+    overflow-y: auto;
+    min-height: 0;
+    max-height: 560px;
+    padding-right: 0.5rem;
+    overflow-wrap: anywhere;
+}
+
+/* Styles the main guide heading */
+.markdown-body h1 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0 0 0.9rem;
+}
+
+/* Styles section headings in the guide with a purple accent and bottom divider */
+.markdown-body h2 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #b47cff;
+    margin: 1.6rem 0 0.7rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Styles subheadings in the guide */
+.markdown-body h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 1.2rem 0 0.5rem;
+}
+
+/* Sets paragraph spacing inside the rendered markdown guide */
+.markdown-body p {
+    margin: 0 0 0.85rem;
+}
+
+/* Makes bold text inside the guide pure white */
+.markdown-body strong {
+    color: var(--text-primary);
+}
+
+/* Adds standard left indentation for numbered and bulleted lists */
+.markdown-body ol,
+.markdown-body ul {
+    padding-left: 1.4rem;
+    margin: 0 0 0.85rem;
+}
+
+/* Adds spacing between list items */
+.markdown-body li {
+    margin-bottom: 0.3rem;
+}
+
+/* Styles inline code snippets with a purple background */
+.markdown-body code {
+    padding: 0.12rem 0.4rem;
+    background: rgba(139, 61, 255, 0.16);
+    border: 1px solid rgba(139, 61, 255, 0.25);
+    border-radius: 4px;
+    color: #d8b4fe;
+    font-size: 0.82rem;
+}
+
+/* Styles code blocks with a dark background, subtle border and horizontal scrolling */
+.markdown-body pre {
+    background: rgba(20, 15, 30, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 0.8rem 1rem;
+    margin: 0 0 1rem;
+    overflow-x: auto;
+}
+
+/* Resets inline styling for code inside a code block */
+.markdown-body pre code {
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+}
+
+/* Styles blockquotes with a purple left accent border */
+.markdown-body blockquote {
+    margin: 0 0 1rem;
+    padding: 0.6rem 1rem;
+    border-left: 3px solid rgba(139, 61, 255, 0.6);
+    background: rgba(139, 61, 255, 0.08);
+    border-radius: 0 5px 5px 0;
+}
+
+/* Removes extra bottom margin on the last paragraph in a quote */
+.markdown-body blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Uppercase title styling for alert callout boxes */
+.md-alert-title {
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+/* Blue alert callout for note boxes */
+.markdown-body .md-alert-note {
+    border-left-color: #4da3ff;
+    background: rgba(77, 163, 255, 0.1);
+}
+
+/* Blue text for note callout titles */
+.markdown-body .md-alert-note .md-alert-title {
+    color: #4da3ff;
+}
+
+/* Green alert callout for tip boxes */
+.markdown-body .md-alert-tip {
+    border-left-color: #3ddc97;
+    background: rgba(61, 220, 151, 0.1);
+}
+
+/* Green text for tip callout titles */
+.markdown-body .md-alert-tip .md-alert-title {
+    color: #3ddc97;
+}
+
+/* Purple alert callout for important boxes */
+.markdown-body .md-alert-important {
+    border-left-color: #b47cff;
+    background: rgba(180, 124, 255, 0.12);
+}
+
+/* Purple text for important callout titles */
+.markdown-body .md-alert-important .md-alert-title {
+    color: #b47cff;
+}
+
+/* Amber alert callout for warning boxes */
+.markdown-body .md-alert-warning {
+    border-left-color: #ffb347;
+    background: rgba(255, 179, 71, 0.1);
+}
+
+/* Amber text for warning callout titles */
+.markdown-body .md-alert-warning .md-alert-title {
+    color: #ffb347;
+}
+
+/* Red alert callout for caution boxes */
+.markdown-body .md-alert-caution {
+    border-left-color: #ff6b81;
+    background: rgba(255, 107, 129, 0.1);
+}
+
+/* Red text for caution callout titles */
+.markdown-body .md-alert-caution .md-alert-title {
+    color: #ff6b81;
+}
+
+/* Container for the browser extension prompt when mixed-content is blocked */
+.connect-ext-gate {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    text-align: center;
+}
+
+/* Small pill badge indicating the extension requirement */
+.connect-ext-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    align-self: center;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(139, 61, 255, 0.16);
+    border: 1px solid rgba(157, 92, 255, 0.35);
+    color: #c7a2ff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Main title for the extension prompt */
+.connect-ext-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Explanatory text describing why the browser extension is needed */
+.connect-ext-desc {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.87rem;
+    line-height: 1.5;
+}
+
+/* Styles inline code snippets inside the extension description */
+.connect-ext-desc code {
+    color: #d6baff;
+    background: rgba(139, 61, 255, 0.15);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.82em;
+}
+
+/* Grid holding the browser extension download link buttons */
+.connect-ext-browsers {
+    display: grid;
+    grid-template-columns: minmax(220px, 300px);
+    justify-content: center;
+    gap: 0.65rem;
+    margin: 0.25rem 0;
+}
+
+/* Download button card for installing the companion extension */
+.connect-ext-browser-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.85rem 0.5rem;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 600;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+
+/* Troubleshooting instructions guide for extension setup */
+.connect-ext-guide {
+    text-align: left;
+    background: rgba(20, 12, 34, 0.7);
+    border: 1px solid rgba(139, 61, 255, 0.25);
+    border-radius: 8px;
+    padding: 0.75rem 0.95rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.45;
+}
+
+/* Amber heading for the extension troubleshooting steps */
+.connect-ext-guide-title {
+    margin: 0 0 0.4rem 0;
+    font-weight: 700;
+    color: #ffb347;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+}
+
+/* Indents numbered steps in the extension guide */
+.connect-ext-guide ol {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+/* Spacing between steps in the extension guide */
+.connect-ext-guide li {
+    margin-bottom: 0.25rem;
+}
+
+/* Styles code tags in the extension guide */
+.connect-ext-guide code {
+    color: #d6baff;
+    background: rgba(139, 61, 255, 0.15);
+    padding: 0.05rem 0.3rem;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+/* Sizes the browser icon inside the download button */
+.connect-ext-browser-btn i {
+    font-size: 1.45rem;
+    color: #b47cff;
+}
+
+/* Slightly lifts the extension download button and highlights it on hover */
+.connect-ext-browser-btn:hover {
+    transform: translateY(-2px);
+    background: rgba(139, 61, 255, 0.16);
+    border-color: rgba(157, 92, 255, 0.55);
+    color: #ffffff;
+}
+
+/* Underlined text button to bypass the extension requirement if you know what you're doing */
+.connect-ext-bypass-btn {
+    background: transparent;
+    border: none;
+    color: #9e96b3;
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--transition-fast);
+}
+
+/* Brightens the bypass button when hovered */
+.connect-ext-bypass-btn:hover {
+    color: #d6baff;
+}
+
+/* Masks saved API keys with bullets for privacy */
+.connect-key-masked {
+    -webkit-text-security: disc;
+    text-security: disc;
+}
+
+/* Container for the warning card shown when visiting from a mobile device */
+.connect-mobile-gate {
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+    text-align: center;
+}
+
+/* Warning badge tag indicating mobile limitation */
+.connect-mobile-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    align-self: center;
+    padding: 0.32rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 179, 71, 0.14);
+    border: 1px solid rgba(255, 179, 71, 0.4);
+    color: #ffb347;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Main title on the mobile warning card */
+.connect-mobile-title {
+    margin: 0;
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+/* Warning text explaining that connecting from a phone or tablet is limited */
+
+.connect-mobile-lead {
+    margin: 0;
+    color: #fca5a5;
+    font-size: 0.88rem;
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+/* Dark card detailing how local network connections work between PC and game */
+.connect-mobile-card {
+    background: rgba(20, 12, 34, 0.85);
+    border: 1px solid rgba(139, 61, 255, 0.28);
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+    text-align: left;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* Header for the mobile instruction card with an amber icon */
+.connect-mobile-card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffb347;
+    font-size: 0.86rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+}
+
+/* Sizes the warning icon in the mobile card header */
+.connect-mobile-card-header i {
+    font-size: 0.95rem;
+}
+
+.connect-mobile-card p {
+    /* Adds bottom spacing to paragraphs in the mobile card */
+    margin-bottom: 0.6rem;
+}
+
+/* Removes margin from the final paragraph in the card */
+.connect-mobile-card p:last-child {
+    margin-bottom: 0;
+}
+
+/* Styles inline code tags in the mobile card */
+.connect-mobile-card code {
+    color: #d6baff;
+    background: rgba(139, 61, 255, 0.18);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.82em;
+}
+
+/* Extra instruction text explaining requirements */
+.connect-mobile-instruction {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    line-height: 1.5;
+}
+
+/* Highlights strong text in the mobile instruction */
+.connect-mobile-instruction strong {
+    color: var(--text-primary);
+}
+
+/* Stacks mobile action buttons vertically */
+.connect-mobile-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: 0.35rem;
+}
+
+/* Primary button on mobile cards */
+.connect-mobile-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    width: 100%;
+}
+
+/* Secondary outline button for secondary actions on mobile */
+.connect-mobile-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    width: 100%;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all var(--transition-fast);
+}
+
+/* Highlights secondary buttons on hover */
+.connect-mobile-secondary-btn:hover {
+    background: rgba(139, 61, 255, 0.18);
+    border-color: rgba(157, 92, 255, 0.4);
+    color: #ffffff;
+}
+
+/* Hides the connections table completely when mobile mode is blocked */
+.connect-layout.is-mobile-blocked .connect-connections {
+    display: none;
+}

@@ -1,0 +1,449 @@
+/* Here lies the CSS concerned with the Public Contact Page */
+/* This will add to the CSS already laid out by the layout-public stylesheet */
+/* Remember consistency is key */
+
+/* Centres the contact page, sets its max width and spaces out the content cards */
+.contact-page {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* The top bar containing the contact page title, badges and navigation links */
+.contact-topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1.15rem;
+    border-bottom: 1px solid rgba(139, 61, 255, 0.28);
+}
+
+/* Aligns status pills and badges at the top of the header */
+.contact-badge-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+}
+
+/* Small purple badge tag indicating page purpose */
+.contact-badge-tag,
+.contact-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.24rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(139, 61, 255, 0.16);
+    border: 1px solid rgba(139, 61, 255, 0.36);
+    color: #d8b4fe;
+}
+
+/* A subtle secondary badge pill with a translucent white border */
+.contact-meta-pill {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--text-secondary);
+}
+
+/* Styles the main contact page title */
+.contact-page-title {
+    margin: 0 0 0.3rem;
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+/* Mutes the subtitle text underneath the title */
+.contact-page-subtitle {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+/* Groups navigation buttons on the right side of the top bar */
+.contact-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+/* Styles navigation buttons in the top bar with a translucent fill and purple border */
+.contact-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-purple);
+    color: var(--text-secondary);
+    font-size: 0.84rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+/* Highlights top bar navigation buttons when hovered */
+.contact-nav-btn:hover {
+    background: rgba(139, 61, 255, 0.18);
+    border-color: var(--accent-bright);
+    color: var(--text-primary);
+}
+
+/* Creates a two-column grid with a wider main form on the left and a sidebar on the right */
+.contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(290px, 1fr);
+    gap: 1.35rem;
+    align-items: start;
+}
+
+/* Stacks the help and quick link cards in the sidebar */
+.contact-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+}
+
+/* Stretches the auth card container to fill its grid column */
+.contact-page .auth-card {
+    max-width: none;
+    padding: 1.5rem 1.65rem;
+}
+
+/* Stacks contents inside the contact cards with even vertical gaps */
+.contact-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Aligns the card title on the left and any badges on the right */
+.contact-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* Styles the card header title and aligns its leading icon */
+.contact-card-title {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.06rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Colours the icon next to the card title purple */
+.contact-card-title i {
+    color: #9d5cff;
+}
+
+/* Stacks form fields and submit buttons with even vertical spacing */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+}
+
+/* Standardises input group heights inside the contact form */
+.contact-form .auth-input-group {
+    margin-bottom: 0;
+    height: 46px;
+}
+
+/* Places name and email fields side by side in two columns */
+.contact-two-col {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+/* Stacks a field label above its input group */
+.contact-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* Spaces the field label and character counter across the line */
+.contact-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+/* Styles label text above form inputs */
+.contact-label {
+    margin: 0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* Dims the '(optional)' label text */
+.contact-optional {
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* Displays the live character counter in a monospace tabular style */
+.contact-char-count {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Adds pointer cursor and padding for dropdown select boxes */
+.contact-select {
+    cursor: pointer;
+    padding-right: 1.5rem;
+}
+
+/* Darkens select dropdown options to match the dark theme */
+.contact-select option {
+    background-color: #161321;
+    color: var(--text-primary);
+}
+
+/* Expands the input group into a taller box suitable for multi-line textareas */
+.contact-textarea-group {
+    height: auto !important;
+    min-height: 145px;
+    padding: 0.8rem 0.95rem !important;
+    align-items: flex-start !important;
+}
+
+/* Allows the message textarea to be resized vertically */
+.contact-textarea {
+    resize: vertical;
+    min-height: 122px;
+    line-height: 1.55;
+    padding: 0;
+}
+
+/* Small disclaimer text explaining how submitted contact data is handled */
+.contact-privacy-note {
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--text-muted);
+}
+
+/* Underlines and colours links inside the privacy disclaimer light purple */
+.contact-privacy-note a {
+    color: #c084fc;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+/* Brightens privacy policy links when hovered */
+.contact-privacy-note a:hover {
+    color: #e9d5ff;
+}
+
+/* Adjusts the height and spacing of the submit message button */
+.contact-submit-btn {
+    height: 46px !important;
+    margin-top: 0.2rem !important;
+}
+
+/* Muted explanatory text describing support channels */
+.contact-help-text {
+    margin: 0;
+    font-size: 0.87rem;
+    line-height: 1.55;
+    color: var(--text-muted);
+}
+
+/* Stacks quick shortcut link buttons vertically */
+.contact-shortcut-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* A clickable card linking directly to resources like documentation or discord */
+.contact-shortcut-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.72rem 0.85rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none !important;
+    transition: background-color 0.15s, border-color 0.15s, transform 0.15s;
+}
+
+/* Highlights the shortcut card with a purple glow and lifts it slightly on hover */
+.contact-shortcut-item:hover {
+    background: rgba(139, 61, 255, 0.14);
+    border-color: rgba(139, 61, 255, 0.45);
+    transform: translateY(-1px);
+}
+
+/* Styles the icon on the left of each shortcut link */
+.contact-shortcut-item i {
+    color: #b77cff;
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Stacks the shortcut title and subtitle inside the link */
+.contact-shortcut-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+/* Bold title text for the shortcut link */
+.contact-shortcut-item strong {
+    font-size: 0.88rem;
+    color: var(--text-primary);
+}
+
+/* Small muted description underneath the shortcut title */
+.contact-shortcut-item span {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* An indented list of helpful troubleshooting tips */
+.contact-tips-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+/* Bold emphasis text inside the tips list */
+.contact-tips-list strong {
+    color: var(--text-primary);
+}
+
+/* Styles inline code tags inside troubleshooting tips */
+.contact-tips-list code {
+    color: #d8b4fe;
+    background: rgba(139, 61, 255, 0.14);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
+}
+
+/* Green confirmation card shown after successfully submitting a message */
+.contact-success-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+    padding: 1.75rem 1rem;
+    border-radius: 10px;
+    background: rgba(34, 197, 94, 0.08);
+    border: 1px solid rgba(34, 197, 94, 0.32);
+}
+
+/* Hides the success confirmation box by default */
+.contact-success-panel[hidden] {
+    display: none !important;
+}
+
+/* Large green checkmark icon in the success panel */
+.contact-success-icon {
+    font-size: 2.25rem;
+    color: #4ade80;
+}
+
+/* Title text confirming your message has been sent */
+.contact-success-title {
+    margin: 0;
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Friendly explanation text telling you what happens next */
+.contact-success-text {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    max-width: 44ch;
+}
+
+/* Displays the support ticket reference code in monospace */
+.contact-ticket-ref {
+    color: #d8b4fe;
+    font-family: monospace;
+}
+
+/* A secondary button style used to send another message */
+.contact-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.58rem 1rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-purple);
+    color: var(--text-primary);
+    font-size: 0.86rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+/* Highlights the secondary button on hover */
+.contact-secondary-btn:hover {
+    background: rgba(139, 61, 255, 0.18);
+    border-color: var(--accent-bright);
+}
+
+/* Stacks the main form and sidebar cards into a single column on tablets and mobile */
+@media (max-width: 900px) {
+
+    /* Makes all columns span full width */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Adjusts two-column form inputs and card padding on mobile screens */
+@media (max-width: 600px) {
+
+    /* Stacks two-column inputs like name and email on top of each other */
+    .contact-two-col {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tightens inner card padding on smaller phones */
+    .contact-page .auth-card {
+        padding: 1.25rem 1.15rem;
+    }
+}

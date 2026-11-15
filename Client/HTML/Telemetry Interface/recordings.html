@@ -1,0 +1,117 @@
+{% extends "Layouts/telemInter.html" %}
+
+{% block title %}TSW6 — Telemetry Recordings{% endblock %}
+
+{% block telem_content %}
+<div id="recordings-wrapper" class="recordings-container">
+
+    <section id="rec-library-view" class="rec-view">
+        <div class="rec-header">
+            <div class="rec-header-titles">
+                <h1 class="rec-title">Recordings</h1>
+                <p class="rec-subtitle">Review recorded telemetry drives with live 5&times;3 dashboard simulation, full
+                    run overviews, and PDF reports.</p>
+            </div>
+            <div class="rec-header-actions">
+                <div class="rec-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="search" id="rec-search-input" class="rec-search-input"
+                        placeholder="Search route, station, or train..." aria-label="Search recordings">
+                </div>
+                <a href="/dashboard" class="rec-back-btn">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="rec-list-status" class="rec-empty-state" hidden></div>
+        <div id="rec-cards-grid" class="rec-cards-grid"></div>
+    </section>
+
+    <section id="rec-replay-view" class="rec-view rec-replay-view" hidden>
+        <div class="rec-subbar">
+            <div class="rec-subbar-left">
+                <button type="button" id="rec-replay-back" class="rec-btn rec-btn-ghost">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>All Recordings</span>
+                </button>
+                <div class="rec-subbar-meta">
+                    <span id="rec-replay-title" class="rec-subbar-title">Recording Replay</span>
+                    <span id="rec-replay-subtitle" class="rec-subbar-sub">&mdash;</span>
+                </div>
+            </div>
+            <div class="rec-subbar-actions">
+                <button type="button" id="rec-replay-to-overview" class="rec-btn rec-btn-secondary">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Run Overview</span>
+                </button>
+                <button type="button" id="rec-replay-pdf" class="rec-btn rec-btn-primary">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>Download PDF</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="rec-player-bar">
+            <div class="rec-player-controls">
+                <button type="button" class="rec-ctrl-btn" data-skip="-30" title="Rewind 30 seconds">-30s</button>
+                <button type="button" class="rec-ctrl-btn" data-skip="-10" title="Rewind 10 seconds">-10s</button>
+                <button type="button" id="rec-play-toggle" class="rec-play-btn" title="Play / Pause">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+                <button type="button" class="rec-ctrl-btn" data-skip="10" title="Skip forward 10 seconds">+10s</button>
+                <button type="button" class="rec-ctrl-btn" data-skip="30" title="Skip forward 30 seconds">+30s</button>
+            </div>
+
+            <div class="rec-scrubber-wrap">
+                <span id="rec-time-current" class="rec-time-mono">00:00</span>
+                <input type="range" id="rec-scrubber" class="rec-scrubber" min="0" max="0" value="0" step="1"
+                    aria-label="Replay Timeline">
+                <span id="rec-time-total" class="rec-time-mono">00:00</span>
+            </div>
+
+            <div class="rec-player-right">
+                <span id="rec-sim-badge" class="rec-sim-badge" title="Simulation Clock">SIM --:--:--</span>
+                <div class="rec-speed-group" role="group" aria-label="Playback Speed">
+                    <button type="button" class="rec-speed-btn" data-speed="0.5">0.5x</button>
+                    <button type="button" class="rec-speed-btn is-active" data-speed="1">1x</button>
+                    <button type="button" class="rec-speed-btn" data-speed="2">2x</button>
+                    <button type="button" class="rec-speed-btn" data-speed="5">5x</button>
+                    <button type="button" class="rec-speed-btn" data-speed="10">10x</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="rec-replay-grid" class="dashboard-grid rec-replay-grid"></div>
+    </section>
+
+    <section id="rec-overview-view" class="rec-view rec-overview-view" hidden>
+        <div class="rec-subbar">
+            <div class="rec-subbar-left">
+                <button type="button" id="rec-overview-back" class="rec-btn rec-btn-ghost">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>All Recordings</span>
+                </button>
+                <div class="rec-subbar-meta">
+                    <span id="rec-ov-head-title" class="rec-subbar-title">Run Overview</span>
+                    <span id="rec-ov-head-sub" class="rec-subbar-sub">&mdash;</span>
+                </div>
+            </div>
+            <div class="rec-subbar-actions">
+                <button type="button" id="rec-overview-to-replay" class="rec-btn rec-btn-secondary">
+                    <i class="fa-solid fa-play"></i>
+                    <span>Simulated Replay</span>
+                </button>
+                <button type="button" id="rec-overview-pdf" class="rec-btn rec-btn-primary">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>Download PDF</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="rec-overview-content" class="rec-overview-content"></div>
+    </section>
+
+</div>
+{% endblock %}

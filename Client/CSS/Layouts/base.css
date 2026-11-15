@@ -1,0 +1,162 @@
+/* Here lies the CSS concerned with base layouts */
+/* All other pages should inherit styles from this for the sake of consistency and hierarchy */
+/* Remember consistency is key */
+
+/* Here we design the site-wide colours, borders, text shades, sizing, transition and font variables */
+:root {
+    --bg-primary: #07020d;
+    --bg-secondary: #0c0417;
+    --bg-surface: rgba(18, 7, 34, 0.75);
+
+    --accent-primary: #7c2ae8;
+    --accent-bright: #8b3dff;
+    --accent-deep: #5e17c4;
+    --accent-glow: rgba(139, 61, 255, 0.42);
+    --accent-subtle: rgba(139, 61, 255, 0.14);
+
+    --border-purple: rgba(139, 61, 255, 0.34);
+    --border-purple-strong: rgba(145, 70, 255, 0.68);
+    --border-divider: rgba(139, 61, 255, 0.38);
+
+    --text-primary: #ffffff;
+    --text-secondary: #d6d0e3;
+    --text-muted: #958ea6;
+    --text-dim: #7c758e;
+
+    --container-max-width: 1240px;
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Ensures everything has its width and bordr calculated */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Gives the page a full-size dark background, default text colour, font and smoothing. Additionally, it hides the horizontal scrollbar */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* This defines the block-level element that is the main content of the page and also sets it to full width */
+main {
+    display: block;
+    width: 100%;
+}
+
+/* This defines the headings. They are all set to white, bold, tightly spaced, no top margin */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0;
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* This defines the paragraphs. They are all set to muted text colour and no top margin */
+p {
+    margin-top: 0;
+    color: var(--text-muted);
+}
+
+/* This defines the links. They are all set to bright purple, with no underline and a smooth transition */
+a {
+    color: var(--accent-bright);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+/* When you hover over the text it will turn white */
+a:hover {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+/* Forces muted text to the muted grey colour */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* This makes the container full-width and centred with side padding */
+.container {
+    width: 100%;
+    max-width: var(--container-max-width) !important;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* This defines the shared layout, typography, padding and rounded corners for all buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.2;
+    padding: 0.82rem 1.55rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* For those buttons marked primary this gives them a purple gradient with a glow */
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent-deep) 100%);
+    border: 1px solid var(--border-purple-strong);
+    color: var(--text-primary) !important;
+    box-shadow: 0 4px 22px rgba(124, 42, 232, 0.42);
+}
+
+/* When these buttons are hovered on or focused this makes them slightly brighter and gives them a glow */
+.btn-primary:hover,
+.btn-primary:focus {
+    background: linear-gradient(135deg, #9b51ff 0%, #6e22dd 100%);
+    border-color: #a96eff;
+    box-shadow: 0 6px 26px rgba(139, 61, 255, 0.58);
+    transform: translateY(-1px);
+}
+
+/* For those buttons marked as outline this gives them a dark, slightly transparent fill with a purple border */
+.btn-outline-primary {
+    background: rgba(15, 6, 28, 0.65);
+    border: 1px solid var(--border-purple-strong);
+    color: var(--text-secondary) !important;
+    box-shadow: inset 0 0 14px rgba(139, 61, 255, 0.12);
+}
+
+/* When these buttons are hovered on or focused it makes them slightly brighter and gives them a glow */
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+    background: rgba(139, 61, 255, 0.16);
+    border-color: var(--accent-bright);
+    color: var(--text-primary) !important;
+    box-shadow: 0 4px 18px rgba(139, 61, 255, 0.25), inset 0 0 14px rgba(139, 61, 255, 0.2);
+    transform: translateY(-1px);
+}

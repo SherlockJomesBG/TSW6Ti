@@ -1,0 +1,82 @@
+{% extends "Layouts/telemInter.html" %}
+
+{% block title %}TSW6 — Guides{% endblock %}
+
+{% block telem_content %}
+<div id="guides-wrapper" class="guides-container">
+
+    <section id="guides-library-view" class="guides-view">
+        <div class="guides-header">
+            <div class="guides-header-titles">
+                <h1 class="guides-title">Guides</h1>
+                <p class="guides-subtitle">Operating manuals, train guides, and connection documentation discovered in
+                    your guides folder.</p>
+            </div>
+            <div class="guides-header-actions">
+                <div class="guides-search-wrap">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="search" id="guides-search-input" class="guides-search-input"
+                        placeholder="Search guides, trains, or filenames..." aria-label="Search guides">
+                </div>
+                <button type="button" id="guides-refresh-btn" class="guides-btn guides-btn-secondary"
+                    title="Rescan Assets/Guides">
+                    <i class="fa-solid fa-rotate"></i>
+                    <span>Refresh</span>
+                </button>
+                <a href="/dashboard" class="guides-btn guides-btn-ghost">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Dashboard</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="guides-list-status" class="guides-empty-state" hidden></div>
+        <div id="guides-cards-grid" class="guides-cards-grid"></div>
+    </section>
+
+    <section id="guides-reader-view" class="guides-view guides-reader-view" hidden>
+        <div class="guides-subbar">
+            <div class="guides-subbar-left">
+                <button type="button" id="guides-back-btn" class="guides-btn guides-btn-ghost">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>All Guides</span>
+                </button>
+                <div class="guides-subbar-meta">
+                    <span id="guides-active-title" class="guides-subbar-title">Guide</span>
+                    <span id="guides-active-subtitle" class="guides-subbar-sub">&mdash;</span>
+                </div>
+            </div>
+            <div class="guides-subbar-actions">
+                <div class="guides-switch-wrap">
+                    <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                    <select id="guides-switcher-select" class="guides-switcher-select"
+                        aria-label="Switch guide"></select>
+                </div>
+            </div>
+        </div>
+
+        <article class="guides-article-panel">
+            <div id="guides-article-body" class="guides-markdown markdown-body"></div>
+        </article>
+    </section>
+
+    <div id="guides-lightbox" class="guides-lightbox" hidden role="dialog" aria-modal="true"
+        aria-label="Image preview">
+        <div class="guides-lightbox-backdrop"></div>
+        <div class="guides-lightbox-dialog">
+            <div class="guides-lightbox-bar">
+                <span id="guides-lightbox-caption" class="guides-lightbox-caption"></span>
+                <button type="button" id="guides-lightbox-close" class="guides-lightbox-close"
+                    aria-label="Close image preview">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="guides-lightbox-body">
+                <img id="guides-lightbox-img" class="guides-lightbox-img" src="" alt="">
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+

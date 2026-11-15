@@ -1,0 +1,58 @@
+{% extends "Layouts/telemInter.html" %}
+
+{% block title %}TSW6 — Live Telemetry{% endblock %}
+
+{% block telem_content %}
+<div id="dashboard-wrapper" class="dashboard-wrapper">
+
+    <div id="dash-edit-bar" class="dash-edit-bar" hidden>
+        <div class="dash-edit-bar-left">
+            <span class="dash-edit-badge">
+                <i class="fa-solid fa-pen-ruler"></i>
+                <span>EDIT LAYOUT (5&times;3 GRID)</span>
+            </span>
+            <span id="dash-edit-hint" class="dash-edit-hint">
+                Drag modules to empty cells or swap them, choose a size (1&times;1, 2&times;1, 1&times;2, 2&times;2,
+                5&times;1), or add/remove widgets.
+            </span>
+        </div>
+        <div class="dash-edit-bar-actions">
+            <button type="button" id="dash-add-module-btn" class="dash-bar-btn dash-bar-btn-secondary">
+                <i class="fa-solid fa-plus"></i>
+                <span>Add Module</span>
+            </button>
+            <button type="button" id="dash-reset-btn" class="dash-bar-btn dash-bar-btn-ghost">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>Reset Default</span>
+            </button>
+            <button type="button" id="dash-cancel-btn" class="dash-bar-btn dash-bar-btn-ghost">
+                <span>Cancel</span>
+            </button>
+            <button type="button" id="dash-save-btn" class="dash-bar-btn dash-bar-btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>Save Layout</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="dashboard-grid" class="dashboard-grid">
+        <div id="dashboard-grid-cells" class="dashboard-grid-cells" aria-hidden="true"></div>
+    </div>
+
+    <div id="dash-module-modal" class="dash-modal-backdrop" hidden>
+        <div class="dash-modal-card" role="dialog" aria-modal="true" aria-labelledby="dash-modal-title">
+            <div class="dash-modal-header">
+                <h2 id="dash-modal-title" class="dash-modal-title">
+                    <i class="fa-solid fa-cubes"></i>
+                    <span>Add Telemetry Module</span>
+                </h2>
+                <button type="button" id="dash-modal-close" class="dash-modal-close" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="dash-modal-list" class="dash-modal-list"></div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

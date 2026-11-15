@@ -1,0 +1,680 @@
+/* Here lies the CSS concerned with the Public Credits Page */
+/* This will add to the CSS already laid out by the layout-public stylesheet */
+/* Remember consistency is key */
+
+/* Centres the credits page, sets its max width and adds bottom padding */
+.credits-page {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1.5rem 0 4rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Top bar displaying page title, badges and navigation action buttons */
+.credits-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1.75rem;
+    margin-bottom: 2.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Aligns category tags and badges above the page title */
+.credits-badge-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Small purple badge tag indicating page purpose */
+.credits-badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.32rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(139, 61, 255, 0.16);
+    border: 1px solid rgba(157, 92, 255, 0.35);
+    color: #c7a2ff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Muted pill badge showing additional metadata */
+.credits-meta-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.32rem 0.8rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    font-size: 0.74rem;
+    font-weight: 600;
+}
+
+/* Amber highlighted pill badge for special announcements */
+.credits-meta-pill-accent {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.32rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 179, 71, 0.12);
+    border: 1px solid rgba(255, 179, 71, 0.35);
+    color: #ffb347;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Main title for the credits and acknowledgements page */
+.credits-page-title {
+    font-size: clamp(2rem, 3.4vw, 2.75rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1.18;
+}
+
+/* Subtitle explaining who built the project and its partners */
+.credits-page-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 660px;
+    margin: 0;
+    line-height: 1.55;
+}
+
+/* Groups navigation action buttons in the top right */
+.credits-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* Secondary navigation button with translucent fill and purple border */
+.credits-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.15rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: all var(--transition-fast);
+}
+
+/* Highlights the secondary button on hover */
+.credits-nav-btn:hover {
+    background: rgba(139, 61, 255, 0.18);
+    border-color: rgba(157, 92, 255, 0.45);
+    color: #ffffff;
+}
+
+/* Primary navigation button with purple gradient fill */
+.credits-nav-btn-primary {
+    background: linear-gradient(135deg, rgba(124, 42, 232, 0.85) 0%, rgba(94, 23, 196, 0.85) 100%);
+    border-color: rgba(157, 92, 255, 0.5);
+    color: #ffffff;
+}
+
+/* Brightens the primary button and adds a shadow glow on hover */
+.credits-nav-btn-primary:hover {
+    background: linear-gradient(135deg, #7c2ae8 0%, #5e17c4 100%);
+    border-color: #8b3dff;
+    box-shadow: 0 4px 16px rgba(139, 61, 255, 0.35);
+}
+
+/* Spaces out the major credit sections down the page */
+.credits-section {
+    margin-bottom: 3.5rem;
+}
+
+/* Spacing below section titles and descriptions */
+.credits-section-header {
+    margin-bottom: 1.5rem;
+}
+
+/* Section heading with leading icon */
+.credits-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.35rem;
+    letter-spacing: -0.01em;
+}
+
+/* Colours the icon next to the section title purple */
+.credits-section-title i {
+    color: #b47cff;
+    font-size: 1.15rem;
+}
+
+/* Short description text underneath section titles */
+.credits-section-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Base grid layout for displaying credit cards */
+.credits-grid {
+    display: grid;
+    gap: 1.25rem;
+}
+
+/* Two-column grid for the core creator cards */
+.credits-grid-leads {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Card container for project creators and contributors */
+.credits-person-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: rgba(15, 9, 28, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    max-width: 100% !important;
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Slightly lifts creator cards and adds a purple glow on hover */
+.credits-person-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(157, 92, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(139, 61, 255, 0.16);
+}
+
+/* Special gradient border and background for the lead developer */
+.credits-person-lead {
+    border-color: rgba(157, 92, 255, 0.35);
+    background: linear-gradient(180deg, rgba(22, 13, 44, 0.85) 0%, rgba(14, 8, 28, 0.85) 100%);
+    box-shadow: 0 4px 24px rgba(139, 61, 255, 0.12);
+}
+
+/* Header area inside a creator card showing avatar and details */
+.credits-person-header {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    margin-bottom: 1.15rem;
+}
+
+/* Square avatar container with rounded corners and initials */
+.credits-avatar {
+    width: 62px;
+    height: 62px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #ffffff;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    flex-shrink: 0;
+}
+
+/* Purple gradient background for Benjamin G's avatar */
+.credits-avatar-bg {
+    background: linear-gradient(135deg, #9d5cff 0%, #6e21d8 60%, #4a1296 100%);
+    border: 1px solid rgba(180, 124, 255, 0.5);
+    box-shadow: 0 0 20px rgba(139, 61, 255, 0.35);
+}
+
+/* Blue gradient background for Benjamin C's avatar */
+.credits-avatar-bc {
+    background: linear-gradient(135deg, #5c9dff 0%, #216ed8 60%, #124a96 100%);
+    border: 1px solid rgba(124, 180, 255, 0.5);
+    box-shadow: 0 0 20px rgba(92, 157, 255, 0.35);
+}
+
+/* Text metadata container next to the avatar */
+.credits-person-meta {
+    min-width: 0;
+}
+
+/* Small tag showing the creator's role on the project */
+.credits-role-tag {
+    display: inline-block;
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    background: rgba(139, 61, 255, 0.2);
+    border: 1px solid rgba(157, 92, 255, 0.35);
+    color: #d6baff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+/* Blue version of the role tag */
+.credits-role-bc {
+    background: rgba(92, 157, 255, 0.2);
+    border-color: rgba(124, 180, 255, 0.45);
+    color: #c2dcff;
+}
+
+/* Subtle blue role tag for contributors */
+.credits-role-side {
+    background: rgba(92, 157, 255, 0.16);
+    border-color: rgba(92, 157, 255, 0.35);
+    color: #bad6ff;
+}
+
+/* Creator's name styling */
+.credits-person-name {
+    font-size: 1.28rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.15rem;
+    letter-spacing: -0.01em;
+}
+
+/* Creator's handle or username styling */
+.credits-person-handle {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Paragraph text detailing the creator's role and contributions */
+.credits-person-body p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.62;
+    margin: 0 0 1.25rem;
+}
+
+/* Row of skill and technology tags at the bottom of a creator card */
+.credits-person-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Small pill badge for individual skills and programming languages */
+.credits-skill-tag {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: #b5a9cc;
+    padding: 0.2rem 0.55rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Two-column grid for partner and hackathon cards */
+.credits-grid-partners {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Card styling for partner companies and events */
+.credits-partner-card {
+    padding: 1.75rem;
+    background: rgba(15, 9, 28, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    max-width: 100% !important;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* Lifts partner cards slightly on hover */
+.credits-partner-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(157, 92, 255, 0.4);
+}
+
+/* Amber themed card for Dovetail Games */
+.credits-partner-dtg {
+    border-color: rgba(255, 179, 71, 0.3);
+    background: linear-gradient(180deg, rgba(28, 20, 14, 0.85) 0%, rgba(16, 10, 28, 0.85) 100%);
+}
+
+/* Gives the DTG partner card an amber glow on hover */
+.credits-partner-dtg:hover {
+    border-color: rgba(255, 179, 71, 0.55);
+    box-shadow: 0 8px 32px rgba(255, 179, 71, 0.15);
+}
+
+/* Purple themed card for Hackabury Hackathon */
+.credits-partner-hackabury {
+    border-color: rgba(157, 92, 255, 0.3);
+    background: linear-gradient(180deg, rgba(22, 14, 38, 0.85) 0%, rgba(14, 8, 28, 0.85) 100%);
+}
+
+/* Gives the Hackabury partner card a purple glow on hover */
+.credits-partner-hackabury:hover {
+    border-color: rgba(157, 92, 255, 0.55);
+    box-shadow: 0 8px 32px rgba(139, 61, 255, 0.15);
+}
+
+/* Header inside partner card aligning the icon and titles */
+.credits-partner-icon-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+    margin-bottom: 1.15rem;
+}
+
+/* Square icon container for partner logos */
+.credits-partner-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    flex-shrink: 0;
+}
+
+/* Amber icon background for DTG */
+.credits-icon-dtg {
+    background: rgba(255, 179, 71, 0.16);
+    border: 1px solid rgba(255, 179, 71, 0.4);
+    color: #ffb347;
+}
+
+/* Purple icon background for Hackabury */
+.credits-icon-hack {
+    background: rgba(139, 61, 255, 0.18);
+    border: 1px solid rgba(157, 92, 255, 0.4);
+    color: #c7a2ff;
+}
+
+/* Amber badge indicating awards or recognition */
+.credits-prize-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    background: rgba(255, 179, 71, 0.18);
+    border: 1px solid rgba(255, 179, 71, 0.4);
+    color: #ffb347;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+}
+
+/* Purple badge for university hackathon events */
+.credits-badge-uni {
+    background: rgba(139, 61, 255, 0.18);
+    border-color: rgba(157, 92, 255, 0.4);
+    color: #c7a2ff;
+}
+
+/* Partner company or organization title */
+.credits-partner-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.15rem;
+}
+
+/* Subtitle explaining the partner's organization */
+.credits-partner-org {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Body text explaining the partner's involvement */
+.credits-partner-body p {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.62;
+    margin: 0 0 1.25rem;
+}
+
+/* Footer row inside partner cards for disclaimers or subtext */
+.credits-partner-footer {
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Small italicised disclaimer text */
+.credits-subtext {
+    font-size: 0.76rem;
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+/* Three-column grid for open source libraries and tools */
+.credits-grid-tech {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Compact card for individual open source technologies */
+.credits-tech-card {
+    padding: 1.35rem 1.45rem;
+    background: rgba(14, 9, 26, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    max-width: 100% !important;
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* Lifts technology cards slightly on hover */
+.credits-tech-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(157, 92, 255, 0.35);
+}
+
+/* Small icon badge for open source libraries */
+.credits-tech-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: rgba(139, 61, 255, 0.16);
+    border: 1px solid rgba(157, 92, 255, 0.32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c7a2ff;
+    font-size: 1rem;
+    margin-bottom: 0.85rem;
+}
+
+/* Technology library or framework name */
+.credits-tech-name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.4rem;
+}
+
+/* Brief description of what the library is used for */
+.credits-tech-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+}
+
+/* Full-width container for the community section */
+.credits-section-community {
+    width: 100%;
+}
+
+/* Large banner card highlighting community and driver support */
+.credits-community-card {
+    width: 100%;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    padding: 2.25rem 2.5rem;
+    background: linear-gradient(135deg, rgba(22, 13, 44, 0.85) 0%, rgba(12, 6, 24, 0.85) 100%);
+    border: 1px solid rgba(157, 92, 255, 0.35);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(139, 61, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Lifts community banner and strengthens purple glow on hover */
+.credits-community-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(157, 92, 255, 0.55);
+    box-shadow: 0 10px 36px rgba(139, 61, 255, 0.22);
+}
+
+/* Large glowing icon container inside the community banner */
+.credits-community-icon {
+    width: 74px;
+    height: 74px;
+    border-radius: 18px;
+    background: rgba(139, 61, 255, 0.2);
+    border: 1px solid rgba(157, 92, 255, 0.45);
+    color: #d6baff;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 24px rgba(139, 61, 255, 0.35);
+}
+
+/* Text content area inside the community banner */
+.credits-community-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Heading for the community card */
+.credits-community-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+}
+
+/* Friendly explanation thanking the train sim driver community */
+.credits-community-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 100%;
+}
+
+/* Action buttons container on the community banner */
+.credits-community-actions {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+/* Action button styling on the community card */
+.credits-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none !important;
+    white-space: nowrap;
+}
+
+/* Stacks cards and adjusts layouts for tablet screens */
+@media (max-width: 991.98px) {
+
+    /* Stacks top bar items vertically */
+    .credits-topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+
+    /* Stacks creator and partner grids into a single column */
+    .credits-grid-leads,
+    .credits-grid-partners {
+        grid-template-columns: 1fr;
+    }
+
+    /* Reduces tech grid to two columns */
+    .credits-grid-tech {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    /* Stacks community banner content vertically */
+    .credits-community-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.75rem;
+        gap: 1.25rem;
+    }
+}
+
+/* Layout adjustments for mobile phones */
+@media (max-width: 575.98px) {
+
+    /* Stacks tech cards into a single column */
+    .credits-grid-tech {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stretches community button container full width */
+    .credits-community-actions {
+        width: 100%;
+    }
+
+    /* Makes community action button full width and centred */
+    .credits-community-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* Stacks creator avatar and name vertically */
+    .credits-person-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.85rem;
+    }
+}

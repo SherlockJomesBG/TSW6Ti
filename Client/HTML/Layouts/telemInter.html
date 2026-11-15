@@ -1,0 +1,160 @@
+{% extends "Layouts/base.html" %}
+
+{% block title %}TSW6 — Live Telemetry{% endblock %}
+
+{% block styles %}
+<script>
+    (function () {
+        function isMobileDevice() {
+            var ua = navigator.userAgent || navigator.vendor || window.opera || "";
+            if (/iPhone|iPod|iPad/i.test(ua)) return true;
+            if (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1) return true;
+            if (/Android/i.test(ua)) return true;
+            if (/windows phone|iemobile|mobile|tablet|silk|kindle/i.test(ua)) return true;
+            if (window.matchMedia && window.matchMedia("(pointer: coarse)").matches && (navigator.maxTouchPoints > 1) && window.innerWidth <= 1024) {
+                return true;
+            }
+            return false;
+        }
+        if (isMobileDevice()) {
+            window.location.replace("/connect?from_telem=1");
+        }
+    })();
+</script>
+<link rel="stylesheet" href="/Client/CSS/Layouts/telemInter.css">
+<link rel="stylesheet" href="/Client/CSS/Telemetry Interface/dashboard.css">
+<link rel="stylesheet" href="/Client/CSS/Telemetry Interface/settings.css">
+<link rel="stylesheet" href="/Client/CSS/Telemetry Interface/recordings.css">
+<link rel="stylesheet" href="/Client/CSS/Telemetry Interface/guides.css">
+<link id="telem-theme-stylesheet" rel="stylesheet" href="/Client/CSS/Themes/default.css">
+<script>
+    (function () {
+        var savedTheme = localStorage.getItem("tsw6ti_theme") || "default";
+        var link = document.getElementById("telem-theme-stylesheet");
+        if (link) {
+            link.href = "/Client/CSS/Themes/" + encodeURIComponent(savedTheme) + ".css";
+        }
+    })();
+</script>
+{% block telem_styles %}{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="telem-layout" data-theme="default">
+    <header class="telem-header">
+        <div class="telem-header-inner">
+
+            <div class="telem-header-left">
+                <a href="/" class="telem-brand" title="TSW6Ti Home">
+                    <span class="telem-brand-title">TSW<span class="telem-brand-accent">6</span><span
+                            class="telem-brand-ti">Ti</span></span>
+                    <span class="telem-brand-divider" aria-hidden="true"></span>
+                    <span class="telem-brand-meta">
+                        <span class="telem-brand-sub">
+                            <span id="telem-stream-dot" class="telem-stream-dot"></span>
+                            LIVE SIMULATION DATA STREAM
+                        </span>
+                    </span>
+                </a>
+
+                <span class="telem-v-sep" aria-hidden="true"></span>
+
+                <div class="telem-stat-pill" title="Active Drivable Train">
+                    <i class="fa-solid fa-train-subway telem-stat-icon" aria-hidden="true"></i>
+                    <span class="telem-stat-key">TRAIN</span>
+                    <span id="telem-train-name" class="telem-stat-val">Unknown</span>
+                </div>
+            </div>
+
+            <div class="telem-header-center">
+                <div class="telem-simtime-pill" title="In-game Simulation Time">
+                    <span class="telem-stat-key">SIM TIME</span>
+                    <span class="telem-pill-sep" aria-hidden="true"></span>
+                    <span id="telem-sim-time" class="telem-simtime-value">----&#8209;--&#8209;-- --:--:--</span>
+                </div>
+            </div>
+
+            <div class="telem-header-right">
+                <div class="telem-control-pill telem-record-pill">
+                    <span id="telem-record-label" class="telem-stat-key telem-record-status">NOT RECORDING</span>
+                    <span id="telem-record-timer" class="telem-record-timer" hidden>00:00</span>
+                    <div class="telem-record-actions">
+                        <button type="button" id="telem-record-start" class="telem-icon-btn telem-record-play"
+                            title="Start recording telemetry" aria-label="Start recording">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                        <button type="button" id="telem-record-stop" class="telem-icon-btn telem-record-stop"
+                            title="Stop recording telemetry" aria-label="Stop recording" disabled>
+                            <i class="fa-solid fa-stop"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <span class="telem-v-sep" aria-hidden="true"></span>
+
+                <div id="header-account" class="telem-account">
+                    <a href="/account" class="telem-account-user" title="Account & Privacy Settings">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span id="header-username">Driver</span>
+                    </a>
+                    <button type="button" id="logout-btn" class="telem-logout-btn" title="Log out">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </button>
+                </div>
+
+                <div class="telem-menu-wrapper">
+                    <button type="button" id="telem-menu-btn" class="telem-menu-btn" title="Menu" aria-label="Open menu"
+                        aria-expanded="false">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div id="telem-menu-dropdown" class="telem-menu-dropdown" hidden>
+                        <a href="/dashboard" class="telem-menu-item">
+                            <i class="fa-solid fa-gauge-high"></i>
+                            <span>Dashboard</span>
+                        </a>
+                        <a href="/recordings" class="telem-menu-item">
+                            <i class="fa-solid fa-clapperboard"></i>
+                            <span>Recordings</span>
+                        </a>
+                        <a href="/guides" class="telem-menu-item">
+                            <i class="fa-solid fa-book-open"></i>
+                            <span>Guides</span>
+                        </a>
+                        <a href="/settings" class="telem-menu-item">
+                            <i class="fa-solid fa-gear"></i>
+                            <span>Settings</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <main id="telem-workspace" class="telem-workspace">
+        {% block telem_content %}{% endblock %}
+    </main>
+
+    <div id="telem-global-toast" class="telem-global-toast" role="status" aria-live="polite" hidden>
+        <i id="telem-global-toast-icon" class="fa-solid fa-circle-check"></i>
+        <span id="telem-global-toast-msg"></span>
+        <a id="telem-global-toast-link" href="/recordings" class="telem-global-toast-link" hidden>View</a>
+        <button type="button" id="telem-global-toast-close" class="telem-global-toast-close" aria-label="Dismiss">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/Client/JS/TSW6/tsw6.js"></script>
+<script src="/Client/JS/Layouts/telemInter.js"></script>
+<script src="/Client/JS/Telemetry Interface/dashboard.js"></script>
+<script src="/Client/Libraries/marked/marked.min.js"></script>
+<script src="/Client/Libraries/dompurify/purify.min.js"></script>
+<script src="/Client/JS/Telemetry Interface/settings.js"></script>
+<script src="/Client/JS/Telemetry Interface/recordings.js"></script>
+<script src="/Client/JS/Telemetry Interface/guides.js"></script>
+{% block telem_scripts %}{% endblock %}
+{% endblock %}

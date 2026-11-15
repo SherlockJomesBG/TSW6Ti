@@ -1,0 +1,650 @@
+/* Here lies the CSS concerned with telemetry interface layouts */
+/* This will add to the CSS already laid out by the base stylesheet. Additionally, all other telemetry interface pages should inherit styles from this for the sake of consistency and hierarchy */
+/* Remember consistency is key */
+
+/* Here we set up the theme variables, background gradients and layout dimensions for the telemetry interface */
+.telem-layout {
+    --telem-bg-color: #06020c;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(109, 40, 217, 0.14) 0%, rgba(36, 10, 78, 0.05) 55%, transparent 80%),
+        linear-gradient(180deg, #080311 0%, #05010a 100%);
+    --telem-header-bg: rgba(9, 4, 18, 0.88);
+    --telem-header-border: rgba(139, 61, 255, 0.22);
+    --telem-card-bg: rgba(12, 5, 24, 0.84);
+    --telem-card-border: rgba(139, 61, 255, 0.24);
+    --telem-card-hover-border: rgba(139, 61, 255, 0.42);
+    --telem-card-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    --telem-subcard-bg: rgba(255, 255, 255, 0.03);
+    --telem-subcard-border: rgba(255, 255, 255, 0.085);
+    --telem-input-bg: rgba(20, 12, 34, 0.92);
+    --telem-menu-bg: rgba(11, 5, 22, 0.98);
+    --telem-divider: rgba(255, 255, 255, 0.08);
+    --telem-track-bg: rgba(255, 255, 255, 0.08);
+    --accent-soft: #a78bfa;
+    --accent-contrast: #ffffff;
+
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--telem-bg-color);
+    background-image: var(--telem-bg-image);
+    color: var(--text-primary);
+    overflow-x: clip;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* This keeps the header pinned to the top of the page with a blurred background and purple bottom border */
+.telem-header {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--telem-header-bg);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--telem-header-border);
+}
+
+/* This aligns everything inside the header into a spaced-out row across the screen */
+.telem-header-inner {
+    width: 100%;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 0.55rem 1.5rem;
+}
+
+/* Groups elements in the left, center, and right sections of the header */
+.telem-header-left,
+.telem-header-center,
+.telem-header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Ensures the left header section doesn't stretch past its container */
+.telem-header-left {
+    min-width: 0;
+}
+
+/* A thin vertical line used to separate different sections in the header */
+.telem-v-sep {
+    width: 1px;
+    height: 22px;
+    background: var(--telem-divider);
+    margin: 0 0.25rem;
+    flex-shrink: 0;
+}
+
+/* This styles the brand logo link and removes any underline */
+.telem-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none !important;
+    user-select: none;
+    flex-shrink: 0;
+}
+
+/* Displays the train logo using an SVG mask tinted with the purple accent colour */
+.telem-brand::before {
+    content: "";
+    display: inline-block;
+    width: 38px;
+    height: 18px;
+    flex-shrink: 0;
+    background-color: var(--accent-bright);
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 28'%3E%3Cpath d='M4 22L18 8C23 3.5 30 2 38 2H60L52 10H32C26 10 21 12.5 16 17L4 22Z' fill='black'/%3E%3Cpath d='M8 23H58L62 19H16L8 23Z' fill='black'/%3E%3Cpath d='M2 26H62' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M26 14H48L44 17H22L26 14Z' fill='black'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 28'%3E%3Cpath d='M4 22L18 8C23 3.5 30 2 38 2H60L52 10H32C26 10 21 12.5 16 17L4 22Z' fill='black'/%3E%3Cpath d='M8 23H58L62 19H16L8 23Z' fill='black'/%3E%3Cpath d='M2 26H62' stroke='black' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M26 14H48L44 17H22L26 14Z' fill='black'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+/* This sets the styling and spacing for the TSW brand title */
+.telem-brand-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+/* Makes the '6' in the logo bright purple */
+.telem-brand-accent {
+    color: var(--accent-bright);
+    margin-left: 0.1rem;
+}
+
+/* Styles the 'Ti' suffix to match the brand text */
+.telem-brand-ti {
+    color: var(--text-primary);
+    margin-left: 0.05rem;
+    font-weight: 800;
+}
+
+/* A subtle divider line between the brand name and telemetry info */
+.telem-brand-divider {
+    width: 1px;
+    height: 24px;
+    background: var(--border-purple);
+}
+
+/* Stacks the telemetry interface title and live connection indicator */
+.telem-brand-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.18rem;
+}
+
+/* Displays the uppercase Telemetry Interface subtitle */
+.telem-brand-main {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+/* Displays the live stream status text alongside the dot */
+.telem-brand-sub {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    font-size: 0.56rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    line-height: 1;
+}
+
+/* The small dot that indicates stream activity */
+.telem-stream-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--text-dim);
+    display: inline-block;
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Changes the dot to green with a glow when live data is coming through */
+.telem-stream-dot.is-live {
+    background-color: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.75);
+}
+
+/* This creates the rounded dark badges used for telemetry stats and controls */
+.telem-stat-pill,
+.telem-simtime-pill,
+.telem-control-pill {
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0 0.75rem;
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+}
+
+/* Colours the icon inside the stat badge purple */
+.telem-stat-icon {
+    font-size: 0.78rem;
+    color: var(--accent-bright);
+}
+
+/* Styles the uppercase label text inside the stat badge */
+.telem-stat-key {
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* Styles the data value text and cuts off any text that's too long with an ellipsis */
+.telem-stat-val {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+}
+
+/* Styles the simulation time display with a darker background and purple border */
+.telem-simtime-pill {
+    background: var(--telem-input-bg);
+    border-color: var(--border-purple);
+    padding: 0 0.9rem;
+}
+
+/* A small divider line inside the time pill */
+.telem-pill-sep {
+    width: 1px;
+    height: 14px;
+    background: var(--border-purple);
+}
+
+/* Formats the simulation clock using a monospace font so the numbers don't jump around */
+.telem-simtime-value {
+    font-family: 'JetBrains Mono', 'Fira Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    min-width: 162px;
+    text-align: center;
+}
+
+/* Adjusts the right padding for the pill containing the recording buttons */
+.telem-control-pill {
+    padding-right: 0.35rem;
+}
+
+/* Turns the record label red when recording is active */
+.telem-record-status.is-recording {
+    color: #fb7185;
+}
+
+/* Displays the recording duration timer in a red badge */
+.telem-record-timer {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.72rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.04em;
+    color: #fb7185;
+    padding: 0.12rem 0.42rem;
+    border-radius: 4px;
+    background: rgba(244, 63, 94, 0.14);
+    border: 1px solid rgba(244, 63, 94, 0.35);
+    line-height: 1.1;
+}
+
+/* Hides the timer when you're not recording */
+.telem-record-timer[hidden] {
+    display: none !important;
+}
+
+/* Places the record and stop buttons side by side */
+.telem-record-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+/* Base styling for small square icon buttons */
+.telem-icon-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.68rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    outline: none;
+}
+
+/* Styles the record/play button */
+.telem-record-play {
+    background: var(--accent-subtle);
+    border: 1px solid var(--border-purple);
+    color: var(--accent-soft);
+}
+
+/* Makes the record button purple when hovered */
+.telem-record-play:hover:not(:disabled) {
+    background: var(--accent-bright);
+    border-color: var(--accent-bright);
+    color: var(--accent-contrast);
+}
+
+/* Turns the record button red when a recording is currently running */
+.telem-record-play.is-active {
+    background: rgba(244, 63, 94, 0.24);
+    border-color: #fb7185;
+    color: #fda4af;
+}
+
+/* Styles the stop recording button */
+.telem-record-stop {
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    color: var(--text-muted);
+}
+
+/* Highlights the stop button with a subtle purple when hovered */
+.telem-record-stop:hover:not(:disabled) {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* Dims disabled buttons and changes the cursor */
+.telem-icon-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+/* Groups the user account badge and logout button together */
+.telem-account {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-width: 0;
+}
+
+/* Styles the user profile button in the top right */
+.telem-account-user {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.42rem;
+    height: 32px;
+    padding: 0 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--text-secondary);
+    text-decoration: none !important;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    box-sizing: border-box;
+    min-width: 0;
+    transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+/* Gives the user profile button a purple highlight when hovered */
+.telem-account-user:hover {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* Styles the user circle icon */
+.telem-account-user i {
+    font-size: 0.98rem;
+    line-height: 1;
+    color: var(--accent-bright);
+}
+
+/* Styles the logout button with a subtle border and background */
+.telem-logout-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    height: 32px;
+    padding: 0 0.7rem;
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    flex-shrink: 0;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+}
+
+/* Highlights the logout button when hovered */
+.telem-logout-btn:hover {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* Positions the options dropdown relative to its button */
+.telem-menu-wrapper {
+    position: relative;
+}
+
+/* Styles the three-dots options menu button */
+.telem-menu-btn {
+    width: 32px;
+    height: 32px;
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+/* Keeps the options button highlighted when hovered or when the menu is open */
+.telem-menu-btn:hover,
+.telem-menu-btn[aria-expanded="true"] {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* The floating menu that appears when clicking the options button */
+.telem-menu-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    min-width: 200px;
+    background: var(--telem-menu-bg);
+    border: 1px solid var(--border-purple);
+    border-radius: 6px;
+    padding: 0.35rem;
+    box-shadow: var(--telem-card-shadow);
+    z-index: 150;
+}
+
+/* Hides the dropdown menu by default */
+.telem-menu-dropdown[hidden] {
+    display: none !important;
+}
+
+/* Styles each clickable row inside the dropdown menu */
+.telem-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 4px;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-decoration: none !important;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+/* Aligns and colours the icons inside the dropdown menu items */
+.telem-menu-item i {
+    width: 16px;
+    text-align: center;
+    color: var(--accent-bright);
+}
+
+/* Highlights dropdown items with purple when hovered */
+.telem-menu-item:hover {
+    background: var(--accent-subtle);
+    color: var(--text-primary);
+}
+
+/* The main workspace area where all the telemetry widgets and dashboards live */
+.telem-workspace {
+    flex: 1;
+    width: 100%;
+    padding: 1.5rem;
+    position: relative;
+}
+
+/* A floating notification alert that pops up in the top right corner */
+.telem-global-toast {
+    position: fixed;
+    top: 74px;
+    right: 1.35rem;
+    z-index: 400;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    max-width: min(420px, calc(100vw - 2rem));
+    padding: 0.75rem 1rem;
+    background: var(--telem-menu-bg);
+    border: 1px solid var(--border-purple-strong);
+    border-left: 3px solid var(--accent-bright);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    font-weight: 500;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    animation: telemToastSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smoothly slides the alert in from the right */
+@keyframes telemToastSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+}
+
+/* Hides the alert notification when inactive */
+.telem-global-toast[hidden] {
+    display: none !important;
+}
+
+/* Colours the icon on the alert */
+.telem-global-toast i:first-child {
+    color: var(--accent-bright);
+}
+
+/* Changes the alert border to red for error messages */
+.telem-global-toast.is-error {
+    border-color: rgba(244, 63, 94, 0.65);
+}
+
+/* Turns the error icon red */
+.telem-global-toast.is-error i:first-child {
+    color: #fb7185;
+}
+
+/* A button link inside the alert */
+.telem-global-toast-link {
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    background: var(--accent-primary);
+    color: var(--accent-contrast) !important;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-decoration: none !important;
+}
+
+/* Hides the alert button link if there isn't one */
+.telem-global-toast-link[hidden] {
+    display: none !important;
+}
+
+/* The button to close and dismiss the alert */
+.telem-global-toast-close {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.1rem 0.25rem;
+    font-size: 0.85rem;
+}
+
+/* Brightens the close button on hover */
+.telem-global-toast-close:hover {
+    color: var(--text-primary);
+}
+
+/* Adjusts header spacing and wraps items on tablet screens */
+@media (max-width: 1279.98px) {
+
+    /* Allows the header items to wrap if needed */
+    .telem-header-inner {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0.65rem 1.25rem;
+    }
+
+    /* Allows the right-side controls to wrap on narrower screens */
+    .telem-header-right {
+        flex-wrap: wrap;
+    }
+}
+
+/* Compact layout for mobile screens */
+@media (max-width: 767.98px) {
+
+    /* Reduces padding and gaps inside the header */
+    .telem-header-inner {
+        padding: 0.5rem 0.75rem;
+        gap: 0.5rem;
+    }
+
+    /* Hides the subtitle text to save space on small screens */
+    .telem-brand-divider,
+    .telem-brand-meta {
+        display: none !important;
+    }
+
+    /* Reduces spacing around the account controls */
+    .telem-account {
+        gap: 0.35rem;
+    }
+
+    /* Shrinks the user badge so it fits on mobile */
+    .telem-account-user {
+        padding: 0 0.5rem;
+        max-width: 110px;
+    }
+
+    /* Truncates the username even shorter on mobile */
+    .telem-account-user #header-username {
+        max-width: 65px;
+    }
+
+    /* Turns the logout button into a square icon-only button */
+    .telem-logout-btn {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    /* Hides the 'Logout' text on mobile */
+    .telem-logout-btn span {
+        display: none;
+    }
+
+    /* Centers the logout icon inside the button */
+    .telem-logout-btn i {
+        font-size: 0.95rem;
+        margin: 0;
+    }
+}

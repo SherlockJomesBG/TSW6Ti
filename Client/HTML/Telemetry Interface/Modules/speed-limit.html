@@ -1,0 +1,166 @@
+<style>
+    .mod-speed-limit {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 0;
+    }
+
+    .mod-speed-limit-chart {
+        flex: 1;
+        position: relative;
+        min-height: 0;
+        width: 100%;
+        margin: 0.35rem 0;
+    }
+
+    .mod-speed-limit-footer {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding-top: 0.35rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .mod-speed-limit-key {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+    }
+
+    .mod-speed-limit-headroom {
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: #34d399;
+    }
+
+    .module-slot[data-size="2x1"] .mod-speed-limit-headroom,
+    .module-slot[data-size="1x2"] .mod-speed-limit-headroom {
+        font-size: 1.15rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-speed-limit-headroom,
+    .module-slot[data-size="5x1"] .mod-speed-limit-headroom {
+        font-size: 1.45rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-speed-limit-key,
+    .module-slot[data-size="5x1"] .mod-speed-limit-key {
+        font-size: 0.72rem;
+    }
+</style>
+
+<div class="mod-speed-limit">
+    <div class="mod-eyebrow">SPEED VS LIMIT</div>
+    <div class="mod-speed-limit-chart">
+        <canvas data-ref="canvas"></canvas>
+    </div>
+    <div class="mod-speed-limit-footer">
+        <span class="mod-speed-limit-key">HEADROOM</span>
+        <div>
+            <span class="mod-speed-limit-headroom" data-ref="headroom">&mdash;</span>
+            <span class="mod-speed-limit-key" data-ref="unit">mph</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.TSWDashboard && window.TSWDashboard.registerModule("speed-limit", {
+        init: function (el, state) {
+            const canvas = el.querySelector('[data-ref="canvas"]');
+            if (!canvas || typeof Chart === "undefined") return;
+            el._chart = new Chart(canvas.getContext("2d"), {
+                type: "bar",
+                data: {
+                    labels: ["SPEED", "LIMIT"],
+                    datasets: [
+                        {
+                            data: [0, 0],
+                            backgroundColor: ["rgba(139, 61, 255, 0.35)", "rgba(251, 191, 36, 0.3)"],
+                            borderColor: ["#8b3dff", "#fbbf24"],
+                            borderWidth: 1.5,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 200 },
+                    plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                    scales: {
+                        x: {
+                            ticks: { color: "rgba(255,255,255,0.55)", font: { size: 9, weight: "bold" } },
+                            grid: { display: false },
+                            border: { color: "rgba(255,255,255,0.12)" }
+                        },
+                        y: {
+                            min: 0,
+                            max: state.maxGaugeSpeed || 140,
+                            ticks: { color: "rgba(255,255,255,0.45)", font: { size: 9 }, maxTicksLimit: 4 },
+                            grid: { color: "rgba(139, 61, 255, 0.08)" },
+                            border: { color: "rgba(255,255,255,0.12)" }
+                        }
+                    }
+                }
+            });
+        },
+        update: function (el, state) {
+            const headroomEl = el.querySelector('[data-ref="headroom"]');
+            const unitEl = el.querySelector('[data-ref="unit"]');
+            const speed = state.speed || 0;
+            const limit = state.speedLimit || 0;
+            const isOverspeed = limit > 0 && speed > limit;
+
+            if (unitEl) unitEl.textContent = state.unitLabel;
+
+            if (headroomEl) {
+                if (limit > 0) {
+                    const headroom = limit - speed;
+                    headroomEl.textContent = (headroom >= 0 ? "+" : "") + headroom.toFixed(1);
+                    headroomEl.style.color = headroom < 0 ? "#fb7185" : headroom < 5 ? "#fbbf24" : "#34d399";
+                } else {
+                    headroomEl.textContent = "—";
+                    headroomEl.style.color = "var(--text-muted)";
+                }
+            }
+
+            if (el._chart) {
+                const layoutEl = document.querySelector(".telem-layout") || document.documentElement;
+                const cs = getComputedStyle(layoutEl);
+                const accentBright = cs.getPropertyValue("--accent-bright").trim() || "#8b3dff";
+                const accentSubtle = cs.getPropertyValue("--accent-subtle").trim() || "rgba(139, 61, 255, 0.35)";
+                const textMuted = cs.getPropertyValue("--text-muted").trim() || "rgba(255,255,255,0.55)";
+                const divider = cs.getPropertyValue("--telem-divider").trim() || "rgba(255,255,255,0.12)";
+
+                el._chart.options.scales.y.max = state.maxGaugeSpeed || 140;
+                el._chart.options.scales.x.ticks.color = textMuted;
+                el._chart.options.scales.y.ticks.color = textMuted;
+                el._chart.options.scales.y.grid.color = divider;
+                el._chart.options.scales.x.border.color = divider;
+                el._chart.options.scales.y.border.color = divider;
+                el._chart.data.datasets[0].data = [speed, limit > 0 ? limit : 0];
+                el._chart.data.datasets[0].backgroundColor = [
+                    isOverspeed ? "rgba(244, 63, 94, 0.35)" : accentSubtle,
+                    "rgba(251, 191, 36, 0.3)"
+                ];
+                el._chart.data.datasets[0].borderColor = [isOverspeed ? "#fb7185" : accentBright, "#fbbf24"];
+                el._chart.update();
+            }
+        },
+        resize: function (el) {
+            if (el._chart) el._chart.resize();
+        },
+        destroy: function (el) {
+            if (el._chart) {
+                el._chart.destroy();
+                el._chart = null;
+            }
+        }
+    });
+</script>

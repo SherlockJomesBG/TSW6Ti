@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "TSW6Ti Local Connector",
+  "version": "1.0.0",
+  "description": "Bridges telemetry requests from the TSW6Ti web dashboard to your local Train Sim World 6 HTTP API",
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://tsw6ti.com/*",
+        "https://www.tsw6ti.com/*",
+        "http://127.0.0.1/*",
+        "http://localhost/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}

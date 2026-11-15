@@ -1,0 +1,96 @@
+{% extends "Layouts/layout-public.html" %}
+
+{% block title %}{{ doc.title }} - TSW6Ti{% endblock %}
+
+{% block public_styles %}
+<link rel="stylesheet" href="/Client/CSS/Public/legal.css">
+{% endblock %}
+
+{% block public_content %}
+<div class="legal-page">
+    <div class="legal-topbar">
+        <div class="legal-title-block">
+            <div class="legal-badge-row">
+                <span class="legal-badge-tag">
+                    <i class="{{ doc.icon }}" aria-hidden="true"></i>
+                    <span>{{ doc.badge }}</span>
+                </span>
+                {% if doc.last_updated or doc.lastUpdated %}
+                <span class="legal-meta-pill">Updated {{ doc.last_updated or doc.lastUpdated }}</span>
+                {% endif %}
+                {% if doc.available %}
+                <span class="legal-meta-pill">DOCX &middot; {{ doc.file_size or doc.fileSize }}</span>
+                {% endif %}
+            </div>
+            <h1 class="legal-page-title">{{ doc.title }}</h1>
+            <p class="legal-page-subtitle">{{ doc.subtitle }}</p>
+        </div>
+
+        <div class="legal-topbar-actions">
+            <div class="legal-doc-switcher" role="navigation" aria-label="Legal documents">
+                {% for item in (doc.nav_docs or doc.navDocs) %}
+                <a href="/{{ item.slug }}" class="legal-switch-btn{% if item.active %} is-active{% endif %}">
+                    {{ item.title }}
+                </a>
+                {% endfor %}
+            </div>
+
+            {% if doc.available %}
+            <a href="/legal/{{ doc.slug }}/download" class="legal-download-btn" download="{{ doc.filename }}">
+                <i class="fa-solid fa-file-arrow-down" aria-hidden="true"></i>
+                <span>Download (.docx)</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if doc.available %}
+    <div class="legal-layout{% if not doc.sections %} legal-layout-single{% endif %}">
+        {% if doc.sections %}
+        <aside class="legal-toc-card" aria-label="Document sections">
+            <div class="legal-toc-header">
+                <i class="fa-solid fa-list-ul" aria-hidden="true"></i>
+                <span>On This Page</span>
+            </div>
+            <nav class="legal-toc-nav">
+                {% for sec in doc.sections %}
+                <a href="#{{ sec.id }}" class="legal-toc-link">
+                    <span class="legal-toc-index">{{ "%02d"|format(loop.index) }}</span>
+                    <span>{{ sec.title }}</span>
+                </a>
+                {% endfor %}
+            </nav>
+        </aside>
+        {% endif %}
+
+        <article class="legal-document-card">
+            <div class="legal-document-body">
+                {{ doc.body_html or doc.bodyHtml }}
+            </div>
+        </article>
+    </div>
+    {% else %}
+    <section class="legal-document-card legal-empty-card">
+        <div class="legal-empty-icon">
+            <i class="fa-regular fa-file-lines" aria-hidden="true"></i>
+        </div>
+        <h2 class="legal-empty-title">{{ doc.title }} Not Published Yet</h2>
+        <p class="legal-empty-text">
+            The source document for <strong>{{ doc.title }}</strong> has not been added to the <code>Legal/</code>
+            directory yet. Once uploaded, it will appear here automatically with native viewing and direct download.
+        </p>
+        <div class="legal-empty-actions">
+            <a href="/" class="legal-switch-btn">
+                <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                <span>Back to Home</span>
+            </a>
+            <a href="/privacy-policy" class="legal-switch-btn is-active">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                <span>View Privacy Policy</span>
+            </a>
+        </div>
+    </section>
+    {% endif %}
+</div>
+{% endblock %}
+

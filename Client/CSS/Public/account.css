@@ -1,0 +1,420 @@
+/* Here lies the CSS concerned with the Public Accounts & Data Management Page */
+/* This will add to the CSS already laid out by the layout-public stylesheet */
+/* Remember consistency is key */
+
+/* This centres the account management page, sets its max width and spaces out the cards */
+.account-page {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.35rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* The top bar containing the page title, description and quick navigation links */
+.account-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(139, 61, 255, 0.28);
+}
+
+/* Sets the size, font weight and colour of the main account page title */
+.account-page-title {
+    margin: 0 0 0.25rem;
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+/* Mutes the subtitle text underneath the title */
+.account-page-subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Groups the navigation buttons on the right side of the top bar */
+.account-topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+/* Styles the navigation buttons in the top bar with a translucent background and purple border */
+.account-nav-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.48rem 0.9rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-purple);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+/* Highlights top bar navigation buttons when you hover over them */
+.account-nav-btn:hover {
+    background: rgba(139, 61, 255, 0.18);
+    border-color: var(--accent-bright);
+    color: var(--text-primary);
+}
+
+/* Gives the primary navigation button a brighter purple fill and border */
+.account-nav-btn-primary {
+    background: rgba(139, 61, 255, 0.25);
+    border-color: var(--accent-bright);
+    color: var(--text-primary);
+}
+
+/* Hides any navigation buttons marked as hidden */
+.account-nav-btn[hidden] {
+    display: none !important;
+}
+
+/* Expands the auth card styling so it fills the full width of the account page columns */
+.account-page .auth-card {
+    max-width: none;
+    padding: 1.5rem 1.65rem;
+}
+
+/* Stacks the contents inside each account card with even gaps */
+.account-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Aligns the card title on the left and any badge or tag on the right */
+.account-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* Styles the card header title and aligns the leading icon */
+.account-card-title {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Colours the icon next to the card title bright purple */
+.account-card-title i {
+    color: #9d5cff;
+}
+
+/* Small pill badges used for status indicators and metadata */
+.account-badge-tag,
+.account-meta-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(139, 61, 255, 0.14);
+    border: 1px solid rgba(139, 61, 255, 0.35);
+    color: #d8b4fe;
+}
+
+/* A red version of the badge used for warnings or danger zones */
+.account-badge-danger {
+    background: rgba(244, 63, 94, 0.14);
+    border-color: rgba(244, 63, 94, 0.4);
+    color: #fda4af;
+}
+
+/* Creates an auto-fitting grid for user statistics boxes */
+.account-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.85rem;
+}
+
+/* A rounded box that holds a single stat label and its value */
+.account-stat-box {
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+/* Styles the uppercase muted label inside the stat box */
+.account-stat-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+/* Styles the stat number or text and cuts off long values with an ellipsis */
+.account-stat-value {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Creates a two-column grid for the account settings cards */
+.account-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.35rem;
+    align-items: stretch;
+}
+
+/* Makes a card stretch across both columns of the grid */
+.account-wide-card {
+    grid-column: 1 / -1;
+}
+
+/* Adds pointer cursor and padding for dropdown select boxes */
+.account-select {
+    cursor: pointer;
+    padding-right: 2rem;
+}
+
+/* Darkens the background of dropdown options to match the dark theme */
+.account-select option {
+    background-color: #161321;
+    color: var(--text-primary);
+}
+
+/* Stacks form inputs and buttons vertically with even spacing */
+.account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+/* Removes the bottom margin on input groups inside account forms */
+.account-form .auth-input-group {
+    margin-bottom: 0;
+}
+
+/* Places an input and a submit button side by side on one line */
+.account-inline-form {
+    display: flex;
+    align-items: stretch;
+    gap: 0.65rem;
+}
+
+/* Allows the input to fill the remaining horizontal space in an inline form */
+.account-inline-form .auth-input-group {
+    flex: 1;
+    height: 46px;
+    margin-bottom: 0;
+}
+
+/* Sizes the submit button to match the height of the inline input */
+.account-inline-form .account-action-btn {
+    height: 46px;
+    padding: 0 1.25rem;
+    flex-shrink: 0;
+}
+
+/* Styles label text above form inputs */
+.account-label {
+    margin: 0;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* A subtle divider line separating sections inside a card */
+.account-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 0.25rem 0;
+}
+
+/* Small helpful text explaining what a setting does */
+.account-help-text {
+    margin: 0;
+    font-size: 0.86rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+}
+
+/* Base styling for buttons that perform actions inside forms */
+.account-action-btn {
+    width: auto !important;
+    margin-top: 0 !important;
+    padding: 0.65rem 1.15rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+/* Underlines inline text links and colours them light purple */
+.account-inline-link {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #c084fc;
+    text-decoration: underline;
+}
+
+/* Wraps the saved connections table with a border and vertical scrollbar */
+.account-conn-table-wrap {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 6px;
+}
+
+/* Makes the connections table full width with clean border collapses */
+.account-conn-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.86rem;
+}
+
+/* Styles the table headers with uppercase muted text and a subtle background */
+.account-conn-table th {
+    text-align: left;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Styles the table data cells with light borders between rows */
+.account-conn-table td {
+    padding: 0.65rem 0.75rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Centres and mutes placeholder text when a table has no data */
+.account-table-muted {
+    text-align: center;
+    color: var(--text-muted) !important;
+}
+
+/* Transparent icon button for deleting a saved connection */
+.account-conn-del-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem 0.4rem;
+    transition: color 0.15s;
+}
+
+/* Turns the delete trash icon red on hover */
+.account-conn-del-btn:hover {
+    color: #ff6b81;
+}
+
+/* Pushes export action buttons to the bottom of the card */
+.account-export-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+/* A secondary button style used for downloading or exporting data */
+.account-secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.65rem 1.05rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-purple);
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+/* Highlights the secondary button when hovered */
+.account-secondary-btn:hover {
+    background: rgba(139, 61, 255, 0.18);
+    border-color: var(--accent-bright);
+}
+
+/* Gives danger cards like Account Deletion a warning red border */
+.account-danger-card {
+    border-color: rgba(244, 63, 94, 0.38) !important;
+}
+
+/* Colours the icon inside the danger card header red */
+.account-danger-title i {
+    color: #fb7185;
+}
+
+/* Red danger button used for deleting the account */
+.account-danger-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.72rem 1.15rem;
+    border-radius: 6px;
+    border: 1px solid rgba(244, 63, 94, 0.6);
+    background: rgba(244, 63, 94, 0.2);
+    color: #ffe4e6;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.15s, border-color 0.15s;
+}
+
+/* Brightens the danger button when hovered */
+.account-danger-btn:hover:not(:disabled) {
+    background: rgba(244, 63, 94, 0.35);
+    border-color: #fb7185;
+}
+
+/* Dims disabled danger buttons and blocks the cursor */
+.account-danger-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+/* Stacks cards and inline forms into a single column on tablets and mobile */
+@media (max-width: 900px) {
+
+    /* Makes all cards full width */
+    .account-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Stacks inline inputs and action buttons on top of each other */
+    .account-inline-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

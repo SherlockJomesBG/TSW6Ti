@@ -1,0 +1,189 @@
+{% extends "Layouts/layout-public.html" %}
+
+{% block title %}Connect to my Game - TSW6Ti{% endblock %}
+
+{% block public_styles %}
+<link rel="stylesheet" href="/Client/CSS/Public/auth.css">
+<link rel="stylesheet" href="/Client/CSS/Public/connect.css">
+{% endblock %}
+
+{% block public_content %}
+<div class="connect-layout">
+
+    <aside class="auth-card connect-panel connect-connections">
+        <h2 class="connect-panel-title">
+            <i class="fa-solid fa-plug"></i>
+            <span>My Connections</span>
+        </h2>
+        <div class="connect-table-wrapper">
+            <table class="connect-table">
+                <thead>
+                    <tr>
+                        <th>IP Address</th>
+                        <th>API Key</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="connections-body">
+                    <tr class="connect-table-empty">
+                        <td colspan="3">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </aside>
+
+    <div class="auth-card connect-form-card">
+        <div class="auth-brand">
+            <div class="auth-train-icon" aria-hidden="true">
+                <svg viewBox="0 0 180 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 36 C42 18 65 7 92 6 L166 24 L166 32 L22 36 Z" fill="url(#emblemGrad)" />
+                    <path d="M52 24 C64 15 76 11 90 11 L90 22 L52 24 Z" fill="#090312" />
+                    <path d="M96 12 L162 25 L162 28 L96 21 Z" fill="#090312" />
+                    <path d="M8 41 C58 37 115 35 168 33" stroke="#8b3dff" stroke-width="2.5" stroke-linecap="round" />
+                    <defs>
+                        <linearGradient id="emblemGrad" x1="22" y1="6" x2="166" y2="36" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stop-color="#9d5cff" />
+                            <stop offset="55%" stop-color="#7c2ae8" />
+                            <stop offset="100%" stop-color="#5e17c4" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="auth-logo-title">
+                <span class="tsw-text">TSW</span><span class="six-text">6</span><span class="ti-text">Ti</span>
+            </div>
+            <div class="auth-logo-subtitle">
+                <span>CONNECT</span>
+            </div>
+        </div>
+
+        <div id="connect-mobile-gate" class="connect-mobile-gate" style="display: none;">
+            <div class="connect-mobile-badge">
+                <i class="fa-solid fa-mobile-screen-button"></i>
+                <span>Desktop Browser Required</span>
+            </div>
+            <h2 class="connect-mobile-title">Mobile Device Notice</h2>
+            <p class="connect-mobile-lead">
+                TSW6Ti is unable to connect to Train Sim World from this device.
+            </p>
+
+            <div class="connect-mobile-card">
+                <div class="connect-mobile-card-header">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span>Why can't I connect on mobile?</span>
+                </div>
+                <p>
+                    Connecting to your game requires direct local communication with Train Sim World 6 running on your PC (port <code>31270</code>).
+                </p>
+                <p class="mb-0">
+                    Modern mobile browsers on iOS, iPadOS, and Android do not support the local browser extension (<strong>TSW6Ti Local Connector</strong>) needed to securely bridge live telemetry from your game without routing through external servers.
+                </p>
+            </div>
+
+            <p class="connect-mobile-instruction">
+                Please open TSW6Ti on your <strong>PC or Mac</strong> using a desktop Chromium browser (such as <strong>Google Chrome, Microsoft Edge, Brave, or Opera</strong>) where the connector extension can be installed.
+            </p>
+            <div class="connect-mobile-actions">
+                <a href="/" class="btn auth-submit-btn connect-mobile-action-btn">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Return to Home</span>
+                </a>
+                <a href="/credits" class="btn connect-mobile-secondary-btn">
+                    <i class="fa-solid fa-award"></i>
+                    <span>View Credits</span>
+                </a>
+            </div>
+        </div>
+
+        <div id="connect-ext-gate" class="connect-ext-gate" style="display: none;">
+            <div class="connect-ext-badge">
+                <i class="fa-solid fa-puzzle-piece"></i>
+                <span>Extension Required</span>
+            </div>
+            <h2 class="connect-ext-title">Install TSW6Ti Local Connector</h2>
+            <p class="connect-ext-desc">
+                Connecting over HTTPS requires a Chromium-based desktop browser (<strong>Google Chrome, Microsoft Edge, Brave, Opera, or Vivaldi</strong>) with the local connector installed.
+            </p>
+            <p class="connect-ext-desc">
+                The lightweight <strong>TSW6Ti Local Connector</strong> bridges your browser directly to your
+                game locally (port <code>31270</code>) so live driving telemetry never passes through external servers.
+            </p>
+
+            <div class="connect-ext-browsers">
+                <a class="connect-ext-browser-btn" data-browser="chrome" href="/extensions/chromium.zip">
+                    <i class="fa-brands fa-chrome"></i>
+                    <span>Download for Chrome / Chromium</span>
+                </a>
+            </div>
+
+            <div class="connect-ext-guide">
+                <div class="connect-ext-guide-title">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span>How to install in Chrome / Chromium:</span>
+                </div>
+                <ol>
+                    <li>Download and extract the zip file above.</li>
+                    <li>In your browser, navigate to <code>chrome://extensions</code> (or <code>edge://extensions</code>).</li>
+                    <li>Toggle <strong>Developer mode</strong> ON (top right).</li>
+                    <li>Click <strong>Load unpacked</strong> and select the extracted folder containing <code>manifest.json</code>.</li>
+                </ol>
+            </div>
+
+            <button type="button" id="ext-recheck-btn" class="btn auth-submit-btn">
+                <span>I've Installed It — Check Again</span>
+                <i class="fa-solid fa-rotate-right"></i>
+            </button>
+
+            <button type="button" id="ext-continue-btn" class="connect-ext-bypass-btn">
+                Continue without extension (Local HTTP / Custom Proxy)
+            </button>
+        </div>
+
+        <form id="connect-form" class="auth-form" style="display: none;" autocomplete="off" data-form-type="other"
+            novalidate>
+            <div class="auth-input-group">
+                <span class="auth-input-icon">
+                    <i class="fa-solid fa-network-wired"></i>
+                </span>
+                <input type="text" name="ipAddress" class="auth-input" placeholder="IP Address" autocomplete="off"
+                    autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true"
+                    data-1p-ignore="true" data-bwignore="true" data-form-type="other" readonly required>
+            </div>
+
+            <div class="auth-input-group">
+                <span class="auth-input-icon">
+                    <i class="fa-solid fa-key"></i>
+                </span>
+                <input type="text" name="apiKey" class="auth-input connect-key-masked" placeholder="API Key"
+                    autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" data-lpignore="true"
+                    data-1p-ignore="true" data-bwignore="true" data-form-type="other" readonly required>
+                <span class="auth-input-toggle" title="Toggle API key visibility">
+                    <i class="fa-regular fa-eye-slash"></i>
+                </span>
+            </div>
+
+            <button type="submit" class="btn auth-submit-btn">
+                <span>Connect</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </form>
+    </div>
+
+    <aside class="auth-card connect-panel connect-guide">
+        <h2 class="connect-panel-title">
+            <i class="fa-solid fa-circle-question"></i>
+            <span>How to find these</span>
+        </h2>
+        <div id="connect-guide-body" class="connect-guide-body markdown-body"></div>
+    </aside>
+
+</div>
+{% endblock %}
+
+{% block public_scripts %}
+<script src="/Client/Libraries/marked/marked.min.js"></script>
+<script src="/Client/Libraries/dompurify/purify.min.js"></script>
+<script src="/Client/JS/TSW6/tsw6.js"></script>
+<script src="/Client/JS/Public/connect.js"></script>
+{% endblock %}

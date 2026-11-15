@@ -1,0 +1,964 @@
+/* Here lies the CSS concerned with the Public Home Page */
+/* This will add to the CSS already laid out by the layout-public stylesheet */
+/* Remember consistency is key */
+
+/* Left-aligned hero section on the landing page */
+.landing-page-hero {
+    position: relative;
+    text-align: left !important;
+    padding: 4.25rem 0 3.25rem;
+    max-width: 640px;
+    z-index: 5;
+}
+
+/* Main hero title styling */
+.landing-page-hero h1,
+.landing-page-hero .display-4 {
+    font-size: clamp(2.35rem, 4.1vw, 3.4rem);
+    font-weight: 600 !important;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 1.35rem !important;
+}
+
+/* Highlights 'Train Sim World 6' with a purple gradient fill and shadow */
+.landing-page-hero h1 span,
+.landing-page-hero .hero-highlight {
+    display: block;
+    font-weight: 800;
+    color: var(--accent-bright);
+    background: linear-gradient(90deg, #8b3dff 0%, #7022de 65%, #9d5cff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 18px rgba(139, 61, 255, 0.25));
+    margin-top: 0.1rem;
+}
+
+/* Muted lead paragraph text introducing the app */
+.landing-page-hero .lead {
+    font-size: 1.02rem;
+    font-weight: 400;
+    line-height: 1.62;
+    color: var(--text-muted) !important;
+    max-width: 530px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 2.25rem !important;
+}
+
+/* Groups the main call-to-action buttons below the hero text */
+.hero-actions {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.15rem;
+    margin-bottom: 0 !important;
+}
+
+/* Call-to-action button styling with balanced spacing and rounded corners */
+.hero-actions .btn {
+    min-width: 195px;
+    padding: 0.82rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+}
+
+/* Right chevron arrow icon on the hero buttons */
+.hero-actions .btn::after {
+    content: "\f054";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.72rem;
+    opacity: 0.9;
+    transition: transform var(--transition-fast);
+}
+
+/* Nudges the chevron arrow forward when you hover the button */
+.hero-actions .btn:hover::after {
+    transform: translateX(3px);
+}
+
+/* Grid container holding the three main feature overview cards */
+.features-grid {
+    position: relative;
+    z-index: 5;
+    margin-top: 3rem !important;
+    padding: 1.5rem 0 1.25rem;
+}
+
+/* Arranges the three feature cards in a 3-column row */
+.features-grid .row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Individual feature card displaying an icon, title and description */
+.feature-card {
+    position: relative;
+    text-align: center;
+    padding: 1rem 2.25rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Thin vertical purple divider line between feature columns */
+.feature-card:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 10%;
+    right: 0;
+    width: 1px;
+    height: 80%;
+    background: linear-gradient(180deg,
+            rgba(139, 61, 255, 0.08) 0%,
+            rgba(139, 61, 255, 0.48) 50%,
+            rgba(139, 61, 255, 0.08) 100%);
+}
+
+/* Glowing purple icon centered at the top of each feature card */
+.feature-icon {
+    font-size: 1.85rem;
+    color: var(--accent-bright);
+    margin-bottom: 0.85rem !important;
+    line-height: 1;
+    filter: drop-shadow(0 0 12px rgba(139, 61, 255, 0.38));
+}
+
+/* Feature title styling */
+.feature-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.01em;
+}
+
+/* Muted explanatory text inside feature cards */
+.feature-card p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--text-muted) !important;
+    max-width: 275px;
+    margin: 0 auto;
+}
+
+/* Adjusts feature cards into a single column on tablet screens */
+@media (max-width: 991.98px) {
+
+    /* Reduces backdrop opacity on tablet screens */
+    .public-content-wrapper::before {
+        opacity: 0.45;
+        max-height: 980px !important;
+    }
+
+    .landing-page-hero {
+        padding: 2.5rem 0 2rem;
+    }
+
+    .features-grid .row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .feature-card:not(:last-child)::after {
+        top: auto;
+        bottom: -0.75rem;
+        right: 20%;
+        width: 60%;
+        height: 1px;
+        background: linear-gradient(90deg,
+                rgba(139, 61, 255, 0.05) 0%,
+                rgba(139, 61, 255, 0.4) 50%,
+                rgba(139, 61, 255, 0.05) 100%);
+    }
+}
+
+/* Stacks the hero call-to-action buttons vertically on mobile phones */
+@media (max-width: 575.98px) {
+
+    /* Stacks CTA buttons vertically */
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+}
+
+/* Ensures vertical scrolling works smoothly across the landing page */
+.public-layout {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+}
+
+/* Aligns the main landing content to the top */
+.public-content-wrapper>.container {
+    justify-content: flex-start !important;
+}
+
+.public-content-wrapper::before {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    height: 100vh !important;
+    max-height: 880px !important;
+    background-size: cover !important;
+    background-position: center right !important;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%) !important;
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0) 100%) !important;
+}
+
+/* Outer container framing the community and open source showcase section */
+.community-showcase-section {
+    position: relative;
+    z-index: 5;
+    margin-top: 3.5rem !important;
+    margin-bottom: 2.5rem !important;
+}
+
+/* Glassmorphic card container with rich dark gradients and subtle purple glow */
+.community-showcase-card {
+    position: relative;
+    padding: 2.25rem 2.5rem;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(20, 9, 38, 0.82) 0%, rgba(10, 4, 20, 0.88) 100%);
+    border: 1px solid rgba(139, 61, 255, 0.35);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    overflow: hidden;
+}
+
+/* Subtle corner radial purple illumination within the community card */
+.community-showcase-card::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 380px;
+    height: 380px;
+    background: radial-gradient(circle, rgba(139, 61, 255, 0.16) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Flexbox wrapper aligning promotional text on the left and action buttons on the right */
+.community-showcase-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2.5rem;
+}
+
+/* Text description block inside the community showcase card */
+.community-showcase-text {
+    flex: 1;
+    min-width: 0;
+    max-width: 580px;
+}
+
+/* Tag pill highlighting the community and open source status */
+.community-pill-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.28rem 0.72rem;
+    border-radius: 999px;
+    background: rgba(139, 61, 255, 0.12);
+    border: 1px solid rgba(139, 61, 255, 0.32);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #c79eff;
+}
+
+/* Glowing green pulse dot indicating active live community and development */
+.community-pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10B981;
+    box-shadow: 0 0 8px #10B981;
+}
+
+/* Main title of the community showcase card */
+.community-showcase-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.65rem;
+    letter-spacing: -0.01em;
+}
+
+/* Descriptive paragraph explaining how users can get involved or seek support */
+.community-showcase-desc {
+    font-size: 0.94rem;
+    line-height: 1.58;
+    color: var(--text-muted);
+    margin-bottom: 0;
+}
+
+/* Container grouping the two large interactive community action buttons */
+.community-showcase-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    flex-shrink: 0;
+    width: 290px;
+}
+
+/* Large button card with icon, multi-line title and trailing indicator */
+.community-action-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1.15rem;
+    border-radius: 9px;
+    background: rgba(15, 6, 30, 0.75);
+    border: 1px solid rgba(139, 61, 255, 0.28);
+    color: var(--text-primary);
+    text-decoration: none !important;
+    transition: all var(--transition-fast);
+}
+
+/* Circular icon holder that anchors the brand symbol */
+.community-btn-icon-wrap {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+/* Discord brand styling for the icon holder */
+.community-btn-discord .community-btn-icon-wrap {
+    background: rgba(88, 101, 242, 0.16);
+    color: #5865F2;
+    border: 1px solid rgba(88, 101, 242, 0.3);
+}
+
+/* GitHub brand styling for the icon holder */
+.community-btn-github .community-btn-icon-wrap {
+    background: rgba(255, 255, 255, 0.08);
+    color: #f0f6fc;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Two-line text block detailing the button action and target */
+.community-btn-meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+}
+
+/* Uppercase subtitle above the main button title */
+.community-btn-sub {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+}
+
+/* Main title of the community action button */
+.community-btn-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Right trailing arrow that slides on hover */
+.community-btn-arrow {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+/* Hover effect on Discord community button */
+.community-btn-discord:hover {
+    background: rgba(88, 101, 242, 0.12);
+    border-color: rgba(88, 101, 242, 0.65);
+    box-shadow: 0 4px 20px rgba(88, 101, 242, 0.28);
+    transform: translateY(-2px);
+}
+
+.community-btn-discord:hover .community-btn-arrow {
+    color: #5865F2;
+    transform: translateX(3px);
+}
+
+.community-btn-discord:hover .community-btn-icon-wrap {
+    transform: scale(1.06);
+    background: rgba(88, 101, 242, 0.24);
+}
+
+/* Hover effect on GitHub community button */
+.community-btn-github:hover {
+    background: rgba(139, 61, 255, 0.15);
+    border-color: rgba(157, 92, 255, 0.65);
+    box-shadow: 0 4px 20px rgba(139, 61, 255, 0.28);
+    transform: translateY(-2px);
+}
+
+.community-btn-github:hover .community-btn-arrow {
+    color: #c79eff;
+    transform: translateX(3px);
+}
+
+.community-btn-github:hover .community-btn-icon-wrap {
+    transform: scale(1.06);
+    background: rgba(255, 255, 255, 0.14);
+}
+
+/* Centres the animated scroll down prompt between sections */
+.scroll-prompt-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3.25rem 0 2rem;
+    position: relative;
+    z-index: 6;
+}
+
+/* Floating rounded pill button encouraging users to scroll down */
+.scroll-prompt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.65rem 1.45rem;
+    border-radius: 999px;
+    background: rgba(18, 12, 34, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(157, 92, 255, 0.32);
+    color: #cfc5e8;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-decoration: none !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: all 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Lifts and brightens the scroll prompt button when hovered */
+.scroll-prompt-btn:hover {
+    background: rgba(30, 18, 58, 0.95);
+    border-color: rgba(157, 92, 255, 0.65);
+    color: #ffffff;
+    transform: translateY(2px);
+    box-shadow: 0 8px 28px rgba(139, 61, 255, 0.28);
+}
+
+/* Small outlined mouse icon */
+.scroll-mouse-icon {
+    width: 17px;
+    height: 25px;
+    border: 2px solid rgba(157, 92, 255, 0.7);
+    border-radius: 9px;
+    display: flex;
+    justify-content: center;
+    padding-top: 4px;
+    box-sizing: border-box;
+}
+
+/* Animated scroll wheel that slides down inside the mouse icon */
+.scroll-wheel {
+    width: 3px;
+    height: 5px;
+    background: #c7a2ff;
+    border-radius: 2px;
+    animation: mouseWheelSlide 1.6s infinite ease-in-out;
+}
+
+/* Animation loop sliding the mouse wheel up and down */
+@keyframes mouseWheelSlide {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(5px);
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Bouncing down arrow icon inside the scroll button */
+.scroll-arrow-icon {
+    font-size: 0.78rem;
+    color: #b47cff;
+    animation: arrowDownBounce 1.8s infinite ease-in-out;
+}
+
+/* Animation bouncing the arrow icon down */
+@keyframes arrowDownBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(3px);
+    }
+}
+
+/* Glowing purple horizontal divider line between page sections */
+.section-divider-glow {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(139, 61, 255, 0.15) 15%,
+            rgba(157, 92, 255, 0.65) 50%,
+            rgba(139, 61, 255, 0.15) 85%,
+            transparent 100%);
+    margin: 1.25rem 0 3.25rem;
+    filter: drop-shadow(0 0 8px rgba(157, 92, 255, 0.45));
+}
+
+/* Documentation section displaying the project overview and guide */
+.readme-section {
+    position: relative;
+    z-index: 5;
+    padding-bottom: 5.5rem;
+}
+
+/* Header row displaying the section title and action toolbar */
+.readme-header-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 2rem;
+    margin-bottom: 2.25rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Title and subtitle container */
+.readme-header-main {
+    max-width: 650px;
+}
+
+/* Small purple badge tag above the documentation title */
+.readme-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.48rem;
+    padding: 0.32rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(139, 61, 255, 0.16);
+    border: 1px solid rgba(157, 92, 255, 0.35);
+    color: #c7a2ff;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+}
+
+/* Large heading for the documentation section */
+.readme-section-title {
+    font-size: clamp(1.85rem, 3.2vw, 2.4rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.65rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+/* Muted subtitle describing the documentation */
+.readme-section-subtitle {
+    font-size: 0.96rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Toolbar holding quick control buttons on the right */
+.readme-header-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    flex-shrink: 0;
+}
+
+/* Rounded button for toolbar actions */
+.readme-ctrl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: all var(--transition-fast);
+}
+
+/* Highlights toolbar buttons on hover */
+.readme-ctrl-btn:hover {
+    background: rgba(139, 61, 255, 0.22);
+    border-color: rgba(157, 92, 255, 0.55);
+    color: #ffffff;
+}
+
+/* Stacks documentation accordion panels vertically */
+.readme-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+}
+
+/* An expandable accordion card with a translucent background */
+.readme-accordion {
+    background: rgba(14, 9, 26, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+}
+
+/* Slightly lifts the accordion card and highlights border on hover */
+.readme-accordion:hover {
+    border-color: rgba(157, 92, 255, 0.36);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* Adds a purple border and glow when the accordion section is open */
+.readme-accordion[open] {
+    border-color: rgba(157, 92, 255, 0.55);
+    box-shadow: 0 12px 38px rgba(139, 61, 255, 0.16);
+    background: rgba(18, 12, 34, 0.88);
+}
+
+/* Clickable header row to expand or collapse each accordion */
+.readme-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+    padding: 1.15rem 1.45rem;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+}
+
+/* Hides the default browser accordion disclosure arrow */
+.readme-summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Groups the section number, icon and title on the left */
+.readme-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-width: 0;
+}
+
+/* Monospace section number indicator */
+.readme-summary-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: rgba(157, 92, 255, 0.65);
+    letter-spacing: 0.06em;
+    min-width: 22px;
+    user-select: none;
+}
+
+/* Square icon container with a purple accent */
+.readme-summary-icon {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: rgba(139, 61, 255, 0.16);
+    border: 1px solid rgba(157, 92, 255, 0.32);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c7a2ff;
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+}
+
+/* Scales and brightens the section icon when hovering the accordion */
+.readme-accordion:hover .readme-summary-icon {
+    transform: scale(1.05);
+    background: rgba(139, 61, 255, 0.25);
+}
+
+/* Stacks category label and main title */
+.readme-titles-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* Small uppercase category label */
+.readme-summary-category {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #9c91b5;
+    line-height: 1.2;
+    margin-bottom: 0.18rem;
+    user-select: none;
+}
+
+/* Main title text for each accordion topic */
+.readme-summary-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #f5f2fc;
+    margin: 0;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+}
+
+/* Groups badge tags and expand chevron on the right */
+.readme-summary-right {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-shrink: 0;
+}
+
+/* Status badge tag showing category or reading time */
+.readme-summary-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.22rem 0.6rem;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    transition: all var(--transition-fast);
+}
+
+/* Highlights the badge purple when the section is opened */
+.readme-accordion[open] .readme-summary-badge {
+    background: rgba(139, 61, 255, 0.2);
+    border-color: rgba(157, 92, 255, 0.4);
+    color: #d6baff;
+}
+
+/* Chevron arrow icon indicating collapsed or expanded state */
+.readme-chevron {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), color var(--transition-fast);
+}
+
+/* Rotates the chevron arrow downwards when open */
+.readme-accordion[open] .readme-chevron {
+    transform: rotate(90deg);
+    color: #b47cff;
+}
+
+/* Expanded content panel containing formatted documentation */
+.readme-body {
+    padding: 1.4rem 1.75rem 1.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(9, 5, 18, 0.48);
+    color: #cfc5e8;
+    font-size: 0.94rem;
+    line-height: 1.7;
+}
+
+/* Hides top-level markdown headings since they're already in the summary header */
+.readme-body.markdown-body h1,
+.readme-body.markdown-body h2 {
+    display: none;
+}
+
+/* Styles subheadings inside the documentation text */
+.readme-body.markdown-body h3 {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #e6daf7;
+    margin: 1.35rem 0 0.65rem;
+    letter-spacing: -0.01em;
+}
+
+/* Removes top margin from the first subheading */
+.readme-body.markdown-body h3:first-child {
+    margin-top: 0;
+}
+
+/* Paragraph spacing inside documentation */
+.readme-body.markdown-body p {
+    margin: 0 0 0.95rem;
+}
+
+/* Removes bottom margin from the last paragraph */
+.readme-body.markdown-body p:last-child {
+    margin-bottom: 0;
+}
+
+/* Makes bold text pure white */
+.readme-body.markdown-body strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Indents bulleted and numbered lists */
+.readme-body.markdown-body ul,
+.readme-body.markdown-body ol {
+    margin: 0 0 1rem;
+    padding-left: 1.4rem;
+}
+
+/* Adds vertical spacing between list items */
+.readme-body.markdown-body li {
+    margin-bottom: 0.5rem;
+}
+
+/* Removes extra margin from the last item */
+.readme-body.markdown-body li:last-child {
+    margin-bottom: 0;
+}
+
+/* Styles inline code snippets with a purple background */
+.readme-body.markdown-body code {
+    background: rgba(139, 61, 255, 0.16);
+    color: #d6baff;
+    padding: 0.15rem 0.42rem;
+    border-radius: 4px;
+    font-size: 0.86em;
+    border: 1px solid rgba(157, 92, 255, 0.25);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Subtle horizontal rule between documentation topics */
+.readme-body.markdown-body hr {
+    border: none;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 1.35rem 0;
+}
+
+/* Highlighted callout quote with a purple left border */
+.readme-body.markdown-body blockquote {
+    margin: 1rem 0;
+    padding: 0.75rem 1.15rem;
+    background: rgba(139, 61, 255, 0.08);
+    border-left: 3px solid #9d5cff;
+    border-radius: 4px;
+    color: #cfc6e4;
+}
+
+/* Underlines and colours documentation links light purple */
+.readme-body.markdown-body a {
+    color: #b47cff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--transition-fast);
+}
+
+/* Brightens documentation links on hover */
+.readme-body.markdown-body a:hover {
+    color: #d6baff;
+}
+
+@media (max-width: 991.98px) {
+    .readme-header-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.25rem;
+    }
+
+    /* Stacks text and buttons vertically on tablet screens */
+    .community-showcase-content {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.75rem;
+    }
+
+    .community-showcase-text {
+        max-width: 100%;
+    }
+
+    .community-showcase-actions {
+        width: 100%;
+        flex-direction: row;
+    }
+
+    .community-action-btn {
+        flex: 1;
+    }
+}
+
+/* Mobile adjustments for the documentation section */
+@media (max-width: 767.98px) {
+    .readme-summary-badge {
+        display: none;
+    }
+
+    .readme-summary-num {
+        display: none;
+    }
+
+    .readme-body {
+        padding: 1.15rem 1.25rem 1.45rem;
+    }
+
+    /* Tightens community showcase padding and stacks buttons on mobile phones */
+    .community-showcase-card {
+        padding: 1.6rem 1.35rem;
+    }
+
+    .community-showcase-title {
+        font-size: 1.22rem;
+    }
+
+    .community-showcase-actions {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,253 @@
+.telem-layout {
+    --bg-primary: #07020d;
+    --bg-secondary: #0c0417;
+    --telem-bg-color: #06020c;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(109, 40, 217, 0.14) 0%, rgba(36, 10, 78, 0.05) 55%, transparent 80%),
+        linear-gradient(180deg, #080311 0%, #05010a 100%);
+    --telem-header-bg: rgba(9, 4, 18, 0.88);
+    --telem-header-border: rgba(139, 61, 255, 0.22);
+    --telem-card-bg: rgba(12, 5, 24, 0.84);
+    --telem-card-border: rgba(139, 61, 255, 0.24);
+    --telem-card-hover-border: rgba(139, 61, 255, 0.42);
+    --telem-card-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    --telem-subcard-bg: rgba(255, 255, 255, 0.03);
+    --telem-subcard-border: rgba(255, 255, 255, 0.085);
+    --telem-input-bg: rgba(20, 12, 34, 0.92);
+    --telem-menu-bg: rgba(11, 5, 22, 0.98);
+    --telem-divider: rgba(255, 255, 255, 0.08);
+    --telem-track-bg: rgba(255, 255, 255, 0.08);
+
+    --accent-primary: #7c2ae8;
+    --accent-bright: #8b3dff;
+    --accent-deep: #5e17c4;
+    --accent-soft: #a78bfa;
+    --accent-contrast: #ffffff;
+    --accent-glow: rgba(139, 61, 255, 0.42);
+    --accent-subtle: rgba(139, 61, 255, 0.14);
+
+    --border-purple: rgba(139, 61, 255, 0.34);
+    --border-purple-strong: rgba(145, 70, 255, 0.68);
+    --border-divider: rgba(139, 61, 255, 0.38);
+
+    --text-primary: #ffffff;
+    --text-secondary: #d6d0e3;
+    --text-muted: #958ea6;
+    --text-dim: #7c758e;
+}
+
+/* 1. Great Western Railway (GWR) — Deep Brunswick Green & Gold */
+.telem-layout[data-train-theme="gwr"] {
+    --bg-primary: #04120c;
+    --bg-secondary: #082217;
+    --telem-bg-color: #04120c;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(16, 185, 129, 0.14) 0%, rgba(10, 56, 38, 0.08) 55%, transparent 80%),
+        linear-gradient(180deg, #071e15 0%, #030d09 100%);
+    --telem-header-bg: rgba(7, 32, 22, 0.92);
+    --telem-header-border: rgba(245, 158, 11, 0.38);
+    --telem-card-bg: rgba(10, 44, 30, 0.88);
+    --telem-card-border: rgba(45, 130, 95, 0.42);
+    --telem-card-hover-border: rgba(245, 158, 11, 0.6);
+    --telem-subcard-bg: rgba(15, 68, 47, 0.52);
+    --telem-subcard-border: rgba(70, 168, 128, 0.25);
+    --telem-input-bg: #072217;
+    --telem-menu-bg: #061c13;
+
+    --accent-primary: #d97706;
+    --accent-bright: #f59e0b;
+    --accent-deep: #b45309;
+    --accent-soft: #fbbf24;
+    --accent-contrast: #04120c;
+    --accent-glow: rgba(245, 158, 11, 0.35);
+    --accent-subtle: rgba(245, 158, 11, 0.15);
+
+    --border-purple: rgba(245, 158, 11, 0.38);
+    --border-purple-strong: rgba(251, 191, 36, 0.68);
+    --border-divider: rgba(70, 168, 128, 0.3);
+
+    --text-primary: #ffffff;
+    --text-secondary: #d1fae5;
+    --text-muted: #86efac;
+    --text-dim: #4ade80;
+}
+
+/* 2. CrossCountry (XC / Voyager 220 & 221) — Burgundy & Neon Crimson */
+.telem-layout[data-train-theme="xc"] {
+    --bg-primary: #12080c;
+    --bg-secondary: #1f0d14;
+    --telem-bg-color: #12080c;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(255, 23, 68, 0.15) 0%, transparent 75%),
+        linear-gradient(180deg, #1d0c13 0%, #0f060a 100%);
+    --telem-header-bg: rgba(34, 15, 23, 0.92);
+    --telem-header-border: rgba(255, 23, 68, 0.38);
+    --telem-card-bg: rgba(45, 20, 30, 0.88);
+    --telem-card-border: rgba(168, 72, 96, 0.4);
+    --telem-card-hover-border: rgba(255, 23, 68, 0.62);
+    --telem-subcard-bg: rgba(61, 29, 42, 0.55);
+    --telem-subcard-border: rgba(255, 23, 68, 0.22);
+    --telem-input-bg: #220f17;
+    --telem-menu-bg: #1d0c13;
+
+    --accent-primary: #e11d48;
+    --accent-bright: #ff1744;
+    --accent-deep: #be123c;
+    --accent-soft: #fb7185;
+    --accent-contrast: #ffffff;
+    --accent-glow: rgba(255, 23, 68, 0.38);
+    --accent-subtle: rgba(255, 23, 68, 0.16);
+
+    --border-purple: rgba(255, 23, 68, 0.38);
+    --border-purple-strong: rgba(255, 23, 68, 0.68);
+    --border-divider: rgba(168, 72, 96, 0.35);
+
+    --text-primary: #fff1f2;
+    --text-secondary: #fecdd3;
+    --text-muted: #fda4af;
+    --text-dim: #f43f5e;
+}
+
+/* 3. WSR / Heritage Green (Class 09 / Green Giant) — Deep Forest & Bright Warning Yellow */
+.telem-layout[data-train-theme="grn"] {
+    --bg-primary: #02100b;
+    --bg-secondary: #071811;
+    --telem-bg-color: #02100b;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(255, 234, 0, 0.1) 0%, transparent 75%),
+        linear-gradient(180deg, #071811 0%, #02100b 100%);
+    --telem-header-bg: rgba(7, 24, 17, 0.94);
+    --telem-header-border: rgba(255, 234, 0, 0.42);
+    --telem-card-bg: rgba(11, 34, 22, 0.9);
+    --telem-card-border: rgba(40, 75, 54, 0.55);
+    --telem-card-hover-border: rgba(255, 234, 0, 0.65);
+    --telem-subcard-bg: rgba(19, 48, 33, 0.6);
+    --telem-subcard-border: rgba(255, 234, 0, 0.2);
+    --telem-input-bg: #071811;
+    --telem-menu-bg: #071811;
+
+    --accent-primary: #eab308;
+    --accent-bright: #ffea00;
+    --accent-deep: #ca8a04;
+    --accent-soft: #fde047;
+    --accent-contrast: #02100b;
+    --accent-glow: rgba(255, 234, 0, 0.35);
+    --accent-subtle: rgba(255, 234, 0, 0.15);
+
+    --border-purple: rgba(255, 234, 0, 0.38);
+    --border-purple-strong: rgba(255, 234, 0, 0.72);
+    --border-divider: rgba(40, 75, 54, 0.45);
+
+    --text-primary: #f7faf6;
+    --text-secondary: #d8e8d7;
+    --text-muted: #9bb69a;
+    --text-dim: #6b8e6b;
+}
+
+/* 4. Thomas / NWR Blue — Railway Royal Blue & Scarlet Red Lining */
+.telem-layout[data-train-theme="thomas"] {
+    --bg-primary: #0b132b;
+    --bg-secondary: #172554;
+    --telem-bg-color: #0b132b;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(59, 130, 246, 0.18) 0%, transparent 75%),
+        linear-gradient(180deg, #172554 0%, #0b132b 100%);
+    --telem-header-bg: rgba(23, 37, 84, 0.94);
+    --telem-header-border: rgba(239, 68, 68, 0.55);
+    --telem-card-bg: rgba(30, 58, 138, 0.85);
+    --telem-card-border: rgba(96, 165, 250, 0.4);
+    --telem-card-hover-border: rgba(239, 68, 68, 0.7);
+    --telem-subcard-bg: rgba(30, 64, 175, 0.55);
+    --telem-subcard-border: rgba(147, 197, 253, 0.25);
+    --telem-input-bg: #172554;
+    --telem-menu-bg: #172554;
+
+    --accent-primary: #ef4444;
+    --accent-bright: #f87171;
+    --accent-deep: #dc2626;
+    --accent-soft: #fbbf24;
+    --accent-contrast: #ffffff;
+    --accent-glow: rgba(239, 68, 68, 0.38);
+    --accent-subtle: rgba(239, 68, 68, 0.18);
+
+    --border-purple: rgba(96, 165, 250, 0.42);
+    --border-purple-strong: rgba(239, 68, 68, 0.75);
+    --border-divider: rgba(96, 165, 250, 0.3);
+
+    --text-primary: #ffffff;
+    --text-secondary: #dbeafe;
+    --text-muted: #93c5fd;
+    --text-dim: #60a5fa;
+}
+
+/* 5. Diesel / Shunter — Industrial Charcoal & Hazard Wasp Yellow */
+.telem-layout[data-train-theme="diesel"] {
+    --bg-primary: #111111;
+    --bg-secondary: #1a1a1a;
+    --telem-bg-color: #111111;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(255, 212, 0, 0.1) 0%, transparent 75%),
+        linear-gradient(180deg, #1a1a1a 0%, #0e0e0e 100%);
+    --telem-header-bg: rgba(22, 22, 22, 0.95);
+    --telem-header-border: rgba(255, 212, 0, 0.48);
+    --telem-card-bg: rgba(32, 32, 32, 0.92);
+    --telem-card-border: rgba(200, 166, 0, 0.38);
+    --telem-card-hover-border: rgba(255, 212, 0, 0.7);
+    --telem-subcard-bg: rgba(48, 48, 48, 0.65);
+    --telem-subcard-border: rgba(255, 212, 0, 0.22);
+    --telem-input-bg: #1a1a1a;
+    --telem-menu-bg: #1a1a1a;
+
+    --accent-primary: #eab308;
+    --accent-bright: #ffd400;
+    --accent-deep: #ca8a04;
+    --accent-soft: #ffd400;
+    --accent-contrast: #111111;
+    --accent-glow: rgba(255, 212, 0, 0.35);
+    --accent-subtle: rgba(255, 212, 0, 0.16);
+
+    --border-purple: rgba(255, 212, 0, 0.38);
+    --border-purple-strong: rgba(255, 212, 0, 0.72);
+    --border-divider: rgba(255, 212, 0, 0.25);
+
+    --text-primary: #f5f5f5;
+    --text-secondary: #e0e0e0;
+    --text-muted: #b0b0b0;
+    --text-dim: #808080;
+}
+
+/* 6. Transport for Wales (TfW / Cardiff) — Slate Charcoal & Welsh Dragon Red */
+.telem-layout[data-train-theme="tfw"] {
+    --bg-primary: #11090b;
+    --bg-secondary: #1b0f12;
+    --telem-bg-color: #11090b;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(225, 29, 72, 0.15) 0%, transparent 75%),
+        linear-gradient(180deg, #1b0f12 0%, #0d0608 100%);
+    --telem-header-bg: rgba(24, 12, 16, 0.94);
+    --telem-header-border: rgba(225, 29, 72, 0.42);
+    --telem-card-bg: rgba(31, 17, 21, 0.9);
+    --telem-card-border: rgba(225, 29, 72, 0.32);
+    --telem-card-hover-border: rgba(244, 63, 94, 0.62);
+    --telem-subcard-bg: rgba(46, 25, 31, 0.6);
+    --telem-subcard-border: rgba(244, 63, 94, 0.2);
+    --telem-input-bg: #180c10;
+    --telem-menu-bg: #180c10;
+
+    --accent-primary: #e11d48;
+    --accent-bright: #f43f5e;
+    --accent-deep: #be123c;
+    --accent-soft: #fda4af;
+    --accent-contrast: #ffffff;
+    --accent-glow: rgba(225, 29, 72, 0.38);
+    --accent-subtle: rgba(225, 29, 72, 0.16);
+
+    --border-purple: rgba(225, 29, 72, 0.38);
+    --border-purple-strong: rgba(244, 63, 94, 0.68);
+    --border-divider: rgba(225, 29, 72, 0.26);
+
+    --text-primary: #ffffff;
+    --text-secondary: #ffe4e6;
+    --text-muted: #fda4af;
+    --text-dim: #fb7185;
+}

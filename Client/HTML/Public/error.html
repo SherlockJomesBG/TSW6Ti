@@ -1,0 +1,34 @@
+{% extends "Layouts/layout-public.html" %}
+
+{% block title %}{{ error.code }} {{ error.title }} - TSW6Ti{% endblock %}
+
+{% block public_styles %}
+<link rel="stylesheet" href="/Client/CSS/Public/error.css">
+{% endblock %}
+
+{% block public_content %}
+<div class="error-wrapper">
+    <section class="error-card">
+        <span class="error-badge">
+            <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+            <span>HTTP {{ error.code }}</span>
+        </span>
+
+        <div class="error-code" aria-hidden="true">{{ error.code }}</div>
+        <h1 class="error-title">{{ error.title }}</h1>
+        <p class="error-description">{{ error.description }}</p>
+
+        <div class="error-actions">
+            <a href="/" class="error-btn-primary">
+                <i class="fa-solid fa-house" aria-hidden="true"></i>
+                <span>Back to Home</span>
+            </a>
+            <a href="/contact" class="error-btn-secondary">
+                <i class="fa-solid fa-life-ring" aria-hidden="true"></i>
+                <span>Contact Support</span>
+            </a>
+        </div>
+    </section>
+</div>
+{% endblock %}
+

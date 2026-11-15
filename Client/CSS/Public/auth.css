@@ -1,0 +1,500 @@
+/* Here lies the CSS concerned with the Public Auth Page */
+/* This will add to the CSS already laid out by the layout-public stylesheet */
+/* Remember consistency is key */
+
+/* Centres the authentication card vertically and horizontally on the page */
+.public-content-wrapper {
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+/* Ensures the inner container stays centered as well */
+.public-content-wrapper>.container {
+    justify-content: center;
+    align-items: center;
+}
+
+/* A wrapper around the auth card that adds breathing room and sets proper layering */
+.auth-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+/* The main authentication card box with a dark gradient, blur effect and glowing border */
+.auth-card {
+    width: 100%;
+    max-width: 450px;
+    background: linear-gradient(180deg, rgba(13, 6, 24, 0.88) 0%, rgba(8, 3, 15, 0.92) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(139, 61, 255, 0.28);
+    border-radius: 8px;
+    padding: 2.5rem 2.35rem 2.25rem;
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.85),
+        0 0 40px rgba(124, 42, 232, 0.12),
+        inset 0 1px 0 rgba(168, 85, 247, 0.15);
+    position: relative;
+}
+
+/* Hides the radio buttons used for switching between login and register tabs without JS */
+.auth-tab-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Centres the brand train logo and titles at the top of the card */
+.auth-brand {
+    text-align: center;
+    margin-bottom: 1.75rem;
+    user-select: none;
+}
+
+/* Sizes and centres the train logo icon and adds a purple glow */
+.auth-train-icon {
+    width: 155px;
+    margin: 0 auto 0.2rem;
+    filter: drop-shadow(0 0 12px rgba(139, 61, 255, 0.45));
+}
+
+/* Scales the train SVG icon to fill its container */
+.auth-train-icon svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Sets the large italicised TSW6Ti brand title styling */
+.auth-logo-title {
+    font-size: 3.1rem;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 1;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.55rem;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+/* Styles the white 'TSW' portion of the logo text */
+.auth-logo-title .tsw-text {
+    color: #f5f3f9;
+    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.12);
+}
+
+/* Gives the '6' a gradient purple fill and glow */
+.auth-logo-title .six-text {
+    margin-left: 0.08em;
+    background: linear-gradient(180deg, #9d5cff 0%, #7424e0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 14px rgba(139, 61, 255, 0.4));
+}
+
+/* Styles the 'Ti' suffix to match the logo styling */
+.auth-logo-title .ti-text {
+    margin-left: 0.04em;
+    color: #f5f3f9;
+    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.12);
+}
+
+/* Stretches the 'TELEMETRY' subtitle line with horizontal divider rules on each side */
+.auth-logo-subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.1rem;
+    width: 100%;
+    margin-top: 0.25rem;
+}
+
+/* Creates the gradient horizontal lines on the sides of the telemetry subtitle */
+.auth-logo-subtitle::before,
+.auth-logo-subtitle::after {
+    content: "";
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(90deg,
+            rgba(139, 61, 255, 0.55) 0%,
+            rgba(139, 61, 255, 0.75) 100%);
+}
+
+/* Formats and spaces out the letters in the 'TELEMETRY' label */
+.auth-logo-subtitle span {
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.52em;
+    padding-left: 0.52em;
+    color: #c9c3d6;
+    text-transform: uppercase;
+}
+
+/* Creates the two-column tab bar for toggling between Login and Register */
+.auth-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+/* Styles each tab label with muted text and an active indicator line at the bottom */
+.auth-tab-label {
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    margin: 0;
+    font-size: 0.98rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    position: relative;
+    transition: color var(--transition-fast);
+    user-select: none;
+}
+
+/* A small vertical divider between the login and register tabs */
+.auth-tab-label:first-child::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 22%;
+    height: 56%;
+    width: 1px;
+    background-color: rgba(255, 255, 255, 0.09);
+}
+
+/* Brightens the tab label text when hovered */
+.auth-tab-label:hover {
+    color: var(--text-secondary);
+}
+
+/* Prepares the active indicator underline underneath the tab */
+.auth-tab-label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: transparent;
+    transition: all var(--transition-fast);
+}
+
+/* Lights up the selected tab label with bright purple */
+#tab-login:checked~.auth-tabs .tab-login-label,
+#tab-register:checked~.auth-tabs .tab-register-label {
+    color: #9d5cff;
+    font-weight: 700;
+}
+
+/* Shows the purple gradient glow line under whichever tab is active */
+#tab-login:checked~.auth-tabs .tab-login-label::after,
+#tab-register:checked~.auth-tabs .tab-register-label::after {
+    background: linear-gradient(90deg, #7c2ae8 0%, #a855f7 50%, #7c2ae8 100%);
+    box-shadow: 0 -2px 12px rgba(139, 61, 255, 0.65);
+}
+
+/* Hides both forms by default so only the selected tab's form is shown */
+.auth-form {
+    display: none;
+}
+
+/* Shows the login form when the login radio button is checked */
+#tab-login:checked~.auth-form-login {
+    display: block;
+}
+
+/* Shows the register form when the register radio button is checked */
+#tab-register:checked~.auth-form-register {
+    display: block;
+}
+
+/* Styles the text input boxes with a dark background and subtle border */
+.auth-input-group {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: rgba(20, 15, 30, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    padding: 0 0.95rem;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+/* Highlights the input box with a purple glow when you click inside it */
+.auth-input-group:focus-within {
+    border-color: rgba(139, 61, 255, 0.65);
+    background: rgba(24, 16, 38, 0.95);
+    box-shadow: 0 0 14px rgba(139, 61, 255, 0.2);
+}
+
+/* Positions and colours the icon on the left side of the input box */
+.auth-input-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    color: #8e87a0;
+    font-size: 1.05rem;
+    margin-right: 0.85rem;
+    flex-shrink: 0;
+}
+
+/* Turns the input icon bright purple when focusing that field */
+.auth-input-group:focus-within .auth-input-icon {
+    color: #b47cff;
+}
+
+/* The actual text input field with transparent background and white text */
+.auth-input {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.94rem;
+}
+
+/* Mutes the placeholder text colour inside inputs */
+.auth-input::placeholder {
+    color: #827b94;
+}
+
+/* The eye icon button used to show or hide the password */
+.auth-input-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #827b94;
+    font-size: 1rem;
+    margin-left: 0.65rem;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+}
+
+/* Brightens the password eye toggle icon when hovered */
+.auth-input-toggle:hover {
+    color: var(--text-secondary);
+}
+
+/* The full-width purple gradient button used to submit login and register forms */
+.auth-submit-btn {
+    width: 100%;
+    height: 50px;
+    margin-top: 0.35rem;
+    background: linear-gradient(90deg, #6218c6 0%, #8432f6 50%, #6218c6 100%);
+    border: 1px solid #9649ff;
+    border-radius: 5px;
+    color: var(--text-primary) !important;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+    box-shadow:
+        0 4px 22px rgba(124, 42, 232, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all var(--transition-fast);
+}
+
+/* Styles the small chevron arrow inside the submit button */
+.auth-submit-btn i {
+    font-size: 0.88rem;
+    transition: transform var(--transition-fast);
+}
+
+/* Brightens the submit button gradient, adds a stronger glow and lifts it slightly on hover */
+.auth-submit-btn:hover,
+.auth-submit-btn:focus {
+    background: linear-gradient(90deg, #7022de 0%, #9346ff 50%, #7022de 100%);
+    border-color: #b175ff;
+    box-shadow:
+        0 6px 28px rgba(139, 61, 255, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transform: translateY(-1px);
+}
+
+/* Nudges the chevron arrow to the right when hovering the submit button */
+.auth-submit-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* A horizontal divider with 'OR' centered in the middle */
+.auth-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.45rem 0 1.25rem;
+}
+
+/* The horizontal lines on either side of the 'OR' divider */
+.auth-divider::before,
+.auth-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Styles the uppercase 'OR' text between the divider lines */
+.auth-divider span {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: #7c758e;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+/* Centres the switch link at the bottom of the form */
+.auth-switch {
+    text-align: center;
+}
+
+/* The link at the bottom that switches between login and register */
+.auth-switch-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    margin: 0;
+    color: #9649ff;
+    font-size: 0.92rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color var(--transition-fast);
+    user-select: none;
+}
+
+/* Styles the arrow icon inside the switch link */
+.auth-switch-link i {
+    font-size: 0.78rem;
+    transition: transform var(--transition-fast);
+}
+
+/* Brightens the switch link when hovered */
+.auth-switch-link:hover {
+    color: #b77cff;
+}
+
+/* Slides the arrow slightly right on hover */
+.auth-switch-link:hover i {
+    transform: translateX(3px);
+}
+
+/* Reduces padding on smaller mobile screens so the card fits nicely */
+@media (max-width: 480px) {
+
+    /* Tightens up the inner card padding */
+    .auth-card {
+        padding: 2rem 1.4rem 1.75rem;
+    }
+
+    /* Slightly shrinks the logo title font size */
+    .auth-logo-title {
+        font-size: 2.5rem;
+    }
+}
+
+.auth-train-icon img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Checkbox row for agreeing to terms and privacy conditions */
+.auth-legal-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin: 0.15rem 0 0.85rem;
+    font-size: 0.79rem;
+    line-height: 1.45;
+    color: #9e96b0;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Colours the checkbox purple when checked */
+.auth-legal-check input[type="checkbox"] {
+    margin-top: 0.18rem;
+    accent-color: #8b3dff;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* Turns the terms text red if the user forgot to check it */
+.auth-legal-check.is-invalid {
+    color: #fda4af;
+}
+
+/* Highlights input boxes with a red glow if validation fails */
+.auth-input-group.is-invalid {
+    border-color: rgba(244, 63, 94, 0.78);
+    box-shadow: 0 0 12px rgba(244, 63, 94, 0.22);
+}
+
+/* An alert box that pops up to show validation errors inside the form */
+.auth-inline-error {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.55rem;
+    padding: 0.65rem 0.8rem;
+    margin-bottom: 0.85rem;
+    border-radius: 6px;
+    background: rgba(244, 63, 94, 0.14);
+    border: 1px solid rgba(244, 63, 94, 0.45);
+    color: #fecdd3;
+    font-size: 0.83rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Hides the inline error box when there are no errors to show */
+.auth-inline-error[hidden] {
+    display: none !important;
+}
+
+/* Colours the exclamation warning icon red */
+.auth-inline-error i {
+    color: #fb7185;
+    margin-top: 0.15rem;
+    flex-shrink: 0;
+}
+
+/* Small disclaimer text shown at the bottom of the form */
+.auth-legal-note {
+    margin: 0.95rem 0 0;
+    font-size: 0.78rem;
+    line-height: 1.45;
+    color: #9e96b0;
+    text-align: center;
+}
+
+/* Underlines and colours legal policy links inside the disclaimer */
+.auth-legal-link {
+    color: #b77cff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color var(--transition-fast);
+}
+
+/* Brightens legal links when hovered */
+.auth-legal-link:hover {
+    color: #d8b4fe;
+}

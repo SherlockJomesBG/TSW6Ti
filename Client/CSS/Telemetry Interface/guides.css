@@ -1,0 +1,667 @@
+/* Here lies the CSS concerned with the Guides Page in the Telemetry Interface */
+/* This will add to the CSS already laid out by the telemetry interface stylesheet */
+/* Remember consistency is key */
+
+/* Container wrapping both the guides directory list and the document reader */
+.guides-container {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Completely hides guide containers or dialogs when inactive */
+.guides-container[hidden],
+.guides-view[hidden],
+.guides-lightbox[hidden] {
+    display: none !important;
+}
+
+/* Centered view area for the guides library and reader with max width constraint */
+.guides-view {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 1320px;
+    margin: 0.75rem auto 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Top header bar for the guides library with title, search input and action buttons */
+.guides-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--telem-divider);
+}
+
+/* Main title for the guides section */
+.guides-title {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.2rem;
+    letter-spacing: -0.02em;
+}
+
+/* Muted subtitle describing the guides collection */
+.guides-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Groups search box and filter buttons on the right side of the header */
+.guides-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    flex-wrap: wrap;
+}
+
+/* Wrapper for the search input positioning the magnifying glass icon */
+.guides-search-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Magnifying glass search icon */
+.guides-search-wrap i {
+    position: absolute;
+    left: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+/* Search input field for filtering guides by title or content */
+.guides-search-input {
+    height: 36px;
+    min-width: 240px;
+    padding: 0 0.85rem 0 2.2rem;
+    background: var(--telem-input-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.84rem;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+/* Highlights the search input border with purple when focused */
+.guides-search-input:focus {
+    border-color: var(--accent-bright);
+}
+
+/* Base button styling used across the guides interface */
+.guides-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    height: 36px;
+    padding: 0 0.9rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border: 1px solid var(--telem-subcard-border);
+    background: var(--telem-subcard-bg);
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: all var(--transition-fast);
+}
+
+/* Highlights guide buttons with purple on hover */
+.guides-btn:hover {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* Secondary button style with subtle purple background */
+.guides-btn-secondary {
+    background: var(--accent-subtle);
+    border-color: var(--border-purple);
+    color: var(--text-primary);
+}
+
+/* Dashed placeholder box shown when no guides match the current search query */
+.guides-empty-state {
+    padding: 2.5rem 1.5rem;
+    border-radius: 10px;
+    border: 1px dashed var(--telem-card-border);
+    background: var(--telem-card-bg);
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Responsive card grid displaying available telemetry guides */
+.guides-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 1rem;
+}
+
+/* Individual guide card showing title, filename, summary and metadata */
+.guide-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.9rem;
+    padding: 1.15rem 1.2rem;
+    border-radius: 10px;
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    box-shadow: var(--telem-card-shadow);
+    cursor: pointer;
+    text-align: left;
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Lifts the card slightly and highlights its border when hovered */
+.guide-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--telem-card-hover-border);
+}
+
+/* Card header row aligning the guide icon and file name badge */
+.guide-card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.65rem;
+}
+
+/* Small purple icon badge for the guide card */
+.guide-card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--accent-subtle);
+    border: 1px solid var(--border-purple);
+    color: var(--accent-bright);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+/* Monospace badge displaying the guide filename */
+.guide-card-file {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 999px;
+    padding: 0.18rem 0.55rem;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Title of the guide */
+.guide-card-title {
+    margin: 0.55rem 0 0.35rem;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+/* Truncates the guide preview description to three lines */
+.guide-card-summary {
+    margin: 0;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.48;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Card footer showing reading time stats and call-to-action */
+.guide-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--telem-divider);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Groups icon stats like reading time */
+.guide-card-stats {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* Individual stat item pairing an icon with text */
+.guide-card-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* Call-to-action prompt linking into the guide reader */
+.guide-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--accent-bright);
+    font-weight: 600;
+}
+
+/* Width constraint for the reader view */
+.guides-reader-view {
+    max-width: 1380px;
+}
+
+/* Secondary navigation bar above the article reader with back button and guide switcher */
+.guides-subbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    box-shadow: var(--telem-card-shadow);
+}
+
+/* Groups back button and current article title */
+.guides-subbar-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    min-width: 0;
+}
+
+/* Stacks article title and reading progress */
+.guides-subbar-meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* Title of the currently open guide in the subbar */
+.guides-subbar-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Subtitle indicating current category or status */
+.guides-subbar-sub {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+/* Dropdown selector wrapper for switching between different guides */
+.guides-switch-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    height: 36px;
+    padding: 0 0.75rem;
+    background: var(--telem-input-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 6px;
+    color: var(--accent-bright);
+}
+
+/* Dropdown select element listing other guides */
+.guides-switcher-select {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    outline: none;
+    cursor: pointer;
+    min-width: 170px;
+    max-width: 260px;
+}
+
+/* Dark background for dropdown options */
+.guides-switcher-select option {
+    background: var(--telem-menu-bg);
+    color: var(--text-primary);
+}
+
+.guides-reader-view {
+    /* Width limit for the main article reader panel */
+    max-width: 1020px;
+}
+
+.guides-article-panel {
+    /* Card container holding the rendered markdown guide text */
+    width: 100%;
+    min-width: 0;
+    padding: 1.75rem 2rem;
+    border-radius: 10px;
+    background: var(--telem-card-bg);
+    border: 1px solid var(--telem-card-border);
+    box-shadow: var(--telem-card-shadow);
+}
+
+.guides-markdown {
+    /* Body text styling for markdown content */
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.guides-markdown>*:first-child {
+    /* Removes top margin from the first element in the article */
+    margin-top: 0;
+}
+
+.guides-markdown h1 {
+    /* Article level 1 title with bottom border line */
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 2rem 0 0.85rem;
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid var(--telem-divider);
+    letter-spacing: -0.02em;
+}
+
+.guides-markdown h2 {
+    /* Level 2 section heading with bright purple text and divider */
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-bright);
+    margin: 1.65rem 0 0.65rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid var(--telem-divider);
+}
+
+.guides-markdown h3 {
+    /* Level 3 subsection heading */
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 1.25rem 0 0.45rem;
+}
+
+.guides-markdown p {
+    /* Paragraph spacing inside the guide text */
+    margin: 0 0 0.9rem;
+}
+
+.guides-markdown strong {
+    /* Pure white bold text inside the guide */
+    color: var(--text-primary);
+}
+
+.guides-markdown hr {
+    /* Divider rule between guide topics */
+    border: none;
+    border-top: 1px solid var(--telem-divider);
+    margin: 1.5rem 0;
+}
+
+.guides-markdown ul,
+/* Indented lists for guide steps */
+.guides-markdown ol {
+    padding-left: 1.45rem;
+    margin: 0 0 0.95rem;
+}
+
+.guides-markdown li {
+    /* Spacing between list items */
+    margin-bottom: 0.35rem;
+}
+
+.guides-markdown a {
+    /* Hyperlink styling inside guide articles */
+    color: var(--accent-bright);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.guides-markdown code {
+    /* Inline code tag styling with a purple background */
+    padding: 0.12rem 0.42rem;
+    background: var(--accent-subtle);
+    border: 1px solid var(--border-purple);
+    border-radius: 4px;
+    color: var(--accent-bright);
+    font-size: 0.83rem;
+}
+
+.guides-markdown pre {
+    /* Multi-line code block container with dark background and horizontal scrolling */
+    background: var(--telem-input-bg);
+    border: 1px solid var(--telem-subcard-border);
+    border-radius: 8px;
+    padding: 0.9rem 1.05rem;
+    margin: 0 0 1rem;
+    overflow-x: auto;
+}
+
+.guides-markdown pre code {
+    /* Resets styling for code inside a pre block */
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+}
+
+.guides-markdown blockquote {
+    /* Highlighted callout box with purple left border */
+    margin: 0 0 1rem;
+    padding: 0.7rem 1rem;
+    border-left: 3px solid var(--accent-bright);
+    background: var(--accent-subtle);
+    border-radius: 0 6px 6px 0;
+}
+
+.guides-markdown blockquote p:last-child {
+    /* Removes bottom margin from the last paragraph in a quote */
+    margin-bottom: 0;
+}
+
+.guides-markdown table {
+    /* Formatted data table styling inside guides */
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 1rem;
+    font-size: 0.86rem;
+}
+
+.guides-markdown th,
+/* Table header and data cell padding */
+.guides-markdown td {
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--telem-subcard-border);
+    text-align: left;
+}
+
+.guides-markdown th {
+    /* Table header row styling */
+    background: var(--telem-subcard-bg);
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.guide-inline-figure {
+    margin: 1rem 0 1.25rem;
+    /* Card wrapper around illustrations and diagrams in the guide */
+    padding: 0.65rem;
+    border-radius: 8px;
+    background: var(--telem-subcard-bg);
+    border: 1px solid var(--telem-subcard-border);
+}
+
+.guide-inline-figure img {
+    display: block;
+    /* Full-width responsive guide image with zoom cursor */
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    cursor: zoom-in;
+}
+
+.guide-inline-figure img.is-broken-img {
+    display: none;
+    /* Hides broken images if the file cannot be loaded */
+}
+
+.guide-inline-fallback {
+    display: none;
+    /* Fallback placeholder box shown if an image fails to load */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    min-height: 110px;
+    padding: 1rem;
+    border-radius: 6px;
+    border: 1px dashed var(--telem-card-border);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.guide-inline-figure.is-broken .guide-inline-fallback {
+    display: flex;
+    /* Displays the fallback box when image loading fails */
+}
+
+.guide-inline-fallback i {
+    font-size: 1.35rem;
+    /* Warning icon inside the broken image fallback */
+    color: var(--accent-bright);
+    opacity: 0.8;
+}
+
+.guide-inline-fallback code {
+    font-size: 0.72rem;
+    /* Displays the missing file path */
+    word-break: break-all;
+}
+
+.guide-inline-caption {
+    margin-top: 0.5rem;
+    /* Centred caption text beneath images */
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.guides-lightbox {
+    position: fixed;
+    /* Fullscreen image popup lightbox */
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.guides-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    /* Dark blurred backdrop overlay behind the lightbox */
+    background: rgba(4, 2, 10, 0.82);
+    backdrop-filter: blur(6px);
+}
+
+.guides-lightbox-dialog {
+    position: relative;
+    z-index: 1;
+    /* The floating card containing the enlarged image */
+    max-width: min(1100px, 94vw);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--telem-menu-bg);
+    border: 1px solid var(--border-purple);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65);
+}
+
+.guides-lightbox-bar {
+    display: flex;
+    align-items: center;
+    /* Lightbox top bar with caption and close button */
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--telem-divider);
+}
+
+.guides-lightbox-caption {
+    font-size: 0.86rem;
+    /* Image caption text in the lightbox header */
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.guides-lightbox-close {
+    width: 30px;
+    /* Close button for dismissing the lightbox */
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--telem-subcard-border);
+    background: var(--telem-subcard-bg);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Highlights the close button on hover */
+.guides-lightbox-close:hover {
+    background: var(--accent-subtle);
+    color: var(--text-primary);
+}
+
+/* Scrolling body container displaying the full-size image */
+.guides-lightbox-body {
+    padding: 0.85rem;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Sizing constraint ensuring the enlarged image fits on screen */
+.guides-lightbox-img {
+    max-width: 100%;
+    max-height: 76vh;
+    border-radius: 6px;
+    display: block;
+}
+
+/* Tightens reader article padding on smaller screens */
+@media (max-width: 980px) {
+    .guides-article-panel {
+        padding: 1.25rem 1.25rem;
+    }
+}

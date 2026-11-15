@@ -1,0 +1,323 @@
+<style>
+    .mod-route {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        min-height: 0;
+    }
+
+    .mod-route-grid {
+        flex: 1;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1.25fr 1.35fr 0.95fr;
+        gap: 0.5rem;
+        min-height: 0;
+    }
+
+    .mod-route-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.14rem;
+        padding: 0.3rem 0.6rem;
+        background: rgba(255, 255, 255, 0.028);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    .mod-route-label {
+        font-size: 0.54rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .mod-route-val {
+        font-size: 0.98rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.15;
+    }
+
+    .mod-route-val.is-station {
+        color: #e9d5ff;
+    }
+
+    .mod-route-sub {
+        font-size: 0.58rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .mod-route-dist-row {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.32rem;
+    }
+
+    .mod-route-dist {
+        font-family: 'JetBrains Mono', 'Fira Code', monospace;
+        font-size: 1.25rem;
+        font-weight: 800;
+        line-height: 1.1;
+        color: var(--accent-bright);
+    }
+
+    .mod-route-unit {
+        font-size: 0.68rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-muted);
+    }
+
+    .module-slot[data-size="1x1"] .mod-route-grid {
+        grid-template-columns: 1.3fr 0.9fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0.3rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-route-item:first-child {
+        grid-column: span 2;
+    }
+
+    .module-slot[data-size="1x1"] .mod-route-item {
+        padding: 0.22rem 0.48rem;
+        gap: 0.08rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-route-label {
+        font-size: 0.46rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-route-val {
+        font-size: 0.78rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-route-sub {
+        font-size: 0.5rem;
+    }
+
+    .module-slot[data-size="1x1"] .mod-route-dist {
+        font-size: 0.92rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-route-grid {
+        grid-template-columns: 1.2fr 1.35fr 0.9fr;
+        grid-template-rows: 1fr;
+        gap: 0.5rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-route-item {
+        padding: 0.5rem 0.75rem;
+        gap: 0.22rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-route-label {
+        font-size: 0.58rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-route-val {
+        font-size: 1.12rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-route-sub {
+        font-size: 0.64rem;
+    }
+
+    .module-slot[data-size="2x1"] .mod-route-dist {
+        font-size: 1.45rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-route-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, minmax(0, 1fr));
+        gap: 0.5rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-route-item {
+        padding: 0.55rem 0.8rem;
+        gap: 0.24rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-route-label {
+        font-size: 0.6rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-route-val {
+        font-size: 1.18rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-route-sub {
+        font-size: 0.66rem;
+    }
+
+    .module-slot[data-size="1x2"] .mod-route-dist {
+        font-size: 1.6rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-route-grid {
+        grid-template-columns: 1.25fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 0.65rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-route-item:first-child {
+        grid-column: span 2;
+    }
+
+    .module-slot[data-size="2x2"] .mod-route-item {
+        padding: 0.75rem 1.05rem;
+        gap: 0.3rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-route-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.15em;
+    }
+
+    .module-slot[data-size="2x2"] .mod-route-val {
+        font-size: clamp(1.35rem, 2.1vw, 1.85rem);
+    }
+
+    .module-slot[data-size="2x2"] .mod-route-sub {
+        font-size: 0.76rem;
+    }
+
+    .module-slot[data-size="2x2"] .mod-route-dist {
+        font-size: clamp(1.75rem, 2.6vw, 2.4rem);
+    }
+
+    .module-slot[data-size="2x2"] .mod-route-unit {
+        font-size: 0.88rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-route-grid {
+        grid-template-columns: 1.35fr 1.45fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0.8rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-route-item {
+        padding: 0.6rem 1.1rem;
+        gap: 0.25rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-route-label {
+        font-size: 0.66rem;
+        letter-spacing: 0.15em;
+    }
+
+    .module-slot[data-size="5x1"] .mod-route-val {
+        font-size: clamp(1.25rem, 1.8vw, 1.65rem);
+    }
+
+    .module-slot[data-size="5x1"] .mod-route-sub {
+        font-size: 0.72rem;
+    }
+
+    .module-slot[data-size="5x1"] .mod-route-dist {
+        font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+    }
+</style>
+
+<div class="mod-route">
+    <div class="mod-eyebrow">ROUTE POSITION</div>
+    <div class="mod-route-grid">
+        <div class="mod-route-item">
+            <span class="mod-route-label">ROUTE</span>
+            <div class="mod-route-val" data-ref="routeName">Detecting...</div>
+            <span class="mod-route-sub" data-ref="routeDir">Awaiting GPS coordinates</span>
+        </div>
+        <div class="mod-route-item">
+            <span class="mod-route-label" data-ref="stationLabel">NEXT STATION</span>
+            <div class="mod-route-val is-station" data-ref="stationName">---</div>
+            <span class="mod-route-sub" data-ref="stationSub">&mdash;</span>
+        </div>
+        <div class="mod-route-item">
+            <span class="mod-route-label" data-ref="distLabel">DISTANCE TO STATION</span>
+            <div class="mod-route-dist-row">
+                <span class="mod-route-dist" data-ref="distance">---</span>
+                <span class="mod-route-unit" data-ref="distUnit">mi</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.TSWDashboard && window.TSWDashboard.registerModule("route", {
+        update: function (el, state) {
+            const routeNameEl = el.querySelector('[data-ref="routeName"]');
+            const routeDirEl = el.querySelector('[data-ref="routeDir"]');
+            const stationLabelEl = el.querySelector('[data-ref="stationLabel"]');
+            const stationNameEl = el.querySelector('[data-ref="stationName"]');
+            const stationSubEl = el.querySelector('[data-ref="stationSub"]');
+            const distLabelEl = el.querySelector('[data-ref="distLabel"]');
+            const distEl = el.querySelector('[data-ref="distance"]');
+            const unitEl = el.querySelector('[data-ref="distUnit"]');
+
+            const isMetric = state.speedUnit === "KMH" || state.speedUnit === "MS";
+            const distMultiplier = isMetric ? 1.609344 : 1;
+            const unitText = isMetric ? "km" : "mi";
+
+            if (unitEl) unitEl.textContent = unitText;
+
+            const r = state.route;
+            if (!r) {
+                if (routeNameEl) routeNameEl.textContent = "Detecting...";
+                if (routeDirEl) routeDirEl.textContent = "Awaiting GPS coordinates";
+                if (stationLabelEl) stationLabelEl.textContent = "TARGET STATION";
+                if (stationNameEl) stationNameEl.textContent = "---";
+                if (stationSubEl) stationSubEl.textContent = "—";
+                if (distLabelEl) distLabelEl.textContent = "DISTANCE TO STATION";
+                if (distEl) distEl.textContent = "---";
+                return;
+            }
+
+            if (routeNameEl) routeNameEl.textContent = r.routeName || "Unknown Route";
+            if (routeDirEl) {
+                routeDirEl.textContent = r.terminus ? "Towards " + r.terminus : "";
+            }
+
+            if (stationLabelEl) {
+                stationLabelEl.textContent = "NEXT STATION";
+            }
+            if (stationNameEl) {
+                stationNameEl.textContent = r.next || "---";
+            }
+            if (stationSubEl) {
+                if (r.isAtDepartureStation && r.previous) {
+                    stationSubEl.textContent = "At / Departing " + r.previous;
+                } else if (r.previous) {
+                    stationSubEl.textContent = "From " + r.previous;
+                } else {
+                    stationSubEl.textContent = "—";
+                }
+            }
+
+            if (distLabelEl) {
+                distLabelEl.textContent = "DISTANCE TO STATION";
+            }
+            if (distEl) {
+                const dVal = (r.distanceToNextMiles || 0) * distMultiplier;
+                distEl.textContent = dVal.toFixed(2);
+            }
+        }
+    });
+</script>

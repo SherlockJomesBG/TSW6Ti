@@ -1,0 +1,108 @@
+<style>
+    .mod-accel-trace {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .mod-accel-trace-canvas-wrap {
+        flex: 1;
+        position: relative;
+        min-height: 0;
+        width: 100%;
+        margin-top: 0.4rem;
+    }
+</style>
+
+<div class="mod-accel-trace">
+    <div class="mod-eyebrow">ACCEL TRACE &mdash; LAST 60S</div>
+    <div class="mod-accel-trace-canvas-wrap">
+        <canvas data-ref="canvas"></canvas>
+    </div>
+</div>
+
+<script>
+    window.TSWDashboard && window.TSWDashboard.registerModule("accel-trace", {
+        init: function (el, state) {
+            const canvas = el.querySelector('[data-ref="canvas"]');
+            if (!canvas || typeof Chart === "undefined") return;
+            el._chart = new Chart(canvas.getContext("2d"), {
+                type: "line",
+                data: {
+                    labels: state.timeLabels.slice(),
+                    datasets: [
+                        {
+                            label: "Acceleration (m/s²)",
+                            data: state.accelHistory.slice(),
+                            borderColor: "#38bdf8",
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            fill: {
+                                target: { value: 0 },
+                                above: "rgba(56, 189, 248, 0.14)",
+                                below: "rgba(244, 63, 94, 0.14)"
+                            },
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: {
+                            ticks: { color: "rgba(255,255,255,0.45)", font: { size: 9 }, maxTicksLimit: 4, maxRotation: 0 },
+                            grid: { color: "rgba(139, 61, 255, 0.08)" },
+                            border: { color: "rgba(255,255,255,0.12)" }
+                        },
+                        y: {
+                            ticks: {
+                                color: "rgba(255,255,255,0.45)",
+                                font: { size: 9 },
+                                maxTicksLimit: 5,
+                                callback: function (v) { return Number(v).toFixed(1); }
+                            },
+                            grid: { color: "rgba(139, 61, 255, 0.08)" },
+                            border: { color: "rgba(255,255,255,0.12)" },
+                            afterDataLimits: function (scale) {
+                                const range = Math.max(Math.abs(scale.max), Math.abs(scale.min), 0.5);
+                                scale.max = range * 1.2;
+                                scale.min = -range * 1.2;
+                            }
+                        }
+                    }
+                }
+            });
+        },
+        update: function (el, state) {
+            if (!el._chart) return;
+            const layoutEl = document.querySelector(".telem-layout") || document.documentElement;
+            const cs = getComputedStyle(layoutEl);
+            const textMuted = cs.getPropertyValue("--text-muted").trim() || "rgba(255,255,255,0.45)";
+            const divider = cs.getPropertyValue("--telem-divider").trim() || "rgba(255,255,255,0.12)";
+
+            el._chart.data.labels = state.timeLabels.slice();
+            el._chart.data.datasets[0].data = state.accelHistory.slice();
+            el._chart.options.scales.x.ticks.color = textMuted;
+            el._chart.options.scales.y.ticks.color = textMuted;
+            el._chart.options.scales.x.grid.color = divider;
+            el._chart.options.scales.y.grid.color = divider;
+            el._chart.options.scales.x.border.color = divider;
+            el._chart.options.scales.y.border.color = divider;
+            el._chart.update("none");
+        },
+        resize: function (el) {
+            if (el._chart) el._chart.resize();
+        },
+        destroy: function (el) {
+            if (el._chart) {
+                el._chart.destroy();
+                el._chart = null;
+            }
+        }
+    });
+</script>

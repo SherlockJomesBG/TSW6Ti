@@ -1,0 +1,35 @@
+.telem-layout {
+    --bg-primary: #000000;
+    --bg-secondary: #000000;
+    --telem-bg-color: #000000;
+    --telem-bg-image: none;
+    --telem-header-bg: #000000;
+    --telem-header-border: rgba(255, 255, 255, 0.16);
+    --telem-card-bg: #000000;
+    --telem-card-border: rgba(255, 255, 255, 0.16);
+    --telem-card-hover-border: rgba(16, 185, 129, 0.55);
+    --telem-card-shadow: none;
+    --telem-subcard-bg: #050505;
+    --telem-subcard-border: rgba(255, 255, 255, 0.14);
+    --telem-input-bg: #080808;
+    --telem-menu-bg: #050505;
+    --telem-divider: rgba(255, 255, 255, 0.14);
+    --telem-track-bg: rgba(255, 255, 255, 0.12);
+
+    --accent-primary: #10b981;
+    --accent-bright: #34d399;
+    --accent-deep: #059669;
+    --accent-soft: #6ee7b7;
+    --accent-contrast: #ffffff;
+    --accent-glow: rgba(52, 211, 153, 0.35);
+    --accent-subtle: rgba(52, 211, 153, 0.14);
+
+    --border-purple: rgba(52, 211, 153, 0.35);
+    --border-purple-strong: rgba(52, 211, 153, 0.68);
+    --border-divider: rgba(255, 255, 255, 0.2);
+
+    --text-primary: #ffffff;
+    --text-secondary: #e5e5e5;
+    --text-muted: #a3a3a3;
+    --text-dim: #737373;
+}

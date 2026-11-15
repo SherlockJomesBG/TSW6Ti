@@ -1,0 +1,252 @@
+{% extends "Layouts/layout-public.html" %}
+
+{% block title %}Account & Data - TSW6Ti{% endblock %}
+
+{% block public_styles %}
+<link rel="stylesheet" href="/Client/CSS/Public/auth.css">
+<link rel="stylesheet" href="/Client/CSS/Public/account.css">
+{% endblock %}
+
+{% block public_content %}
+<div class="account-page">
+
+    <div class="account-topbar">
+        <div>
+            <h1 class="account-page-title">Account &amp; Privacy Data</h1>
+            <p class="account-page-subtitle">Manage your profile, saved connection credentials, full data exports, and
+                permanent account deletion.</p>
+        </div>
+        <div class="account-topbar-actions">
+            <a href="/" class="account-nav-btn">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="/connect" class="account-nav-btn">
+                <i class="fa-solid fa-plug"></i>
+                <span>Connect</span>
+            </a>
+            <a href="/dashboard" id="account-dashboard-link" class="account-nav-btn account-nav-btn-primary" hidden>
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Dashboard</span>
+            </a>
+        </div>
+    </div>
+
+    <section class="auth-card account-card account-overview-card">
+        <div class="account-card-header">
+            <h2 class="account-card-title">
+                <i class="fa-solid fa-id-card"></i>
+                <span>Stored Data Summary</span>
+            </h2>
+            <span id="account-session-expiry" class="account-meta-pill"
+                title="When your current 7-day login session automatically expires and asks you to sign in again.">Login
+                Session: &mdash;</span>
+        </div>
+        <div class="account-stats-grid">
+            <div class="account-stat-box">
+                <span class="account-stat-label">Username</span>
+                <strong id="stat-username" class="account-stat-value">&mdash;</strong>
+            </div>
+            <div class="account-stat-box">
+                <span class="account-stat-label">Saved Connections</span>
+                <strong id="stat-connections" class="account-stat-value">0</strong>
+            </div>
+            <div class="account-stat-box">
+                <span class="account-stat-label">Telemetry Recordings</span>
+                <strong id="stat-recordings" class="account-stat-value">0</strong>
+            </div>
+            <div class="account-stat-box">
+                <span class="account-stat-label">Dashboard Config</span>
+                <strong id="stat-config" class="account-stat-value">&mdash;</strong>
+            </div>
+        </div>
+    </section>
+
+    <div class="account-grid">
+
+        <section class="auth-card account-card">
+            <div class="account-card-header">
+                <h2 class="account-card-title">
+                    <i class="fa-solid fa-user-pen"></i>
+                    <span>Profile &amp; Security</span>
+                </h2>
+                <span class="account-badge-tag">Rectification</span>
+            </div>
+
+            <form id="account-username-form" class="account-form">
+                <label class="account-label" for="account-username-input">Update Username</label>
+                <div class="account-inline-form">
+                    <div class="auth-input-group">
+                        <span class="auth-input-icon"><i class="fa-solid fa-user"></i></span>
+                        <input type="text" id="account-username-input" name="username" class="auth-input"
+                            placeholder="Username" minlength="2" maxlength="64" required>
+                    </div>
+                    <button type="submit" class="btn auth-submit-btn account-action-btn">
+                        <span>Save</span>
+                    </button>
+                </div>
+            </form>
+
+            <hr class="account-divider">
+
+            <form id="account-password-form" class="account-form">
+                <label class="account-label">Change Password</label>
+                <div class="auth-input-group">
+                    <span class="auth-input-icon"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" name="currentPassword" class="auth-input" placeholder="Current Password"
+                        autocomplete="current-password" required>
+                    <span class="auth-input-toggle" title="Toggle password visibility">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </span>
+                </div>
+                <div class="auth-input-group">
+                    <span class="auth-input-icon"><i class="fa-solid fa-key"></i></span>
+                    <input type="password" name="newPassword" class="auth-input"
+                        placeholder="New Password (min 8 chars)" minlength="8" autocomplete="new-password" required>
+                    <span class="auth-input-toggle" title="Toggle password visibility">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </span>
+                </div>
+                <div class="auth-input-group">
+                    <span class="auth-input-icon"><i class="fa-solid fa-shield-halved"></i></span>
+                    <input type="password" name="confirmNewPassword" class="auth-input"
+                        placeholder="Confirm New Password" minlength="8" autocomplete="new-password" required>
+                    <span class="auth-input-toggle" title="Toggle password visibility">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </span>
+                </div>
+                <button type="submit" class="btn auth-submit-btn account-action-btn">
+                    <span>Update Password</span>
+                </button>
+            </form>
+        </section>
+
+        <section class="auth-card account-card">
+            <div class="account-card-header">
+                <h2 class="account-card-title">
+                    <i class="fa-solid fa-plug"></i>
+                    <span>Saved Game Connections</span>
+                </h2>
+                <a href="/connect" class="account-inline-link">Manage on Connect</a>
+            </div>
+            <p class="account-help-text">
+                Connection IP addresses and API keys are encrypted at rest on the server. Removing a connection deletes
+                it immediately.
+            </p>
+            <div class="account-conn-table-wrap">
+                <table class="account-conn-table">
+                    <thead>
+                        <tr>
+                            <th>IP Address</th>
+                            <th>API Key</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="account-connections-body">
+                        <tr>
+                            <td colspan="3" class="account-table-muted">Loading...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="auth-card account-card account-wide-card">
+            <div class="account-card-header">
+                <h2 class="account-card-title">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Data Retention Policy</span>
+                </h2>
+                <span class="account-badge-tag">Storage Limitation</span>
+            </div>
+            <p class="account-help-text" id="account-retention-help">
+                Expired login sessions are automatically removed after 7 days. Choose how long finished telemetry
+                recordings remain stored before automatic deletion.
+            </p>
+            <form id="account-retention-form" class="account-form">
+                <label class="account-label" for="account-retention-select">Recording Retention Window</label>
+                <div class="account-inline-form">
+                    <div class="auth-input-group">
+                        <span class="auth-input-icon"><i class="fa-solid fa-calendar-days"></i></span>
+                        <select id="account-retention-select" name="recordingRetentionDays"
+                            class="auth-input account-select">
+                            <option value="30">Delete recordings older than 30 days</option>
+                            <option value="90">Delete recordings older than 90 days</option>
+                            <option value="180">Delete recordings older than 180 days</option>
+                            <option value="365">Delete recordings older than 365 days (1 year)</option>
+                            <option value="0">Keep recordings until manually deleted</option>
+                        </select>
+                    </div>
+                    <button type="submit" id="account-retention-btn" class="btn auth-submit-btn account-action-btn">
+                        <span>Save Policy</span>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="auth-card account-card">
+            <div class="account-card-header">
+                <h2 class="account-card-title">
+                    <i class="fa-solid fa-file-export"></i>
+                    <span>Export Your Data</span>
+                </h2>
+                <span class="account-badge-tag">Access &amp; Portability</span>
+            </div>
+            <p class="account-help-text">
+                Download a complete, machine-readable copy of all personal and telemetry data associated with your
+                account (profile metadata, saved connections, dashboard layout/theme config, and decompressed recording
+                files).
+            </p>
+            <div class="account-export-actions">
+                <button type="button" id="account-export-zip-btn" class="btn auth-submit-btn account-action-btn">
+                    <i class="fa-solid fa-file-zipper"></i>
+                    <span>Download Full Archive (.zip)</span>
+                </button>
+                <button type="button" id="account-export-json-btn" class="account-secondary-btn">
+                    <i class="fa-solid fa-code"></i>
+                    <span>Download Metadata (.json)</span>
+                </button>
+            </div>
+        </section>
+
+        <section class="auth-card account-card account-danger-card">
+            <div class="account-card-header">
+                <h2 class="account-card-title account-danger-title">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span>Delete Account</span>
+                </h2>
+                <span class="account-badge-tag account-badge-danger">Right to Erasure</span>
+            </div>
+            <p class="account-help-text">
+                Permanently erases your user account, active sessions, encrypted connections, dashboard configuration,
+                all telemetry recordings on the server, and local browser data. This cannot be undone.
+            </p>
+            <form id="account-delete-form" class="account-form">
+                <div class="auth-input-group">
+                    <span class="auth-input-icon"><i class="fa-solid fa-lock"></i></span>
+                    <input type="password" name="password" class="auth-input" placeholder="Enter your password"
+                        autocomplete="current-password" required>
+                    <span class="auth-input-toggle" title="Toggle password visibility">
+                        <i class="fa-regular fa-eye-slash"></i>
+                    </span>
+                </div>
+                <div class="auth-input-group">
+                    <span class="auth-input-icon"><i class="fa-solid fa-keyboard"></i></span>
+                    <input type="text" name="confirmPhrase" class="auth-input" placeholder='Type "DELETE" to confirm'
+                        autocomplete="off" required>
+                </div>
+                <button type="submit" id="account-delete-btn" class="account-danger-btn">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span>Permanently Delete Account</span>
+                </button>
+            </form>
+        </section>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block public_scripts %}
+<script src="/Client/JS/Public/account.js"></script>
+{% endblock %}

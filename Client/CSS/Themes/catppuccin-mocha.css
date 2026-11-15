@@ -1,0 +1,37 @@
+.telem-layout {
+    --bg-primary: #1e1e2e;
+    --bg-secondary: #181825;
+    --telem-bg-color: #11111b;
+    --telem-bg-image:
+        radial-gradient(ellipse 70% 50% at 50% 18%, rgba(203, 166, 247, 0.14) 0%, transparent 75%),
+        linear-gradient(180deg, #1e1e2e 0%, #11111b 100%);
+    --telem-header-bg: rgba(24, 24, 37, 0.94);
+    --telem-header-border: rgba(203, 166, 247, 0.26);
+    --telem-card-bg: rgba(30, 30, 46, 0.92);
+    --telem-card-border: rgba(203, 166, 247, 0.24);
+    --telem-card-hover-border: rgba(203, 166, 247, 0.52);
+    --telem-card-shadow: 0 8px 24px rgba(0, 0, 0, 0.48);
+    --telem-subcard-bg: rgba(49, 50, 68, 0.65);
+    --telem-subcard-border: rgba(205, 214, 244, 0.12);
+    --telem-input-bg: #181825;
+    --telem-menu-bg: #181825;
+    --telem-divider: rgba(205, 214, 244, 0.12);
+    --telem-track-bg: rgba(205, 214, 244, 0.14);
+
+    --accent-primary: #cba6f7;
+    --accent-bright: #b4befe;
+    --accent-deep: #9d79d6;
+    --accent-soft: #cba6f7;
+    --accent-contrast: #11111b;
+    --accent-glow: rgba(203, 166, 247, 0.36);
+    --accent-subtle: rgba(203, 166, 247, 0.15);
+
+    --border-purple: rgba(203, 166, 247, 0.35);
+    --border-purple-strong: rgba(203, 166, 247, 0.65);
+    --border-divider: rgba(205, 214, 244, 0.2);
+
+    --text-primary: #cdd6f4;
+    --text-secondary: #bac2de;
+    --text-muted: #9399b2;
+    --text-dim: #6c7086;
+}

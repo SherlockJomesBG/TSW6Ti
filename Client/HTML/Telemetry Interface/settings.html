@@ -1,0 +1,170 @@
+{% extends "Layouts/telemInter.html" %}
+
+{% block title %}TSW6 — Telemetry Settings{% endblock %}
+
+{% block telem_content %}
+<div id="settings-wrapper" class="settings-container">
+
+    <div class="settings-header">
+        <div class="settings-header-titles">
+            <h1 class="settings-title">Settings</h1>
+            <p class="settings-subtitle">Manage your interface appearance and telemetry configuration.</p>
+        </div>
+        <a href="/dashboard" class="settings-back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Back to Dashboard</span>
+        </a>
+    </div>
+
+    <div class="settings-sections">
+
+        <section class="settings-section" aria-labelledby="settings-sec-appearance">
+            <div class="settings-section-head">
+                <div class="settings-section-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <div class="settings-section-meta">
+                    <h2 id="settings-sec-appearance" class="settings-section-title">Appearance</h2>
+                    <p class="settings-section-desc">Customize the visual layout, color theme, and module arrangement of
+                        your workspace.</p>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <div class="settings-row">
+                    <div class="settings-row-info">
+                        <span class="settings-row-label">Dashboard Layout</span>
+                        <p class="settings-row-desc">
+                            Enter edit mode on the 5&times;3 telemetry grid to move, resize (5&times;1, 2&times;2,
+                            2&times;1, 1&times;2, 1&times;1), add, or remove modules.
+                        </p>
+                    </div>
+                    <div class="settings-row-control">
+                        <a href="/dashboard?edit=1" class="settings-action-btn">
+                            <i class="fa-solid fa-table-cells-large"></i>
+                            <span>Customize Dashboard</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="settings-row settings-row-theme">
+                    <div class="settings-row-main">
+                        <div class="settings-row-info">
+                            <label for="setting-theme" class="settings-row-label">Theme</label>
+                            <p class="settings-row-desc">
+                                Color scheme applied across the telemetry interface header, dashboard modules, and
+                                settings.
+                            </p>
+                        </div>
+                        <div class="settings-row-control">
+                            <div class="settings-select-wrapper">
+                                <select id="setting-theme" class="settings-select" aria-label="Theme">
+                                    <option value="default" selected>Default</option>
+                                    <option value="light">Light</option>
+                                    <option value="dark">Dark</option>
+                                    <option value="oled">OLED</option>
+                                    <option value="gruvbox">Gruvbox</option>
+                                    <option value="solarized-light">Solarized Light</option>
+                                    <option value="solarized-dark">Solarized Dark</option>
+                                    <option value="dracula">Dracula</option>
+                                    <option value="nord">Nord</option>
+                                    <option value="catppuccin-latte">Catppuccin Latte</option>
+                                    <option value="catppuccin-frappe">Catppuccin Frappe</option>
+                                    <option value="catppuccin-macchiato">Catppuccin Macchiato</option>
+                                    <option value="catppuccin-mocha">Catppuccin Mocha</option>
+                                    <option value="follow-train">Follow Train (Beta)</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down settings-select-chevron" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="theme-follow-train-banner" class="settings-beta-banner" role="alert" hidden>
+                        <i class="fa-solid fa-triangle-exclamation settings-beta-icon" aria-hidden="true"></i>
+                        <div class="settings-beta-text">
+                            <strong>Follow Train (Beta):</strong> Automatically adapts the telemetry interface colours
+                            to match the active train's operator livery (e.g. GWR, CrossCountry, WSR, TfW). Not all
+                            trains have their own theme &mdash; for those without, the Default theme will be used.
+                        </div>
+                    </div>
+                </div>
+
+                <div id="setting-accent-row" class="settings-row" hidden>
+                    <div class="settings-row-info">
+                        <span class="settings-row-label">Accent Colour</span>
+                        <p class="settings-row-desc">
+                            Customize the highlight, border glow, and gauge accent colour used by the active neutral
+                            theme.
+                        </p>
+                    </div>
+                    <div class="settings-row-control">
+                        <div class="settings-accent-swatches" role="radiogroup" aria-label="Accent Colour">
+                            <button type="button" class="settings-accent-swatch" data-accent="#3b82f6"
+                                style="--swatch-color: #3b82f6;" title="Blue" aria-label="Blue"></button>
+                            <button type="button" class="settings-accent-swatch" data-accent="#8b3dff"
+                                style="--swatch-color: #8b3dff;" title="Purple" aria-label="Purple"></button>
+                            <button type="button" class="settings-accent-swatch" data-accent="#06b6d4"
+                                style="--swatch-color: #06b6d4;" title="Cyan" aria-label="Cyan"></button>
+                            <button type="button" class="settings-accent-swatch" data-accent="#10b981"
+                                style="--swatch-color: #10b981;" title="Emerald" aria-label="Emerald"></button>
+                            <button type="button" class="settings-accent-swatch" data-accent="#f59e0b"
+                                style="--swatch-color: #f59e0b;" title="Amber" aria-label="Amber"></button>
+                            <button type="button" class="settings-accent-swatch" data-accent="#f97316"
+                                style="--swatch-color: #f97316;" title="Orange" aria-label="Orange"></button>
+                            <button type="button" class="settings-accent-swatch" data-accent="#f43f5e"
+                                style="--swatch-color: #f43f5e;" title="Rose" aria-label="Rose"></button>
+                            <label class="settings-accent-custom" title="Custom Accent Colour">
+                                <input type="color" id="setting-accent-custom" value="#3b82f6"
+                                    aria-label="Custom Accent Colour">
+                                <i class="fa-solid fa-eye-dropper" aria-hidden="true"></i>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="settings-section" aria-labelledby="settings-sec-config">
+            <div class="settings-section-head">
+                <div class="settings-section-icon">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div class="settings-section-meta">
+                    <h2 id="settings-sec-config" class="settings-section-title">Configuration</h2>
+                    <p class="settings-section-desc">Configure telemetry units, data readouts, and simulation
+                        preferences.</p>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <div class="settings-row">
+                    <div class="settings-row-info">
+                        <label for="setting-speed-unit" class="settings-row-label">Speed Unit</label>
+                        <p class="settings-row-desc">
+                            Unit of measurement used for live train speed and track speed limits across the telemetry
+                            interface.
+                        </p>
+                    </div>
+                    <div class="settings-row-control">
+                        <div class="settings-select-wrapper">
+                            <select id="setting-speed-unit" class="settings-select" aria-label="Speed Unit">
+                                <option value="MPH" selected>MPH (Miles per hour)</option>
+                                <option value="KMH">KM/H (Kilometres per hour)</option>
+                                <option value="MS">M/S (Metres per second)</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down settings-select-chevron" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <div id="settings-toast" class="settings-toast" role="status" aria-live="polite" hidden>
+        <i class="fa-solid fa-check"></i>
+        <span>Preference saved</span>
+    </div>
+
+</div>
+{% endblock %}

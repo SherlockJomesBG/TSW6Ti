@@ -1,0 +1,41 @@
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Databases (SQLite)
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Project Assets & User Data
+Storage/
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Syncthing / Backup sync conflicts
+*.sync-conflict-*
+.stversions/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+.benArch/
+.benLinux/
+
+# OS/System specific files
+.DS_Store
+Thumbs.db
+.directory
+TODO.txt
+
+# Obsidian vault configuration & cache
+.obsidian/
+.trash/
+

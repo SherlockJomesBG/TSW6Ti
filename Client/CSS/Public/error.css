@@ -1,0 +1,156 @@
+/* Here lies the CSS concerned with the Public Error Page */
+/* This will add to the CSS already laid out by the layout-public stylesheet */
+/* Remember consistency is key */
+
+/* Centres the error card vertically and horizontally in the viewport */
+.public-content-wrapper {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Keeps the inner content container centered as well */
+.public-content-wrapper>.container {
+    justify-content: center;
+    align-items: center;
+}
+
+/* A wrapper around the error card providing spacing and proper layering */
+.error-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+/* The main error card with dark glassmorphism background, purple glow and blur */
+.error-card {
+    width: 100%;
+    max-width: 520px;
+    text-align: center;
+    padding: 2.75rem 2.25rem;
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(16, 8, 30, 0.9) 0%, rgba(10, 5, 19, 0.94) 100%);
+    border: 1px solid rgba(139, 61, 255, 0.32);
+    backdrop-filter: blur(12px);
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.78),
+        0 0 42px rgba(124, 42, 232, 0.14);
+}
+
+/* Small pill badge indicating the type of error */
+.error-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.28rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: rgba(139, 61, 255, 0.16);
+    border: 1px solid rgba(139, 61, 255, 0.38);
+    color: #d8b4fe;
+    margin-bottom: 1rem;
+}
+
+/* Large gradient text displaying the HTTP status code (like 404 or 500) */
+.error-code {
+    font-size: clamp(4.25rem, 11vw, 5.75rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.65rem;
+    background: linear-gradient(180deg, #f5f3f9 0%, #9d5cff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 6px 24px rgba(139, 61, 255, 0.35));
+}
+
+/* Clear title explaining what went wrong */
+.error-title {
+    margin: 0 0 0.65rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Explanatory text giving context on the error and what to do */
+.error-description {
+    margin: 0 auto 1.75rem;
+    max-width: 42ch;
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* Groups the action buttons side by side at the bottom of the card */
+.error-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+/* The main action button styled with a bright purple gradient */
+.error-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 7px;
+    border: 1px solid #9649ff;
+    background: linear-gradient(90deg, #6218c6 0%, #8432f6 50%, #6218c6 100%);
+    color: var(--text-primary) !important;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    box-shadow: 0 4px 18px rgba(124, 42, 232, 0.4);
+    transition: transform 0.15s, filter 0.15s, box-shadow 0.15s;
+}
+
+/* Brightens the primary button and lifts it slightly on hover */
+.error-btn-primary:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(139, 61, 255, 0.55);
+}
+
+/* Secondary outline button for going back or viewing other pages */
+.error-btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.15rem;
+    border-radius: 7px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-purple);
+    color: var(--text-secondary) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+/* Highlights the secondary button with a purple background on hover */
+.error-btn-secondary:hover {
+    background: rgba(139, 61, 255, 0.18);
+    border-color: var(--accent-bright);
+    color: var(--text-primary) !important;
+}
+
+/* Adjusts card padding so it fits neatly on mobile phones */
+@media (max-width: 576px) {
+
+    /* Tightens inner padding of the error card */
+    .error-card {
+        padding: 2rem 1.35rem;
+    }
+}
